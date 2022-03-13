@@ -17,87 +17,26 @@
 	<link rel="stylesheet" href="assets/css/style.css">
 
 	<link rel="stylesheet" href="assets/node_modules/myscript/dist/myscript.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kalam">
 
 </head>
 
-<body>
-	<h1>Hello, world!</h1>
 
-	<div class="container-fluid">
-		<div class="row panel panel-default">
-			<div class="panel-heading">
-				<h3 class="panel-title">Speech Recognition</h3>
-			</div>
-			<div class="panel-body">
-				<div class="col-md-4 text-center">
-					<button type="button" class="btn btn-default" id="start">Start Recognition</button>
-				</div>
-				<div class="col-md-4 text-center">
-					<button type="button" class="btn btn-default" id="stop">Stop Recognition</button>
-				</div>
-				<div class="col-md-4">
-					<select name="voice" id="voice"></select>
-					<button type="button" class="btn btn-default" id="speak">Speak</button>
-				</div>
-			</div>
-		</div>
-		<div class="row panel panel-default">
-			<div class="panel-heading">
-				<h3 class="panel-title">Text Recognition</h3>
-			</div>
-			<div class="panel-body">
-				<div class="col-md-2 key-control text-center">
-					<button type="button" class="btn btn-default" id="keys">Update</button>
-					<br>
-					<i class="glyphicon glyphicon-info-sign"></i>
-					<i id="keystatus" class="glyphicon glyphicon-minus-sign"></i>
-				</div>
-				<div class="col-lg-10">
-					<label>
-						App Key:
-						<input type="text" id="appkey">
-					</label>
-					<br>
-					<label>
-						HMAC Key:
-						<input type="text" id="hmackey">
-					</label>
-				</div>
-				<div class="row">
-					<div class="col-md-12 text-center">
-						<div id="editor" touch-action="none"></div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="row panel panel-default">
-			<div class="panel-heading">
-				<h3 class="panel-title">Drawing Output</h3>
-			</div>
-			<div class="panel-body">
-				<div class="col-lg-12" text-center>
-					<label>
-						Keyword:
-						<input type="text" id="appkey">
-					</label>
-					<br>
-					<button type="button" class="btn btn-default" id="draw">Draw</button>
-				</div>
-			</div>
-			<div class="panel-body drawing-frame">
-				<div class="col-md-12 text-center">
-					<div id="drawing"></div>
-				</div>
-			</div>
-		</div>
-
-	</div>
+<body id="start">
+	<h1 id="start">Collaborative Storytelling</h1>
 
 	<script src="assets/js/jquery-3.6.0.min.js"></script>
 	<script src="assets/js/bootstrap.min.js"></script>
 
 	<script src="assets/js/speech.js"></script>
 	<script type="module" src="assets/js/handwriting.js"></script>
+
+
+    <div id="btn">
+        <div class="start_btn" ontouchstart="">
+            <a style="width: 50%;" href="speech-recognition.html"><span>START</span></a>
+        </div>
+    </div>
 </body>
 
 </html>
