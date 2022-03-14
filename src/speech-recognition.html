@@ -9,7 +9,7 @@
 </div>
 
 <div id="btn">
-    <div class="idea_btn float" ontouchstart="">
+    <div class="idea_btn" ontouchstart="">
         <a href="index.html"><span>IDEA</span></a>
         
     </div>
@@ -49,18 +49,31 @@
 	<div class="container-fluid">
 		<div class="row panel panel-default">
 			<div class="panel-heading">
-				<h3 class="panel-title">Speech Recognition</h3>
+				<select name="voice" id="voice"></select>
 			</div>
 			<div class="panel-body">
 				<div class="col-md-4 text-center">
-					<button type="button" class="btn btn-default" id="start">Start Recognition</button>
+					<div id="btn">
+                        <div class="start_btn" ontouchstart="">
+                            <!-- <a href="index.html"><span>START</span></a> -->
+                            <button type="button" class="btn btn-default" id="start_rec"><span>START</span></button>
+                        </div>
+                    </div>
 				</div>
 				<div class="col-md-4 text-center">
-					<button type="button" class="btn btn-default" id="stop">Stop Recognition</button>
+					<div id="btn">
+                        <div class="stop_btn" ontouchstart="">
+                            <a href="index.html"><span>STOP</span></a>
+                        </div>
+                    </div>
 				</div>
 				<div class="col-md-4">
-					<select name="voice" id="voice"></select>
-					<button type="button" class="btn btn-default" id="speak">Speak</button>
+					<div id="btn">
+                        <div class="play_btn" ontouchstart="">
+                            <a href="index.html"><span>PLAY</span></a>
+                            
+                        </div>
+                    </div>
 				</div>
 			</div>
 		</div>

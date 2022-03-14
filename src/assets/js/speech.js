@@ -15,8 +15,8 @@ recognition.maxAlternatives = 1;
 
 var speech_result;
 
-var startbtn = document.querySelector('#start');
-var stopbtn = document.querySelector('#stop');
+var startbtn = document.querySelector('#start_rec');
+var stopbtn = document.querySelector('#stop_rec');
 
 function startrecognition() {
     recognition.start();
