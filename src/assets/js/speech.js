@@ -63,7 +63,7 @@ stopbtn.onclick = stoprecognition;
  * ---------------*/
 var synth = window.speechSynthesis;
 var voiceselect = document.querySelector('#voice');
-var speakbtn = document.querySelector('#speak');
+var speakbtn = document.querySelector('#play_rec');
 
 function populateVoiceList() {
     voices = synth.getVoices();

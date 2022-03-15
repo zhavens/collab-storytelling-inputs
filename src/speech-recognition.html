@@ -1,27 +1,6 @@
 <!doctype html>
 <html lang="en">
 
-<div id="btn">
-    <div class="back_btn" ontouchstart="">
-        <a href="index.html"><span>BACK</span></a>
-        
-    </div>
-</div>
-
-<div id="btn">
-    <div class="idea_btn" ontouchstart="">
-        <a href="index.html"><span>IDEA</span></a>
-        
-    </div>
-</div>
-
-<div id="btn">
-    <div class="next_btn" ontouchstart="">
-        <a href="index.html"><span>NEXT</span></a>
-        
-    </div>
-</div>
-
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -44,34 +23,53 @@
 
 
 <body>
+    <div id="back_btn">
+        <div class="back_btn" ontouchstart="">
+            <a href="index.html"><span>BACK</span></a>
+            
+        </div>
+    </div>
+    
+    <div id="idea_btn">
+        <div class="idea_btn" ontouchstart="">
+            <a href="index.html"><span>IDEA</span></a>
+            
+        </div>
+    </div>
+    
+    <div id="next_btn">
+        <div class="next_btn" ontouchstart="">
+            <a href="index.html"><span>NEXT</span></a>
+            
+        </div>
+    </div>
 	<h1>RECORD YOUR STORY</h1>
 
 	<div class="container-fluid">
 		<div class="row panel panel-default">
 			<div class="panel-heading">
+                Choose The Voice
 				<select name="voice" id="voice"></select>
 			</div>
 			<div class="panel-body">
 				<div class="col-md-4 text-center">
-					<div id="btn">
-                        <div class="start_btn" ontouchstart="">
-                            <!-- <a href="index.html"><span>START</span></a> -->
-                            <button type="button" class="btn btn-default" id="start_rec"><span>START</span></button>
+					<div id="start_rec_btn">
+                        <div class="start_rec_btn" ontouchstart="">
+                            <button type="button" id="start_rec"><span>START</span></button>
                         </div>
                     </div>
 				</div>
 				<div class="col-md-4 text-center">
-					<div id="btn">
-                        <div class="stop_btn" ontouchstart="">
-                            <a href="index.html"><span>STOP</span></a>
+					<div id="stop_rec_btn">
+                        <div class="stop_rec_btn" ontouchstart="">
+                            <button type="button" id="stop_rec"><span>STOP</span></button>
                         </div>
                     </div>
 				</div>
 				<div class="col-md-4">
-					<div id="btn">
-                        <div class="play_btn" ontouchstart="">
-                            <a href="index.html"><span>PLAY</span></a>
-                            
+					<div id="play_rec_btn">
+                        <div class="play_rec_btn" ontouchstart="">
+                            <button type="button" id="play_rec"><span>PLAY</span></button>
                         </div>
                     </div>
 				</div>

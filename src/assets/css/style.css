@@ -18,6 +18,7 @@ body {
 h1, p {
   text-align: center;
   padding: 30px 0px;
+  padding-bottom: 60px;
   font-size:100px;
 }
 
@@ -71,30 +72,47 @@ div #drawing {
   box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.2);
 }
 
-#start h1{
+#start_page h1{
     padding: 100px 0px;
 }
 
-#btn span {
+#back_btn span,
+#next_btn span,
+#idea_btn span,
+#start_rec_btn span,
+#stop_rec_btn span,
+#play_rec_btn span {
   display: block;
   padding: 10px 20px;
   border-radius: 5px;
   border: 2px solid #000;
 }
 
-#btn a:active {
+#back_btn a:active,
+#next_btn a:active,
+#idea_btn a:active,
+#start_rec_btn button:active,
+#stop_rec_btn button:active,
+#play_rec_btn button:active {
   top: 4px;
   padding-bottom: 0px;
   box-shadow: 0 1px 0 #000;
 }
-#btn a {
+
+#back_btn a,
+#next_btn a,
+#idea_btn a,
+#start_rec_btn button,
+#stop_rec_btn button,
+#play_rec_btn button {
   float: right;
   font: normal 25px/28px "Kalam", sans-serif;
   margin-right: 25%;
   text-transform: uppercase;
   text-align: center;
   color: #000;
-  padding-bottom: 3px;
+  border: 0px;
+  padding: 0px 0px 3px 0px;
   border-radius: 5px;
   box-shadow: 0 2px 0 #000;
   transition: padding 0.1s, box-shadow 0.1s, top 0.1s;
@@ -119,27 +137,35 @@ div #drawing {
 	right:40px;
 }
 
-.start_btn span, .next_btn span {
+.start_btn span, 
+.next_btn span,
+.start_rec_btn span {
     background: rgb(180, 255, 160);
 }
 
-.start_btn span:hover, .next_btn span:hover{
+.start_btn span:hover, 
+.next_btn span:hover, 
+.start_rec_btn span:hover {
     background: rgb(125, 205, 102);
 }
 
-.back_btn span, .stop_btn span {
+.back_btn span, 
+.stop_rec_btn span {
     background: rgb(247, 62, 62);
 }
 
-.back_btn span:hover, .stop_btn span:hover {
+.back_btn span:hover, 
+.stop_rec_btn span:hover {
     background: rgb(162, 34, 34);
 }
 
-.idea_btn span, .play_btn span {
+.idea_btn span, 
+.play_rec_btn span {
     background: rgb(63, 218, 235);
 }
 
-.idea_btn span:hover, .play_btn span:hover{
+.idea_btn span:hover, 
+.play_rec_btn span:hover{
     background: rgb(43, 164, 177);
 }
 
