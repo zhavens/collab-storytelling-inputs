@@ -14,7 +14,8 @@
 
 	<!-- Custom -->
 	<link href="assets/img/favicon.png" rel="icon">
-	<link rel="stylesheet" href="assets/css/style.css">
+	<link rel="stylesheet" href="assets/css/canvas.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 
 	<link rel="stylesheet" href="assets/node_modules/myscript/dist/myscript.min.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kalam">
@@ -45,11 +46,61 @@
     </div>
 	<h1>DRAW YOUR STORY</h1>
 
+    <div id="paintbg">
+          <div id="colorpanel">
+          <p>Colors</p>
+           <div id="contain">
+             <div class="palette red" id="red" onclick="changeColors(this)"></div>
+             <div class="palette red1" id="red1" onclick="changeColors(this)"></div>
+             <div class="palette red2" id="red2" onclick="changeColors(this)"></div>
+             <div class="palette orange" id="orange" onclick="changeColors(this)"></div>
+             <div class="palette orange1" id="orange1" onclick="changeColors(this)"></div>
+             <div class="palette orange2" id="orange2" onclick="changeColors(this)"></div>
+             <div class="palette yellow" id="yellow" onclick="changeColors(this)"></div>
+             <div class="palette yellow1" id="yellow1" onclick="changeColors(this)"></div>
+             <div class="palette yellow2" id="yellow2" onclick="changeColors(this)"></div>
+             <div class="palette green" id="green" onclick="changeColors(this)"></div>
+             <div class="palette green1" id="green1" onclick="changeColors(this)"></div>
+             <div class="palette green2" id="green2" onclick="changeColors(this)"></div>
+             <div class="palette blue" id="blue" onclick="changeColors(this)"></div>
+             <div class="palette blue1" id="blue1" onclick="changeColors(this)"></div>
+             <div class="palette blue2" id="blue2" onclick="changeColors(this)"></div>
+             <div class="palette indigo" id="indigo" onclick="changeColors(this)"></div>
+             <div class="palette indigo1" id="indigo1" onclick="changeColors(this)"></div>
+             <div class="palette indigo2" id="indigo2" onclick="changeColors(this)"></div>
+             <div class="palette pink" id="pink" onclick="changeColors(this)"></div>
+             <div class="palette pink1" id="pink1" onclick="changeColors(this)"></div>
+             <div class="palette pink2" id="pink2" onclick="changeColors(this)"></div>
+             <div class="palette black" id="black" onclick="changeColors(this)"></div>
+             <div class="palette black1" id="black1" onclick="changeColors(this)"></div>
+             <div class="palette black2" id="black2" onclick="changeColors(this)"></div>
+             <div class="palette brown" id="brown" onclick="changeColors(this)"></div>
+           </div>
+    
+           <div id="erasing"><p>Eraser</p></div>
+           <div class="palette white" id="erase" onclick="changeColors(this)"></div>
+           <br />
+           <p>Width</p>
+           <br />
+            <form>
+              <input type="range" id="myRange" name="amountRange" value="1" min="1" max="50" oninput="this.form.amountInput.value=this.value" onclick="lineWidthRange()">
+              <div id="sliderInput">
+                </p><input type="number" name="amountInput" min="1" max="50" value="1" oninput="this.form.amountRange.value=this.value" />
+              </div>
+            </form>
+           <br />
+           <button class="button" onclick="erase()">CLEAR</button>
+           </div>
+    
+          <div id="canvasarea">
+           <canvas id="myCanvas" width="1300" height="600" style="left:300px; position:fixed; border: 1.5px solid #000000;"></canvas>
+          </div>
+        </div>
+
 	<script src="assets/js/jquery-3.6.0.min.js"></script>
 	<script src="assets/js/bootstrap.min.js"></script>
-
-	<script src="assets/js/speech.js"></script>
-	<script type="module" src="assets/js/handwriting.js"></script>
+    <script src="assets/js/canvas.js"></script>
+	
 </body>
 
 </html>
