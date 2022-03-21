@@ -1,15 +1,16 @@
 p {
-    margin: 0 30%;
+    margin: 2px auto;
 }
 
-#erasing {
-    height: 20px;
+#eraser {
+    height: 30px;
     margin-bottom: 13px;
+    padding: 3px;
 }
 
 #contain {
     padding-left: 13px;
-    height: 220px;
+    height: 180px;
 }
 
 .palette {
@@ -68,12 +69,13 @@ p {
 .brown { background: #6F4E37; }
 
 
-.white {
+.eraser {
     background: white;
     border: 1px solid gray;
-    float: none;
-    margin: 0 auto;
-    border-radius: 50%;
+    width: 23px;
+    height: 23px;
+    margin: auto;
+    float: left;
 }
 
 #paintbg {
@@ -128,7 +130,7 @@ p {
 }
 
 #round {
-border-radius: 10px;
+    border-radius: 10px;
 }
 
 #rough {
@@ -141,8 +143,7 @@ writing-mode: bt-lr;
 }
 
 input[type=range]{
-width: 65%;
-display: inline-block;
+    width: 85%;
 }
 
 input[type=button]{
@@ -156,12 +157,13 @@ input[type=button]{
 }
 
 input[type=range]::-webkit-slider-runnable-track {
+    margin: auto;
     margin-top: -10px;
-    margin-left: 15px;
     width: 308px;
     height: 3px;
     background: #000;
     border: none;
+    float:none;
 }
 
 input[type=range]::-webkit-slider-thumb {
@@ -178,4 +180,8 @@ input[type=range]:focus {
 
 input[type=range]:focus::-webkit-slider-runnable-track {
     background: black;
+}
+
+.test {
+    margin:auto;
 }

@@ -6,21 +6,9 @@ var ctx = canvas.getContext('2d');
 ctx.fillStyle = "white";
 ctx.fillRect(0, 0, 700, 500);
 
-//Lines is default
 lines();
 
-var removeRectangleInLine = 0;
-
 function lines() {
-	//painting = false;
-	//Remove event listeners so line won't draw rectangle
-	if (removeRectangleInLine == 1) {
-		canvas.removeEventListener('mousedown', rectMouseDown);
-		canvas.removeEventListener('mouseup', rectMouseUp);
-		canvas.removeEventListener('mousemove', rectMouseMove);
-		canvas.removeEventListener('mouseout', rectMouseout);
-	};
-
 	//Initialize mouse coordinates to 0,0
 	var mouse = { x: 0, y: 0};
 
@@ -63,7 +51,6 @@ function lines() {
 	canvas.addEventListener('mousemove', linesMousemove, false);
 	canvas.addEventListener('mouseup', linesMouseup, false);
 	canvas.addEventListener('mouseout', linesMouseout, false);
-
 };
 
 //Color palette
@@ -144,20 +131,19 @@ function changeColors(palette) {
 			break;
         case "brown":
             colors = "#6F4E37";
-            break;
-		case "erase":
-			colors = "white";
-			break;
 	}
 };
 
-//Change line width
+function erase() {
+    console.log("hello");
+    colors = "white";
+}
+
 function lineWidthRange() {
     var widthLine = document.getElementById("myRange").value;
     return widthLine;
 };
 
-//Clear canvas
-function erase() {
+function clearCanvas() {
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 };
