@@ -2,22 +2,37 @@
  *  ROUNDS
  * ---------------*/
 
-var round = 1;
-var max_rounds = 4;
+var maxRounds = 4;
+var startText = document.getElementById('start_text');
+var endRoundBtn = document.querySelector('#end_round_btn');
 
-var start_text = document.getElementById('start_text');
-var end_round_btn = document.querySelector('#end_round_btn');
-
-window.onload = function getStartText() {
-    if(round == 1) {
-        start_text.textContent = "Collaborative Storytelling"
-    } else {
-        start_text.textContent = "ROUND " + round;
+ready = function getStartText() {
+    if (startText == null) {
+        return;
     }
+    
+    var round = localStorage.getItem("round");
+    if (round == null || parseInt(round) > maxRounds) {
+        localStorage.setItem("round", 1);
+    }
+
+    round = parseInt(localStorage.getItem("round"));
+
+    if (round == 1) {
+        startText.textContent = "Collaborative Storytelling";
+    } else {
+        startText.textContent = "ROUND " + round;
+    }
+    console.log('Starting Round ' + round);
 }
+document.addEventListener("DOMContentLoaded", ready);
 
 function updateRound() {
+    var round = parseInt(localStorage.getItem("round"));
     round++;
+    localStorage.setItem("round", round);
 }
 
-end_round_btn.onclick = updateRound;
+function startRound() {
+    console.log(new Date().getTime());
+}
