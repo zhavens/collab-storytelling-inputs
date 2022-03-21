@@ -22,18 +22,17 @@
 </head>
 
 
-<body>
+<body class="modal-open">
     <div id="back_btn">
         <div class="back_btn" ontouchstart="">
-            <a href="index.html"><span>BACK</span></a>
+            <a href="index.html"><span>Back</span></a>
             
         </div>
     </div>
     
     <div id="idea_btn">
         <div class="idea_btn" ontouchstart="">
-            <a href="index.html"><span>IDEA</span></a>
-            
+            <a data-toggle="modal" data-target="#ideaModal"><span>IDEA</span></a>
         </div>
     </div>
     
@@ -76,6 +75,24 @@
 			</div>
 		</div>
 	</div>
+    
+    <!-- Modal -->
+    <div class="modal fade" id="ideaModal" tabindex="-1" role="dialog" aria-labelledby="ideaModalTitleCenter" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title modal-font" id="ideaModalLongTitle">Generated Idea</h5>
+                </div>
+                <div class="modal-body modal-font">
+                A dog in a hot dog costume
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary modal-font-btn" data-dismiss="modal">CLOSE</button>
+                <button type="button" class="btn btn-primary modal-font-btn">NEW IDEA</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 	<script src="assets/js/jquery-3.6.0.min.js"></script>
 	<script src="assets/js/bootstrap.min.js"></script>

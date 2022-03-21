@@ -15,11 +15,18 @@ body {
   margin: 0 auto;
 }
 
-h1, p {
+h1 {
   text-align: center;
   padding: 30px 0px;
   padding-bottom: 60px;
   font-size:100px;
+}
+
+p {
+    padding: 30px 0px;
+    padding-bottom: 60px;
+    font-size:20px;
+    display: inline;  
 }
 
 
@@ -165,6 +172,54 @@ div #drawing {
 }
 
 .idea_btn span:hover, 
-.play_rec_btn span:hover{
+.play_rec_btn span:hover {
     background: rgb(43, 164, 177);
+}
+
+.info_windows {
+    width: 800px; 
+    height:200px; 
+    border:1px black solid; 
+    padding:4px;
+}
+
+.console {
+    background: black;
+    color: white;
+}
+
+.modal {
+    text-align: center;
+    padding: 0!important;
+    overflow-y: auto;
+}
+  
+.modal:before {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+    margin-right: -4px;
+}
+
+.modal-dialog {
+    display: inline-block;
+    text-align: middle;
+    vertical-align: middle;
+}
+
+.modal-font {
+    font-size: 25px;
+}
+
+.modal-font-btn {
+    font-size: 15px;
+}
+
+.modal-open[style] {
+    padding-right: 0px !important;
+}
+   
+.modal-open {
+    overflow: auto;
 }
