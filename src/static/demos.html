@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	<title>Collaborative Storytelling Inputs</title>
+
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+
+	<!-- Custom -->
+	<link href="img/favicon.png" rel="icon">
+	<link rel="stylesheet" href="css/demos.css">
+
+	<link rel="stylesheet" href="css/myscript.min.css" />
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="https://cdn.rawgit.com/corejavascript/typeahead.js/master/dist/typeahead.jquery.js"></script>
+</head>
+
+<body>
+	<h1>Tech Demos!</h1>
+
+	<div class="container-fluid">
+		<div class="row panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">Speech Recognition</h3>
+			</div>
+			<div class="panel-body">
+				<div class="col-sm-4 text-center">
+					<button type="button" class="btn btn-default" id="start">Start Recognition</button>
+				</div>
+				<div class="col-sm-4 text-center">
+					<button type="button" class="btn btn-default" id="stop">Stop Recognition</button>
+				</div>
+				<div class="col-sm-4">
+					<select name="voice" id="voice"></select>
+					<button type="button" class="btn btn-default" id="speak">Speak</button>
+				</div>
+			</div>
+		</div>
+		<div class="row panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">Text Recognition</h3>
+			</div>
+			<div class="panel-body">
+				<div class="col-sm-2 key-control text-center">
+					<button type="button" class="btn btn-default" id="keys">Update</button>
+					<br>
+					<i class="glyphicon glyphicon-info-sign"></i>
+					<i id="keystatus" class="glyphicon glyphicon-minus-sign"></i>
+				</div>
+				<div class="col-sm-10">
+					<label>
+						App Key:
+						<input type="text" id="appkey">
+					</label>
+					<br>
+					<label>
+						HMAC Key:
+						<input type="text" id="hmackey">
+					</label>
+				</div>
+				<div class="row">
+					<div class="col-sm-12 text-center">
+						<div id="editor" touch-action="none"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">Drawing Output</h3>
+			</div>
+			<div class="panel-body">
+				<div class="col-sm-2 text-center">
+					<button type="button" class="btn btn-default" id="draw">Draw</button>
+				</div>
+				<div class="col-sm-10" text-center>
+					<label>
+						Keyword:
+						<input class="typehead" type="text" id="category">
+					</label>
+				</div>
+			</div>
+			<div class="panel-footer drawing-frame">
+				<div class="col-sm-12 text-center">
+					<svg id="canvas" style="background-color: white;" width="450px" height="450px" viewBox="0 0 256 256"
+						preserveAspectRatio="xMinYMin meet" xmlns="http://www.w3.org/2000/svg"></svg>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	</div>
+
+	<script type="module" src="js/speech.js"></script>
+	<script type="module" src="js/handwriting.js"></script>
+	<script type="module" src="js/drawing.js"></script>
+</body>
+
+</html>

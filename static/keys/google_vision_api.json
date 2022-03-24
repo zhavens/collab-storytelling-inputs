@@ -1,0 +1,12 @@
+{
+    "type": "service_account",
+    "project_id": "collabstory",
+    "private_key_id": "b66251acd880330d5f49ac182d65de3f306b6f31",
+    "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCu9AzaKnlXPBob\nsTCHes+umZklHxtsXDmP9nh2A5Ukkdgd6dlHHJvyrCADrNAL3GqhBES7NGrppzTi\nqSJleWtbKdEhBV86MiCA89Yxd6lxe9aO1IixzbER4rEmjdYZgqL1lIB25RWqtWuI\nwaqsMXmxDmTeKP/UXiCCi4jhBHPDI4KR7Rub8wrj2iCB+vlqR6cTOOeq0+NnwUQ3\nj0VplwE1LYkIGxpO7wBnseZuWQgQHaIjfYPnRPLViPRh7do7etmGdYS65IeeRrZe\nzAzmqqEye29ZYsocSQsjJLREOSf8BFYNmdoVJdp151NwSOwz4dLDNeT4ik5EmTdi\njkn4cztTAgMBAAECggEAClqSGiUyWinJ58KkOxhXCx+28v30ywRoOa9d8KoEnQ3u\nitKok69LQWDTYjRLebA5NT9B7AxNmXdWR2W4DeZSJqqCYGBngtOtncQQdIv+4KLy\nDzDfyBoCtSrDziLNvWPATiVUNvUWw6wJ6aWAesFQ0NwntwgZH9HUPbWRS7POQAmU\nXqAEOVjGFvW/YOKJbdoo9R9f48u0wD4JcREIOl+KMxFoRwxADUmHaLRECWlaiK/Y\nfMBKd7B+ciZvyMdtFTHuYx4m/ozhyVt1SbD9EbXlSutmqkpPeE1a2ndQ4MHcpk57\nN87NBQEmrwVHDaQog+NwmWoCQnXeKfI8YqbxFYrE7QKBgQDfD3MBpMRuas5hOfPD\nlSfBB/qh1TGRlc6IqHE2eHb8Sq/wNsLeW04qTWpruKDIi0Tw+q0VAaq98FiFIGMz\nAvZqoopEwkTaFolY3d/ZufKpO7oudBjOOYZ0S3QlbVElLTVdGZuym7/2zPxb9jIl\nM0IoO8RonGIxwLaZXXLsmQmHdQKBgQDIyffAcF4BxmGhVuKGGg+TMGpDpSWqkS2p\nsqmsGxYljFxOw2H/D0drdNOPD4bQZaJTU7tlbS3RUT85WUocCpwoEFZvN6IyYd6n\nt1vDlIvxcQyXrfIMWLjxNw46raufZLJsecAe+PDy/qC00TwG2+2Nfx6a7BrehA6N\n/Pd5uQ6mpwKBgQCac3Ubxz4ogpYipmEOpUHgnCjEU/29o/BdmdzCbcldyk1m1FQ8\naRaHnhE5Q585HY4AGmMsb3oNiNWSYKmvkbaUgbWiBK5uIDq8KO2uMd4/pla1gbgH\nW7eo4PIsVDRivJn9vBSeKNBUEP4Qozl3nrWJbFEEanxnnNwS96zy/MinXQKBgQC7\nZbSziKxUX8DTAfJdUoliyHcFN2dWMDU8AqHVHVqoJL4qTLRzhuETa2/gP4+FhLXh\nq25lFWcDyx6E+c7vKP/hbI4fMv9QooNaaQleGpAaAXbNQe18lHnXt5iyL1DUbPkR\nwPgMcC8Bu6Bl4jpx9GVcAF6iHOZe80VaQ9T9aDhCVQKBgHAm9y5ouBeKh2zLVtri\n5bkSuw1U3cTGdoKi/YLn8BNIkaSEhgjT03Avy9VrqIxAnK2Ygc1m3B66/7/e3mAD\n1wIZiWIn8v7W7etwFUvX/vO7a/L6t46bWzWdnSkQafZEXo3N5h9PKnsvNntN7j10\nAepn3/L0oFdbcEL1j7F/EAef\n-----END PRIVATE KEY-----\n",
+    "client_email": "default@collabstory.iam.gserviceaccount.com",
+    "client_id": "108967038330531275252",
+    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+    "token_uri": "https://oauth2.googleapis.com/token",
+    "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+    "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/default%40collabstory.iam.gserviceaccount.com"
+}
