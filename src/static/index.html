@@ -10,20 +10,30 @@
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="css/bootstrap-theme.min.css"> -->
 
     <!-- Custom -->
     <link href="img/favicon.png" rel="icon">
     <link rel="stylesheet" href="css/style.css">
 
-    <link rel="stylesheet" href="js/myscript.min.css" />
+    <link rel="stylesheet" href="node_modules/myscript/dist/myscript.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kalam">
 
 </head>
 
-<body>
-    <h1>Hello, world!</h1>
+
+<body id="start_page">
+    <h1 id="start_text"></h1>
+    <script src="js/rounds.js"></script>
 
     <script src="js/jquery-3.6.0.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+
+    <div id="next_btn">
+        <div class="start_btn" ontouchstart="">
+            <a style="width: 50%;" href="speech-recognition.html" onclick="startRound()"><span>START</span></a>
+        </div>
+    </div>
 </body>
 
 </html>

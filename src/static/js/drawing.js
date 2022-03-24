@@ -14,7 +14,7 @@ function parseNdjson(result) {
 
 function getData(category) {
     var data;
-    var url = 'https://zhavens.com/hai/app/quickdraw/';
+    var url = 'https://zhavens.com/hai/quickdraw/';
     url += encodeURIComponent(category) + '.ndjson';
     return $.ajax
         ({
