@@ -3,21 +3,38 @@ p {
 }
 
 #eraser {
-    height: 30px;
-    margin-bottom: 13px;
+    width: 100%;
+    margin: 10px 0px;
     padding: 3px;
 }
 
-#contain {
-    padding-left: 13px;
-    height: 180px;
+#colors-container {
+    width: 100%;
+    padding: 5px;
+    height:auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(25px, 1fr));
+}
+
+#eraser-container {
+    width: 100%;
+    padding: 5px;
+    height:auto;
+    display: grid;
+    grid-template-columns: 1;
+}
+
+#width-container {
+    width: 100%;
+    margin: 10px 0px;
+    height:auto;
 }
 
 .palette {
     width: 23px;
     height: 23px;
     float: left;
-    margin: 6px;
+    margin: 3px;
 }
 
 .shapes {
@@ -75,20 +92,16 @@ p {
     width: 23px;
     height: 23px;
     margin: auto;
-    float: left;
 }
 
 #paintbg {
-    width: 1058px;
-    height: 590px;
-    margin: 0 auto;
+    width: 95%;
+    margin: auto;
 }
 
 #colorpanel {
-    position:fixed;
-    width: 200px;
-    height: 450px;
-    left:50px;
+    width: 8%;
+    float:left;
     margin-right: 18px;
     border: 1px solid black;
 }
@@ -102,10 +115,8 @@ p {
 }
 
 #canvasarea {
-    width: 700px;
-    height: 500px;
     float: left;
-    margin-top: -20px;
+    margin: auto;
 }
 
 #space {
@@ -114,10 +125,9 @@ p {
     margin: 0 auto;
 }
 
-#sliderInput {
-    width: 14px;
+#slider-input {
     height: 15px;
-    margin-top: 13px;
+    margin: 5px auto;
 }
 
 .button {
@@ -125,7 +135,7 @@ p {
     color: black;
     border: 1px solid black;
     outline: 0;
-    margin: 0 30%;
+    margin: 10px auto;
     font-weight: bold;
 }
 
@@ -182,6 +192,12 @@ input[type=range]:focus::-webkit-slider-runnable-track {
     background: black;
 }
 
-.test {
-    margin:auto;
+.slider {
+    margin:20px auto;
+}
+
+.canvas {
+    width: 1300px; 
+    height: 600px;
+    border: 1.5px solid #000000; 
 }

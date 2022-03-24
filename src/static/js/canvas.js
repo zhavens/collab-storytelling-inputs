@@ -30,6 +30,7 @@ function lines() {
 
 	//User clicks down on canvas to trigger paint
 	linesMousedown = function(){
+        console.log("MouseDown")
 		ctx.beginPath();
 		ctx.moveTo(mouse.x, mouse.y);
 		canvas.addEventListener('mousemove', paint, false);
@@ -56,6 +57,7 @@ function lines() {
 //Color palette
 var colors;
 function changeColors(palette) {
+    console.log("Change Colours")
 	switch(palette.id) {
 		case "red":
 			colors = "red";
