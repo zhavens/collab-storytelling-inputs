@@ -1,5 +1,6 @@
 body, html {
   margin: 0;
+  font-family:"Kalam";
 }
 
 html {
@@ -13,11 +14,20 @@ body {
   margin: 0 auto;
 }
 
-h1, p {
-  font-family: sans-serif;
+h1 {
   text-align: center;
-  padding: 20px;
+  padding: 30px 0px;
+  padding-bottom: 60px;
+  font-size:100px;
 }
+
+p {
+    padding: 30px 0px;
+    padding-bottom: 60px;
+    font-size:20px;
+    display: inline;  
+}
+
 
 div {
   background-color: rgba(255,255,255,0.2);
@@ -60,4 +70,149 @@ ul {
 div #drawing {
   height: 100px;
   box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+#start_page h1{
+    padding: 100px 0px;
+}
+
+#back_btn span,
+#next_btn span,
+#idea_btn span,
+#start_rec_btn span,
+#stop_rec_btn span,
+#play_rec_btn span {
+  display: block;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: 2px solid #000;
+}
+
+#back_btn a:active,
+#next_btn a:active,
+#idea_btn a:active,
+#start_rec_btn button:active,
+#stop_rec_btn button:active,
+#play_rec_btn button:active {
+  top: 4px;
+  padding-bottom: 0px;
+  box-shadow: 0 1px 0 #000;
+}
+
+#back_btn a,
+#next_btn a,
+#idea_btn a,
+#start_rec_btn button,
+#stop_rec_btn button,
+#play_rec_btn button {
+  float: right;
+  font: normal 25px/28px "Kalam", sans-serif;
+  margin-right: 25%;
+  text-transform: uppercase;
+  text-align: center;
+  color: #000;
+  border: 0px;
+  padding: 0px 0px 3px 0px;
+  border-radius: 5px;
+  box-shadow: 0 2px 0 #000;
+  transition: padding 0.1s, box-shadow 0.1s, top 0.1s;
+  background-image: url('data:image/gif;base64,R0lGODlhBAAEAIABAAAAAAAAACH/C1hNUCBEYXRhWE1QPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS4wLWMwNjEgNjQuMTQwOTQ5LCAyMDEwLzEyLzA3LTEwOjU3OjAxICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1LjEgV2luZG93cyIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDo5NUY1OENCRDdDMDYxMUUyOTEzMEE1MEM5QzM0NDVBMyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDo5NUY1OENCRTdDMDYxMUUyOTEzMEE1MEM5QzM0NDVBMyI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjk1RjU4Q0JCN0MwNjExRTI5MTMwQTUwQzlDMzQ0NUEzIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjk1RjU4Q0JDN0MwNjExRTI5MTMwQTUwQzlDMzQ0NUEzIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+Af/+/fz7+vn49/b19PPy8fDv7u3s6+rp6Ofm5eTj4uHg397d3Nva2djX1tXU09LR0M/OzczLysnIx8bFxMPCwcC/vr28u7q5uLe2tbSzsrGwr66trKuqqainpqWko6KhoJ+enZybmpmYl5aVlJOSkZCPjo2Mi4qJiIeGhYSDgoGAf359fHt6eXh3dnV0c3JxcG9ubWxramloZ2ZlZGNiYWBfXl1cW1pZWFdWVVRTUlFQT05NTEtKSUhHRkVEQ0JBQD8+PTw7Ojk4NzY1NDMyMTAvLi0sKyopKCcmJSQjIiEgHx4dHBsaGRgXFhUUExIREA8ODQwLCgkIBwYFBAMCAQAAIfkEAQAAAQAsAAAAAAQABAAAAgYEEpdoeQUAOw==');
+}
+
+.idea_btn{
+	position:fixed;
+	bottom:40px;
+	right:40px;
+}
+
+.back_btn{
+	position:fixed;
+	top:40px;
+	left:80px;
+}
+
+.next_btn{
+	position:fixed;
+	top:40px;
+	right:40px;
+}
+
+.start_btn span, 
+.next_btn span,
+.start_rec_btn span {
+    background: rgb(180, 255, 160);
+}
+
+.start_btn span:hover, 
+.next_btn span:hover, 
+.start_rec_btn span:hover {
+    background: rgb(125, 205, 102);
+}
+
+.back_btn span, 
+.stop_rec_btn span {
+    background: rgb(247, 62, 62);
+}
+
+.back_btn span:hover, 
+.stop_rec_btn span:hover {
+    background: rgb(162, 34, 34);
+}
+
+.idea_btn span, 
+.play_rec_btn span {
+    background: rgb(63, 218, 235);
+}
+
+.idea_btn span:hover, 
+.play_rec_btn span:hover {
+    background: rgb(43, 164, 177);
+}
+
+.info_windows {
+    width: 800px; 
+    height:200px; 
+    border:1px black solid; 
+    padding:4px;
+}
+
+.console {
+    background: black;
+    color: white;
+}
+
+.modal {
+    text-align: center;
+    padding: 0!important;
+    overflow-y: auto;
+}
+  
+.modal:before {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+    margin-right: -4px;
+}
+
+.modal-dialog {
+    display: inline-block;
+    text-align: middle;
+    vertical-align: middle;
+}
+
+.modal-font {
+    font-size: 25px;
+}
+
+.modal-font-btn {
+    font-size: 15px;
+}
+
+.modal-open[style] {
+    padding-right: 0px !important;
+}
+   
+.modal-open {
+    overflow: auto;
 }

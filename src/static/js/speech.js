@@ -15,8 +15,8 @@ recognition.maxAlternatives = 1;
 
 var speech_result;
 
-var startbtn = document.querySelector('#start');
-var stopbtn = document.querySelector('#stop');
+var startbtn = document.querySelector('#start_rec');
+var stopbtn = document.querySelector('#stop_rec');
 
 function startrecognition() {
     recognition.start();
@@ -63,7 +63,7 @@ stopbtn.onclick = stoprecognition;
  * ---------------*/
 var synth = window.speechSynthesis;
 var voiceselect = document.querySelector('#voice');
-var speakbtn = document.querySelector('#speak');
+var speakbtn = document.querySelector('#play_rec');
 
 function populateVoiceList() {
     var voices = synth.getVoices();
