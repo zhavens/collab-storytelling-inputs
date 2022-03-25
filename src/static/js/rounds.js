@@ -23,7 +23,7 @@ ready = function getStartText() {
     } else {
         startText.textContent = "ROUND " + round;
     }
-    console.log('Starting Round ' + round);
+    console.log('About to Start Round ' + round);
 }
 document.addEventListener("DOMContentLoaded", ready);
 
@@ -34,5 +34,6 @@ function updateRound() {
 }
 
 function startRound() {
-    console.log(new Date().getTime());
+    console.log("Round")
+    console.log("Round " + round + " : " + new Date().getTime());
 }

@@ -30,7 +30,6 @@ function lines() {
 
 	//User clicks down on canvas to trigger paint
 	linesMousedown = function(){
-        console.log("MouseDown")
 		ctx.beginPath();
 		ctx.moveTo(mouse.x, mouse.y);
 		canvas.addEventListener('mousemove', paint, false);
@@ -58,10 +57,10 @@ function lines() {
 var colors;
 var colorId = "black";
 function changeColors(palette) {
-    console.log("Change Colours")
+    console.log("Change Colours: " + palette.id)
     document.getElementById(colorId).style.border = "none";
     colorId = palette.id;
-    console.log(colorId);
+
 	switch(palette.id) {
 		case "red":
 			colors = "red";
@@ -172,15 +171,17 @@ function changeColors(palette) {
 };
 
 function erase() {
-    console.log("hello");
+    console.log("Erase");
     colors = "white";
 }
 
 function lineWidthRange() {
+    console.log("Line Width Change");
     var widthLine = document.getElementById("myRange").value;
     return widthLine;
 };
 
 function clearCanvas() {
+    console.log("Clear");
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 };
