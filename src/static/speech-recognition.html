@@ -22,6 +22,7 @@
 
 
 <body class="modal-open">
+    <script src="js/ideas.js" type="module"></script>
     <div id="back_btn">
         <div class="back_btn" ontouchstart="">
             <a href="index.html"><span class="material-icons icons">arrow_back</span></a>
@@ -70,14 +71,12 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title modal-font" id="ideaModalLongTitle">Generated Idea</h5>
+                    <h5 class="modal-title modal-font" id="ideaModalLongTitle">Generated Ideas</h5>
                 </div>
-                <div class="modal-body modal-font">
-                    A dog in a hot dog costume
-                </div>
+                <div id="idea_text" class="modal-body modal-font"></div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary modal-font-btn" data-dismiss="modal">CLOSE</button>
-                    <button type="button" class="btn btn-primary modal-font-btn">NEW IDEA</button>
+                    <button id="new_idea_btn" type="button" class="btn btn-primary modal-font-btn">NEW IDEA</button>
                 </div>
             </div>
         </div>
