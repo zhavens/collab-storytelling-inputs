@@ -13,7 +13,7 @@ p {
     padding: 5px;
     height:auto;
     display: grid;
-    grid-template-columns: repeat(auto-fill,minmax(25px, 1fr));
+    grid-template-columns: repeat(auto-fill,minmax(31px, 1fr));
 }
 
 #eraser-container {
@@ -31,14 +31,14 @@ p {
 }
 
 .palette {
-    width: 23px;
-    height: 23px;
+    width: 29px;
+    height: 29px;
     float: left;
     margin: 3px;
 }
 
 .palette:hover {
-    border: 2px solid #1f1f1f;
+    border: 2px solid rgb(167, 59, 59);
 }
 
 .shapes {
@@ -141,7 +141,7 @@ p {
 }
 
 #slider-input {
-    height: 15px;
+    height: 12px;
     margin: 5px auto;
 }
 
@@ -208,11 +208,11 @@ input[type=range]:focus::-webkit-slider-runnable-track {
 }
 
 .slider {
-    margin:20px auto;
+    margin:15px auto;
 }
 
 .canvas {
-    width: 1300px; 
+    width: 1450px; 
     height: 600px;
     border: 1.5px solid #000000; 
 }
