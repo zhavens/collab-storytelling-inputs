@@ -14,18 +14,33 @@ recognition.interimResults = false;
 recognition.maxAlternatives = 1;
 
 var speech_result;
+var recording = false;
 
-var startbtn = document.querySelector('#start_rec');
-var stopbtn = document.querySelector('#stop_rec');
+var btn = document.querySelector('#rec');
+var btnBackground = document.getElementById('rec_icon');
+var icon = document.getElementById('rec_icon');
+
+function speechClick() {
+    recording = !recording;
+    if (recording){
+        startrecognition();
+    } else {
+        stoprecognition();
+    }
+}
 
 function startrecognition() {
     recognition.start();
     console.log('Starting recognition.');
+    icon.textContent = "radio_button_checked";
+    btnBackground.classList.add("rec_btn_selected");
 }
 
 function stoprecognition() {
     recognition.stop();
-    console.log('Stopping recognition.')
+    console.log('Stopping recognition.');
+    icon.textContent = "fiber_manual_record";
+    btnBackground.classList.remove("rec_btn_selected");
 }
 
 recognition.onresult = function (event) {
@@ -55,8 +70,7 @@ recognition.onerror = function (event) {
     console.log('Error occurred in recognition: ' + event.error);
 }
 
-startbtn.onclick = startrecognition;
-stopbtn.onclick = stoprecognition;
+btn.onclick = speechClick;
 
 /* ---------------
  *  SPEECH SYNTHESIS

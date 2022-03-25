@@ -56,10 +56,18 @@ function lines() {
 //Color palette
 var colors;
 var colorId = "black";
+var selectedClass =  "selected";
+var selectedClassBlack =  "selected-black";
+document.getElementById(colorId).classList.add(selectedClassBlack);
+
 function changeColors(palette) {
     console.log("Change Colours: " + palette.id)
-    document.getElementById(colorId).style.border = "none";
+    var prevClassName = colorId == "black" ? "selected-black" : "selected";
+    var newClassName = palette.id == "black" ? "selected-black" : "selected";
+
+    document.getElementById(colorId).classList.remove(prevClassName);
     colorId = palette.id;
+    document.getElementById(colorId).classList.add(newClassName);
 
 	switch(palette.id) {
 		case "red":
@@ -167,7 +175,6 @@ function changeColors(palette) {
         case "skin10":
             colors = "#FBDEBC";
 	}
-    document.getElementById(palette.id).style.border = "2px solid #1f1f1f";
 };
 
 function erase() {
