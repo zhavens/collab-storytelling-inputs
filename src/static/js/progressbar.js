@@ -30,6 +30,6 @@ function setUpProgressBar(startTime, endTime, update) {
   
 var start = new Date();
 var end = new Date();
-end.setSeconds(end.getSeconds() + 45);
+end.setSeconds(end.getSeconds() + 5);
 
 setUpProgressBar(start.getTime(), end.getTime(), 100)

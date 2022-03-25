@@ -56,8 +56,12 @@ function lines() {
 
 //Color palette
 var colors;
+var colorId = "black";
 function changeColors(palette) {
     console.log("Change Colours")
+    document.getElementById(colorId).style.border = "none";
+    colorId = palette.id;
+    console.log(colorId);
 	switch(palette.id) {
 		case "red":
 			colors = "red";
@@ -133,7 +137,38 @@ function changeColors(palette) {
 			break;
         case "brown":
             colors = "#6F4E37";
+            break;
+        case "skin1":
+            colors = "#F2EFEE";
+            break;
+        case "skin2":
+            colors = "#EFE6DD";
+            break;
+        case "skin3":
+            colors = "#EBD3C5";
+            break;
+        case "skin4":
+            colors = "#D7B6A5";
+            break;
+        case "skin5":
+            colors = "#9F7967";
+            break;
+        case "skin6":
+            colors = "#70361C";
+            break;
+        case "skin7":
+            colors = "#492816";
+            break;
+        case "skin8":
+            colors = "#FFCD94";
+            break;
+        case "skin9":
+            colors = "#EAC086";
+            break;
+        case "skin10":
+            colors = "#FBDEBC";
 	}
+    document.getElementById(palette.id).style.border = "2px solid #1f1f1f";
 };
 
 function erase() {

@@ -37,6 +37,10 @@ p {
     margin: 3px;
 }
 
+.palette:hover {
+    border: 2px solid #1f1f1f;
+}
+
 .shapes {
     width: 23px;
     height: 23px;
@@ -84,6 +88,17 @@ p {
 .pink1 { background: #D178B1; }
 .pink2 { background: #E3ABCE; }
 .brown { background: #6F4E37; }
+
+.skin1 { background: #F2EFEE; }
+.skin2 { background: #EFE6DD; }
+.skin3 { background: #EBD3C5; }
+.skin4 { background: #D7B6A5; }
+.skin5 { background: #9F7967; }
+.skin6 { background: #70361C; }
+.skin7 { background: #492816; }
+.skin8 { background: #FFCD94; }
+.skin9 { background: #EAC086; }
+.skin10 { background: #FBDEBC; }
 
 
 .eraser {
