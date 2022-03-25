@@ -67,6 +67,11 @@ ul {
   color: red;
 }
 
+.icons {
+    font-size:35px !important;
+    color:black;
+}
+
 div #drawing {
   height: 100px;
   box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.2);
@@ -156,7 +161,7 @@ div #drawing {
 
 .back_btn span:hover, 
 .stop_rec_btn span:hover {
-    background: rgb(162, 34, 34);
+    background: rgb(189, 48, 48);
 }
 
 .idea_btn span, 
