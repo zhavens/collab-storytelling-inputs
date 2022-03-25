@@ -83,6 +83,7 @@ div #drawing {
 
 #back_btn span,
 #next_btn span,
+#submit_btn span,
 #idea_btn span,
 #rec_btn span,
 #play_rec_btn span {
@@ -95,7 +96,8 @@ div #drawing {
 #back_btn a:active,
 #next_btn a:active,
 #idea_btn a:active,
-#rec_btn button:active,,
+#submit_btn a:active,
+#rec_btn button:active,
 #play_rec_btn button:active {
   top: 4px;
   padding-bottom: 0px;
@@ -104,6 +106,7 @@ div #drawing {
 
 #back_btn a,
 #next_btn a,
+#submit_btn a,
 #idea_btn a,
 #rec_btn button,
 #play_rec_btn button {
@@ -168,6 +171,15 @@ div #drawing {
     background: rgb(189, 48, 48);
 }
 
+
+.submit_btn span {
+    background: rgb(219, 218, 218);
+}
+
+.submit_btn span:hover {
+    background: rgb(168, 166, 166);
+}
+
 .idea_btn span, 
 .play_rec_btn span {
     background: rgb(63, 218, 235);
@@ -224,4 +236,8 @@ div #drawing {
    
 .modal-open {
     overflow: auto;
+}
+
+#code_name {
+    font-size: 20px;
 }
