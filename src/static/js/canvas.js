@@ -46,6 +46,7 @@ function lines() {
 		canvas.removeEventListener('mousemove', paint, false);
 	};
 
+
 	// Event listeners that will trigger the paint functions when mousedown, mousemove, mouseup, mouseout
 	canvas.addEventListener('mousedown', linesMousedown, false);
 	canvas.addEventListener('mousemove', linesMousemove, false);
@@ -194,3 +195,24 @@ function clearCanvas() {
     console.log("Clear");
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 };
+
+function saveImage() {
+    console.log("Save Image");
+    var var_name = localStorage.getItem("pseudonym") + localStorage.getItem("round");
+    dataUrl = canvas.toDataURL();
+    localStorage.setItem(var_name, dataUrl);
+}
+
+function addPath(path) {
+    var check = ctx.save();
+    ctx.stroke(path);    
+    ctx.restore(); 
+}
+
+// example function to show to add paths
+// function test() {
+//     var path2 = new Path2D();
+//     path2.moveTo(220, 60);
+//     path2.arc(170, 60, 50, 0, 2 * Math.PI);
+//     addPath(path2);
+// }

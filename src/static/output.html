@@ -41,15 +41,28 @@
 
     <div id="next_btn">
         <div class="next_btn" ontouchstart="">
-            <a href="index.html" onclick="updateRound()"><span class="material-icons icons">arrow_forward</span></a>
+            <a id="next_btn_link" href="index.html" onclick="updateRound()"><span class="material-icons icons">arrow_forward</span></a>
         </div>
     </div>
     <h1>YOUR STORY</h1>
+    <div class="text-center">
+        <img id="output_image"></img>
+    </div>
 
+    <div id="final_story" class="text-center">
+        <div class="row image_row">
+            <img id="output_image1" class="col-md-6"></img>
+            <img id="output_image2" class="col-md-6"></img>
+        </div>
+        <div class="row image_row">
+            <img id="output_image3" class="col-md-6"></img>
+            <img id="output_image4" class="col-md-6"></img>
+        </div>
+    </div>
 
     <script src="js/jquery-3.6.0.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-
+    <script src="js/output.js"></script>
 </body>
 
 </html>

@@ -36,6 +36,7 @@ ready = function getStartText() {
     
     var round = localStorage.getItem("round");
     if (round == null || parseInt(round) > maxRounds) {
+        localStorage.clear();
         localStorage.setItem("round", 1);
         localStorage.setItem("pseudonym", null);
     }
