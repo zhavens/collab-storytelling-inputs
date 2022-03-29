@@ -9,13 +9,13 @@ function parseNdjson(result) {
             data.push(JSON.parse(l));
         }
     }
-    return data;
+    return JSON.parse(data);
 }
 
-function getData(category) {
+function getDrawing(category) {
     var data;
     var url = 'https://zhavens.com/hai/quickdraw/';
-    url += encodeURIComponent(category) + '.ndjson';
+    url += encodeURIComponent(category);
     return $.ajax
         ({
             url: url,
@@ -51,10 +51,8 @@ function quickdrawSvgRender(drawing, viewBox) {
 }
 
 async function draw(category) {
-    const data = await getData(category);
-    var json = parseNdjson(data);
-    var i = Math.floor(Math.random() * json.length)
-    var drawing = json[i].drawing;
+    const data = await getDrawing(category);
+    var drawing = data.drawing;
 
     var svg = $.parseHTML(quickdrawSvgRender(drawing));
 

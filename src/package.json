@@ -12,7 +12,8 @@
     "http-errors": "~1.6.3",
     "jade": "~1.11.0",
     "mongodb": "^4.4.1",
-    "morgan": "~1.9.1"
+    "morgan": "~1.9.1",
+    "quickdraw.js": "^1.0.6"
   },
   "devDependencies": {
     "nodemon": "^2.0.15"
