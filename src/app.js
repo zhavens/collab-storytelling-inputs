@@ -4,8 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-// var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var loggingRouter = require('./routes/logging');
 
 var app = express();
 
@@ -19,9 +18,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'static')));
 
+// Current root URI is handled by static pages.
 // app.use('/', indexRouter);
-// app.use('/index', indexRouter);
-app.use('/users', usersRouter);
+app.use('/logging', loggingRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
