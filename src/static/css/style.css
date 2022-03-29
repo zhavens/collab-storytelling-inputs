@@ -21,6 +21,11 @@ h1 {
   font-size:100px;
 }
 
+textarea {
+    font-family:"Kalam";
+    font-size:30px;
+}
+
 p {
     padding: 30px 0px;
     padding-bottom: 60px;

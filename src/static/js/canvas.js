@@ -46,7 +46,6 @@ function lines() {
 		canvas.removeEventListener('mousemove', paint, false);
 	};
 
-
 	// Event listeners that will trigger the paint functions when mousedown, mousemove, mouseup, mouseout
 	canvas.addEventListener('mousedown', linesMousedown, false);
 	canvas.addEventListener('mousemove', linesMousemove, false);
@@ -204,7 +203,7 @@ function saveImage() {
 }
 
 function addPath(path) {
-    var check = ctx.save();
+    ctx.save();
     ctx.stroke(path);    
     ctx.restore(); 
 }
