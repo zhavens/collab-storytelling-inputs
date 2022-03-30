@@ -21,7 +21,6 @@ router.post('/:category', async function (req, res, next) {
             const doc = {
                 category: req.params.category,
                 path: req.body.path,
-                timestamp: mongo.Timestamp(),
             };
             const result = await quickdraw.insertOne(doc);
             console.log(`A document was inserted with the _id: ${result.insertedId}`);
