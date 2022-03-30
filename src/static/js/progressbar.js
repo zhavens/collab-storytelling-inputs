@@ -15,7 +15,7 @@ function setUpProgressBar(startTime, endTime, update) {
         if (ellaspedTime >= maxTime) {
             ellaspedTime = maxTime;
             window.clearTimeout(timer);
-            window.location.replace("output.html");
+            window.location.replace("drawing.html");
         }
         
         var percent = (ellaspedTime/maxTime * 100).toFixed(0) + "%";

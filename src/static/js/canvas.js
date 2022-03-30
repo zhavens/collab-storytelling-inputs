@@ -1,12 +1,11 @@
-//Create canvas
-var canvas = document.getElementById('myCanvas');
-var ctx = canvas.getContext('2d');
+import { getCanvas } from "./drawing.js";
+
+var result = getCanvas();
+var canvas = result["canvas"];
+var ctx = result["ctx"];
 var bounding = canvas.getBoundingClientRect();
 
-//Set background
-ctx.fillStyle = "white";
-ctx.fillRect(0, 0, 1450, 600);
-
+setUpPaletterListeners();
 lines();
 
 function lines() {
@@ -14,7 +13,7 @@ function lines() {
 	var mouse = { x: 0, y: 0};
 
 	//Paint includes line width, line cap, and color
-	paint = function() {
+	window.paint = function() {
 		ctx.lineTo(mouse.x, mouse.y);
 		ctx.lineWidth = lineWidthRange();
 		ctx.lineJoin = 'round';
@@ -24,25 +23,25 @@ function lines() {
 	};
 
 	//Find mouse coordinates relative to canvas
-	linesMousemove = function(e){
+	window.linesMousemove = function(e){
 		mouse.x = e.pageX - bounding.left;
 		mouse.y = e.pageY - bounding.top;
 	};
 
 	//User clicks down on canvas to trigger paint
-	linesMousedown = function(){
+	window.linesMousedown = function(){
 		ctx.beginPath();
 		ctx.moveTo(mouse.x, mouse.y);
 		canvas.addEventListener('mousemove', paint, false);
 	};
 
 	//When mouse lifts up, line stops painting
-	linesMouseup = function(){
+	window.linesMouseup = function(){
 		canvas.removeEventListener('mousemove', paint, false);
 	};
 
 	//When mouse leaves canvas, line stops painting
-	linesMouseout = function() {
+	window.linesMouseout = function() {
 		canvas.removeEventListener('mousemove', paint, false);
 	};
 
@@ -53,6 +52,16 @@ function lines() {
 	canvas.addEventListener('mouseout', linesMouseout, false);
 };
 
+function setUpPaletterListeners() {
+    var childDivs = document.getElementById('colors-container').getElementsByTagName('div');
+
+    for(var i = 0; i < childDivs.length; i++ )
+    {
+        var childDiv = childDivs[i];
+        childDiv.addEventListener('click', changeColours, false);
+    }
+};
+
 //Color palette
 var colors;
 var colorId = "black";
@@ -60,16 +69,16 @@ var selectedClass =  "selected";
 var selectedClassBlack =  "selected-black";
 document.getElementById(colorId).classList.add(selectedClassBlack);
 
-function changeColors(palette) {
-    console.log("Change Colours: " + palette.id)
-    var prevClassName = colorId == "black" ? "selected-black" : "selected";
-    var newClassName = palette.id == "black" ? "selected-black" : "selected";
+function changeColours () {
+    console.log("Change Colours: " + this.id)
+    var prevClassName = colorId == "black" ? selectedClassBlack : selectedClass;
+    var newClassName = this.id == "black" ? selectedClassBlack : selectedClass;
 
     document.getElementById(colorId).classList.remove(prevClassName);
-    colorId = palette.id;
+    colorId = this.id;
     document.getElementById(colorId).classList.add(newClassName);
 
-	switch(palette.id) {
+	switch(this.id) {
 		case "red":
 			colors = "red";
 			break;
@@ -177,41 +186,28 @@ function changeColors(palette) {
 	}
 };
 
-function erase() {
+
+window.erase = function erase() {
     console.log("Erase");
     colors = "white";
     document.getElementById(colorId).style.border = "none";
     colorId = palette.id;
     document.getElementById(palette.id).style.border = "2px solid #1f1f1f";
-}
+};
 
 function lineWidthRange() {
     var widthLine = document.getElementById("myRange").value;
     return widthLine;
 };
 
-function clearCanvas() {
+window.clearCanvas = function clearCanvas() {
     console.log("Clear");
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 };
 
-function saveImage() {
+window.saveImage = function saveImage() {
     console.log("Save Image");
     var var_name = localStorage.getItem("pseudonym") + localStorage.getItem("round");
-    dataUrl = canvas.toDataURL();
+    var dataUrl = canvas.toDataURL();
     localStorage.setItem(var_name, dataUrl);
-}
-
-function addPath(path) {
-    ctx.save();
-    ctx.stroke(path);    
-    ctx.restore(); 
-}
-
-// example function to show to add paths
-// function test() {
-//     var path2 = new Path2D();
-//     path2.moveTo(220, 60);
-//     path2.arc(170, 60, 50, 0, 2 * Math.PI);
-//     addPath(path2);
-// }
+};
