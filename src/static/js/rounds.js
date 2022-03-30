@@ -4,6 +4,18 @@
 
 var maxRounds = 4;
 var endRoundBtn = document.querySelector('#end_round_btn');
+var inputVersions = {
+    text: "text-input.html",
+    speech: "speech-recognition.html",
+    handwriting: "handwriting-recognition.html",
+}
+var inputVersion = "text"; 
+
+function setVersion() {
+    console.log("Set version to: " + inputVersion);
+    var nextLink = document.getElementById('next_link');
+    nextLink.href = inputVersions[inputVersion];
+}
 
 function setPseudonym() {
     pseudonymInput = document.getElementById("code_name").value;
@@ -54,6 +66,7 @@ ready = function getStartText() {
     } else {
         showNameForm();
     }
+    setVersion();
 }
 document.addEventListener("DOMContentLoaded", ready);
 
