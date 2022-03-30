@@ -8,9 +8,12 @@ const client = new mongo.MongoClient(uri);
 
 /* GET users listing. */
 router.post('/:user', async function (req, res, next) {
+    console.log(req.body);
     if (!req.params.user) {
+        console.log('Error: missing field "user".');
         res.status(400).send('Error: missing field "user".');
     } else if (!req.body.msg) {
+        console.log('Error: missing field "msg".');
         res.status(400).send('Error: missing field "msg".');
     } else {
         try {
@@ -43,9 +46,11 @@ router.get('/:user', async function (req, res, next) {
             const logging = database.collection("logging");
             const results = await logging.find({ "user": req.params.user }).toArray();
             res.send(results);
+        } catch {
+            res.status(500).send('Error fetching logs from DB.');
         } finally {
             await client.close();
-            res.status(500).send('Error fetching logs from DB.');
+
         }
     }
 });
