@@ -19,10 +19,6 @@ function getDrawing(category) {
     return $.ajax
         ({
             url: url,
-            // accepts: {
-            //     ndjson: 'application/x-ndjson',
-            // },
-            // dataType: 'json',
         });
 }
 
@@ -58,19 +54,6 @@ async function draw(category) {
 
     $("#canvas svg").remove();
     $("#canvas").append(svg);
-
-    // element.selectAll("path")
-    //     .data(function (d) {
-    //         return d;
-    //     })
-    //     .enter()
-    //     .append("path")
-    //     .attr("d", function (d) {
-    //         var lineGenerator = d3.line().curve(d3.curveCatmullRom.alpha(1));
-    //         var pathData = lineGenerator(d);
-    //         return pathData;
-    //     })
-    //     .attr("style", "stroke-width: 2; stroke-linecap: round; fill: none; stroke: black;");
 }
 
 // https://codepen.io/tomfarina/pen/wZyPeZ
