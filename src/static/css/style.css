@@ -21,11 +21,21 @@ h1 {
   font-size:100px;
 }
 
+textarea {
+    font-family:"Kalam";
+    font-size:30px;
+}
+
 p {
     padding: 30px 0px;
     padding-bottom: 60px;
     font-size:20px;
     display: inline;  
+}
+
+img {
+    border: 2px solid black;
+    margin:auto;
 }
 
 
@@ -67,6 +77,11 @@ ul {
   color: red;
 }
 
+.icons {
+    font-size:35px !important;
+    color:black;
+}
+
 div #drawing {
   height: 100px;
   box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.2);
@@ -78,9 +93,9 @@ div #drawing {
 
 #back_btn span,
 #next_btn span,
+#submit_btn span,
 #idea_btn span,
-#start_rec_btn span,
-#stop_rec_btn span,
+#rec_btn span,
 #play_rec_btn span {
   display: block;
   padding: 10px 20px;
@@ -91,8 +106,8 @@ div #drawing {
 #back_btn a:active,
 #next_btn a:active,
 #idea_btn a:active,
-#start_rec_btn button:active,
-#stop_rec_btn button:active,
+#submit_btn a:active,
+#rec_btn button:active,
 #play_rec_btn button:active {
   top: 4px;
   padding-bottom: 0px;
@@ -101,9 +116,9 @@ div #drawing {
 
 #back_btn a,
 #next_btn a,
+#submit_btn a,
 #idea_btn a,
-#start_rec_btn button,
-#stop_rec_btn button,
+#rec_btn button,
 #play_rec_btn button {
   float: right;
   font: normal 25px/28px "Kalam", sans-serif;
@@ -139,24 +154,40 @@ div #drawing {
 
 .start_btn span, 
 .next_btn span,
-.start_rec_btn span {
+.rec_btn span {
     background: rgb(180, 255, 160);
 }
 
 .start_btn span:hover, 
 .next_btn span:hover, 
-.start_rec_btn span:hover {
+.rec_btn span:hover {
     background: rgb(125, 205, 102);
 }
 
-.back_btn span, 
-.stop_rec_btn span {
+.rec_btn span {
+    background: white;
+}
+
+.rec_btn span:hover,
+.rec_btn_selected {
+    background: rgb(243, 201, 201) !important;
+}
+
+.back_btn span {
     background: rgb(247, 62, 62);
 }
 
-.back_btn span:hover, 
-.stop_rec_btn span:hover {
-    background: rgb(162, 34, 34);
+.back_btn span:hover {
+    background: rgb(189, 48, 48);
+}
+
+
+.submit_btn span {
+    background: rgb(219, 218, 218);
+}
+
+.submit_btn span:hover {
+    background: rgb(168, 166, 166);
 }
 
 .idea_btn span, 
@@ -215,4 +246,13 @@ div #drawing {
    
 .modal-open {
     overflow: auto;
+}
+
+#code_name {
+    font-size: 20px;
+}
+
+.image_row {
+    width:72%; 
+    margin:auto;
 }

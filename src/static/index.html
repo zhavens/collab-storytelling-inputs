@@ -15,8 +15,6 @@
     <!-- Custom -->
     <link href="img/favicon.png" rel="icon">
     <link rel="stylesheet" href="css/style.css">
-
-    <link rel="stylesheet" href="node_modules/myscript/dist/myscript.min.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kalam">
 
 </head>
@@ -31,8 +29,17 @@
 
     <div id="next_btn">
         <div class="start_btn" ontouchstart="">
-            <a style="width: 50%;" href="speech-recognition.html" onclick="startRound()"><span>START</span></a>
+            <a id="next_link" style="width: 50%;" href="" onclick="startRound()"><span>START</span></a>
         </div>
+    </div>
+    <div class="col-md-4 col-md-offset-4 text-center">
+        <form id="name_form">
+            <h2>Enter Your Code Name</h2>
+            <input id="code_name" type="text" style="width: 50%;"><br><br>
+            <div id="submit_btn" class="submit_btn" ontouchstart="">
+                <a style="width: 50%;" onclick="setPseudonym()"><span>Submit</span></a>
+            </div>
+        </form>
     </div>
 </body>
 

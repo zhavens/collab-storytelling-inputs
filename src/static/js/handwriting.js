@@ -2,6 +2,7 @@
  *  HANDWRITING RECOGNITION
  * ---------------*/
 import MyScript from './myscript.esm.js';
+import { addInterpretation } from "./requestHandler.js";
 
 const msappCookie = "myscript-app";
 const mshmacCookie = "myscript-hmac";
@@ -46,4 +47,13 @@ function updateKeys() {
 updateKeys();
 document.querySelector("#keys").onclick = updateKeys;
 
+/* ---------------
+ *  HANDWRITING SUBMISSION
+ * ---------------*/
+function submit() {
+    console.log("not implemented yet");
+    //addInterpretation();
+}
 
+var next_btn = document.getElementById('next_btn');
+next_btn.onclick = submit;

@@ -1,4 +1,33 @@
 import categories from "./categories.js";
+import { addImage } from "./requestHandler.js";
+
+//Create canvas
+var canvas = document.getElementById('myCanvas');
+var ctx = canvas.getContext('2d');
+ctx.fillStyle = "white";
+ctx.fillRect(0, 0, 1450, 600);
+
+createAITemplate();
+var outputVersion = "AI";
+
+export function getCanvas() {
+    return {
+        canvas: canvas,
+        ctx: ctx
+    }
+}
+
+function createAITemplate() {
+    // here the AI draws
+    console.log("Create AI Generated Template");
+    var path = new Path2D();
+    path.moveTo(220, 60);
+    path.arc(170, 60, 50, 0, 2 * Math.PI);
+    ctx.stroke(path);
+
+    //save the image to the database
+    addImage(canvas.toDataURL(), outputVersion);
+}
 
 function parseNdjson(result) {
     var data = [];
@@ -70,20 +99,20 @@ var substringMatcher = function (strs) {
     };
 };
 
-$('#category').typeahead({
-    highlight: false,
-    hint: false,
-    minlength: 1
-},
-    {
-        display: 'value',
-        source: substringMatcher(categories),
-        templates: {
-            suggestion: function (data) {
-                return "<div>" + data + "</div>"
-            }
-        }
-    });
+// $('#category').typeahead({
+//     highlight: false,
+//     hint: false,
+//     minlength: 1
+// },
+//     {
+//         display: 'value',
+//         source: substringMatcher(categories),
+//         templates: {
+//             suggestion: function (data) {
+//                 return "<div>" + data + "</div>"
+//             }
+//         }
+//     });
 
 
 $('#category').on("typeahead:selected", function (eventObject, suggestion, name) {

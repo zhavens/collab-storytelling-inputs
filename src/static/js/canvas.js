@@ -1,19 +1,21 @@
-//Create canvas
-var canvas = document.getElementById('myCanvas');
-var ctx = canvas.getContext('2d');
+import { getCanvas } from "./drawing.js";
+import { addImage } from "./requestHandler.js";
 
-//Set background
-ctx.fillStyle = "white";
-ctx.fillRect(0, 0, 700, 500);
+var result = getCanvas();
+var canvas = result["canvas"];
+var ctx = result["ctx"];
+var outputVersion = "Human-AI";
 
+setUpPaletterListeners();
 lines();
 
 function lines() {
+    var bounding = canvas.getBoundingClientRect();
 	//Initialize mouse coordinates to 0,0
 	var mouse = { x: 0, y: 0};
 
 	//Paint includes line width, line cap, and color
-	paint = function() {
+	window.paint = function() {
 		ctx.lineTo(mouse.x, mouse.y);
 		ctx.lineWidth = lineWidthRange();
 		ctx.lineJoin = 'round';
@@ -23,40 +25,62 @@ function lines() {
 	};
 
 	//Find mouse coordinates relative to canvas
-	linesMousemove = function(e){
-		mouse.x = e.pageX - this.offsetLeft;
-		mouse.y = e.pageY - this.offsetTop;
+	window.linesMousemove = function(e){
+		mouse.x = e.pageX - bounding.left;
+		mouse.y = e.pageY - bounding.top;
 	};
 
 	//User clicks down on canvas to trigger paint
-	linesMousedown = function(){
+	window.linesMousedown = function(){
 		ctx.beginPath();
 		ctx.moveTo(mouse.x, mouse.y);
 		canvas.addEventListener('mousemove', paint, false);
 	};
 
 	//When mouse lifts up, line stops painting
-	linesMouseup = function(){
+	window.linesMouseup = function(){
 		canvas.removeEventListener('mousemove', paint, false);
 	};
 
 	//When mouse leaves canvas, line stops painting
-	linesMouseout = function() {
+	window.linesMouseout = function() {
 		canvas.removeEventListener('mousemove', paint, false);
 	};
 
-	//Event listeners that will trigger the paint functions when
-	//mousedown, mousemove, mouseup, mouseout
+	// Event listeners that will trigger the paint functions when mousedown, mousemove, mouseup, mouseout
 	canvas.addEventListener('mousedown', linesMousedown, false);
 	canvas.addEventListener('mousemove', linesMousemove, false);
 	canvas.addEventListener('mouseup', linesMouseup, false);
 	canvas.addEventListener('mouseout', linesMouseout, false);
 };
 
+function setUpPaletterListeners() {
+    var childDivs = document.getElementById('colors-container').getElementsByTagName('div');
+
+    for(var i = 0; i < childDivs.length; i++ )
+    {
+        var childDiv = childDivs[i];
+        childDiv.addEventListener('click', changeColours, false);
+    }
+};
+
 //Color palette
 var colors;
-function changeColors(palette) {
-	switch(palette.id) {
+var colorId = "black";
+var selectedClass =  "selected";
+var selectedClassBlack =  "selected-black";
+document.getElementById(colorId).classList.add(selectedClassBlack);
+
+function changeColours () {
+    console.log("Change Colours: " + this.id)
+    var prevClassName = colorId == "black" ? selectedClassBlack : selectedClass;
+    var newClassName = this.id == "black" ? selectedClassBlack : selectedClass;
+
+    document.getElementById(colorId).classList.remove(prevClassName);
+    colorId = this.id;
+    document.getElementById(colorId).classList.add(newClassName);
+
+	switch(this.id) {
 		case "red":
 			colors = "red";
 			break;
@@ -131,19 +155,62 @@ function changeColors(palette) {
 			break;
         case "brown":
             colors = "#6F4E37";
+            break;
+        case "skin1":
+            colors = "#F2EFEE";
+            break;
+        case "skin2":
+            colors = "#EFE6DD";
+            break;
+        case "skin3":
+            colors = "#EBD3C5";
+            break;
+        case "skin4":
+            colors = "#D7B6A5";
+            break;
+        case "skin5":
+            colors = "#9F7967";
+            break;
+        case "skin6":
+            colors = "#70361C";
+            break;
+        case "skin7":
+            colors = "#492816";
+            break;
+        case "skin8":
+            colors = "#FFCD94";
+            break;
+        case "skin9":
+            colors = "#EAC086";
+            break;
+        case "skin10":
+            colors = "#FBDEBC";
 	}
 };
 
-function erase() {
-    console.log("hello");
+
+window.erase = function erase() {
+    console.log("Erase");
     colors = "white";
-}
+    document.getElementById(colorId).style.border = "none";
+    colorId = palette.id;
+    document.getElementById(palette.id).style.border = "2px solid #1f1f1f";
+};
 
 function lineWidthRange() {
     var widthLine = document.getElementById("myRange").value;
     return widthLine;
 };
 
-function clearCanvas() {
+window.clearCanvas = function clearCanvas() {
+    console.log("Clear");
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
+};
+
+window.saveImage = function saveImage() {
+    console.log("Save Image");
+    var var_name = localStorage.getItem("pseudonym") + localStorage.getItem("round");
+    var dataUrl = canvas.toDataURL();
+    localStorage.setItem(var_name, dataUrl);
+    addImage(canvas.toDataURL(), outputVersion);
 };
