@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var loggingRouter = require('./routes/logging');
+var myscriptRouter = require('./routes/myscript');
 var quickdrawRouter = require('./routes/quickdraw');
 
 var app = express();
@@ -22,6 +23,7 @@ app.use(express.static(path.join(__dirname, 'static')));
 // Current root URI is handled by static pages.
 // app.use('/', indexRouter);
 app.use('/logging', loggingRouter);
+app.use('/myscript', myscriptRouter);
 app.use('/quickdraw', quickdrawRouter);
 
 // catch 404 and forward to error handler

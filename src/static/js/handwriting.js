@@ -15,15 +15,22 @@ var keystatus = document.querySelector("#keystatus");
 appkeyinput.value = localStorage.getItem(msappCookie);
 hmackeyinput.value = localStorage.getItem(mshmacCookie);
 
-function registerMyScript() {
+async function getKeys() {
+    var keysResp = await fetch("https://zhavens.com/hai/myscript/keys");
+    return await keysResp.json();
+}
+
+function registerMyScript(keys) {
+    var keysResp = fetch("https://zhavens.com/hai/myscript/keys");
     if (appkeyinput.value && hmackeyinput.value) {
+        console.log({
+            applicationKey: appkeyinput.value,
+            hmacKey: hmackeyinput.value
+        });
         MyScript.register(editor, {
             recognitionParams: {
                 type: 'TEXT',
-                server: {
-                    applicationKey: appkeyinput.value,
-                    hmacKey: hmackeyinput.value
-                }
+                server: keys
             }
         });
         keystatus.classList.remove("fail");
@@ -35,15 +42,12 @@ function registerMyScript() {
     }
 }
 
-function updateKeys() {
-    if (appkeyinput.value && hmackeyinput.value) {
-        localStorage.setItem(msappCookie, appkeyinput.value);
-        localStorage.setItem(mshmacCookie, hmackeyinput.value);
-        registerMyScript();
-    }
+async function initMyScript() {
+    var keys = await getKeys();
+    registerMyScript(keys);
 }
 
-updateKeys();
-document.querySelector("#keys").onclick = updateKeys;
+initMyScript();
+// document.querySelector("#keys").onclick = updateKeys;
 
 
