@@ -1,4 +1,5 @@
 import categories from "./categories.js";
+import { addImage } from "./requestHandler.js";
 
 //Create canvas
 var canvas = document.getElementById('myCanvas');
@@ -7,6 +8,7 @@ ctx.fillStyle = "white";
 ctx.fillRect(0, 0, 1450, 600);
 
 createAITemplate();
+var outputVersion = "AI";
 
 export function getCanvas() {
     return {
@@ -22,6 +24,9 @@ function createAITemplate() {
     path.moveTo(220, 60);
     path.arc(170, 60, 50, 0, 2 * Math.PI);
     ctx.stroke(path);
+
+    //save the image to the database
+    addImage(canvas.toDataURL(), outputVersion);
 }
 
 function parseNdjson(result) {

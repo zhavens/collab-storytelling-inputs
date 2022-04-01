@@ -1,14 +1,16 @@
 import { getCanvas } from "./drawing.js";
+import { addImage } from "./requestHandler.js";
 
 var result = getCanvas();
 var canvas = result["canvas"];
 var ctx = result["ctx"];
-var bounding = canvas.getBoundingClientRect();
+var outputVersion = "Human-AI";
 
 setUpPaletterListeners();
 lines();
 
 function lines() {
+    var bounding = canvas.getBoundingClientRect();
 	//Initialize mouse coordinates to 0,0
 	var mouse = { x: 0, y: 0};
 
@@ -210,4 +212,5 @@ window.saveImage = function saveImage() {
     var var_name = localStorage.getItem("pseudonym") + localStorage.getItem("round");
     var dataUrl = canvas.toDataURL();
     localStorage.setItem(var_name, dataUrl);
+    addImage(canvas.toDataURL(), outputVersion);
 };

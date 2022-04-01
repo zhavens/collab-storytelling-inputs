@@ -1,7 +1,7 @@
 /* ---------------
  *  SPEECH RECOGNITION
  * ---------------*/
-
+import { addInterpretation } from "./requestHandler.js";
 var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition
 var SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList
 var SpeechRecognitionEvent = SpeechRecognitionEvent || webkitSpeechRecognitionEvent
@@ -116,3 +116,13 @@ speakbtn.onclick = speak;
 if (speechSynthesis.onvoiceschanged !== undefined) {
     speechSynthesis.onvoiceschanged = populateVoiceList;
 }
+
+/* ---------------
+ *  SPEECH SUBMISSION
+ * ---------------*/
+function submit() {
+    addInterpretation(speech_result.transcript);
+}
+
+var next_btn = document.getElementById('next_btn');
+next_btn.onclick = submit;
