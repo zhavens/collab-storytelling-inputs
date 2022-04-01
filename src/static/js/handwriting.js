@@ -8,12 +8,7 @@ const mshmacCookie = "myscript-hmac";
 
 const editor = document.querySelector("#editor");
 
-var appkeyinput = document.querySelector("#appkey");
-var hmackeyinput = document.querySelector("#hmackey");
 var keystatus = document.querySelector("#keystatus");
-
-appkeyinput.value = localStorage.getItem(msappCookie);
-hmackeyinput.value = localStorage.getItem(mshmacCookie);
 
 async function getKeys() {
     var keysResp = await fetch("https://zhavens.com/hai/myscript/keys");
@@ -21,12 +16,8 @@ async function getKeys() {
 }
 
 function registerMyScript(keys) {
-    var keysResp = fetch("https://zhavens.com/hai/myscript/keys");
-    if (appkeyinput.value && hmackeyinput.value) {
-        console.log({
-            applicationKey: appkeyinput.value,
-            hmacKey: hmackeyinput.value
-        });
+    if (keys) {
+        console.log(keys);
         MyScript.register(editor, {
             recognitionParams: {
                 type: 'TEXT',
