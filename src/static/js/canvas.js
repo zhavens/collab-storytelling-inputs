@@ -1,13 +1,36 @@
-import { getCanvas } from "./drawing.js";
+import { getCanvas, createAITemplate } from "./drawing.js";
 import { addImage } from "./requestHandler.js";
 
-var result = getCanvas();
-var canvas = result["canvas"];
-var ctx = result["ctx"];
-var outputVersion = "Human-AI";
+var result;
+var canvas;
+var ctx;
+var mergedCanvas;
+var mergedCtx;
+var outputVersion;
+var images = [
+    new Image(),
+    new Image(),
+    new Image(),
+    new Image()
+]
 
-setUpPaletterListeners();
+setUpPaletteListeners();
+setUpCanvas();
 lines();
+
+function setUpCanvas() {
+    createAITemplate();
+    result = getCanvas();
+    canvas = result["canvas"];
+    ctx = result["ctx"];
+    outputVersion = "Human-AI";
+}
+
+window.redrawCanvas = function redrawCanvas() {
+    console.log("Redraw Pressed");
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    setUpCanvas();
+}
 
 function lines() {
     var bounding = canvas.getBoundingClientRect();
@@ -54,7 +77,7 @@ function lines() {
 	canvas.addEventListener('mouseout', linesMouseout, false);
 };
 
-function setUpPaletterListeners() {
+function setUpPaletteListeners() {
     var childDivs = document.getElementById('colors-container').getElementsByTagName('div');
 
     for(var i = 0; i < childDivs.length; i++ )
@@ -188,7 +211,6 @@ function changeColours () {
 	}
 };
 
-
 window.erase = function erase() {
     console.log("Erase");
     colors = "white";
@@ -209,7 +231,8 @@ window.clearCanvas = function clearCanvas() {
 
 window.saveImage = function saveImage() {
     console.log("Save Image");
-    var var_name = localStorage.getItem("pseudonym") + localStorage.getItem("round");
+    var round = localStorage.getItem("round");
+    var var_name = localStorage.getItem("pseudonym") + round;
     var dataUrl = canvas.toDataURL();
     localStorage.setItem(var_name, dataUrl);
     addImage(canvas.toDataURL(), outputVersion);

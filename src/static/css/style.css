@@ -95,7 +95,9 @@ div #drawing {
 #next_btn span,
 #submit_btn span,
 #idea_btn span,
+#share_btn span,
 #rec_btn span,
+#redraw_btn span,
 #play_rec_btn span {
   display: block;
   padding: 10px 20px;
@@ -106,8 +108,10 @@ div #drawing {
 #back_btn a:active,
 #next_btn a:active,
 #idea_btn a:active,
+#share_btn a:active,
 #submit_btn a:active,
 #rec_btn button:active,
+#redraw_btn button:active,
 #play_rec_btn button:active {
   top: 4px;
   padding-bottom: 0px;
@@ -115,9 +119,11 @@ div #drawing {
 }
 
 #back_btn a,
+#redraw_btn a,
 #next_btn a,
 #submit_btn a,
 #idea_btn a,
+#share_btn a,
 #rec_btn button,
 #play_rec_btn button {
   float: right;
@@ -134,13 +140,15 @@ div #drawing {
   background-image: url('data:image/gif;base64,R0lGODlhBAAEAIABAAAAAAAAACH/C1hNUCBEYXRhWE1QPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS4wLWMwNjEgNjQuMTQwOTQ5LCAyMDEwLzEyLzA3LTEwOjU3OjAxICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1LjEgV2luZG93cyIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDo5NUY1OENCRDdDMDYxMUUyOTEzMEE1MEM5QzM0NDVBMyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDo5NUY1OENCRTdDMDYxMUUyOTEzMEE1MEM5QzM0NDVBMyI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjk1RjU4Q0JCN0MwNjExRTI5MTMwQTUwQzlDMzQ0NUEzIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjk1RjU4Q0JDN0MwNjExRTI5MTMwQTUwQzlDMzQ0NUEzIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+Af/+/fz7+vn49/b19PPy8fDv7u3s6+rp6Ofm5eTj4uHg397d3Nva2djX1tXU09LR0M/OzczLysnIx8bFxMPCwcC/vr28u7q5uLe2tbSzsrGwr66trKuqqainpqWko6KhoJ+enZybmpmYl5aVlJOSkZCPjo2Mi4qJiIeGhYSDgoGAf359fHt6eXh3dnV0c3JxcG9ubWxramloZ2ZlZGNiYWBfXl1cW1pZWFdWVVRTUlFQT05NTEtKSUhHRkVEQ0JBQD8+PTw7Ojk4NzY1NDMyMTAvLi0sKyopKCcmJSQjIiEgHx4dHBsaGRgXFhUUExIREA8ODQwLCgkIBwYFBAMCAQAAIfkEAQAAAQAsAAAAAAQABAAAAgYEEpdoeQUAOw==');
 }
 
-.idea_btn{
+.idea_btn, 
+.share_btn{
 	position:fixed;
 	bottom:40px;
 	right:40px;
 }
 
-.back_btn{
+.back_btn, 
+.redraw_btn {
 	position:fixed;
 	top:40px;
 	left:80px;
@@ -173,10 +181,12 @@ div #drawing {
     background: rgb(243, 201, 201) !important;
 }
 
-.back_btn span {
+.back_btn span,
+.redraw_btn span {
     background: rgb(247, 62, 62);
 }
 
+.redraw_btn span:hover,
 .back_btn span:hover {
     background: rgb(189, 48, 48);
 }
@@ -191,11 +201,13 @@ div #drawing {
 }
 
 .idea_btn span, 
+.share_btn span,
 .play_rec_btn span {
     background: rgb(63, 218, 235);
 }
 
 .idea_btn span:hover, 
+.share_btn span:hover,
 .play_rec_btn span:hover {
     background: rgb(43, 164, 177);
 }

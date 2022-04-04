@@ -6,9 +6,8 @@ var canvas = document.getElementById('myCanvas');
 var ctx = canvas.getContext('2d');
 ctx.fillStyle = "white";
 ctx.fillRect(0, 0, 1450, 600);
-
-createAITemplate();
 var outputVersion = "AI";
+var drawElements = ["cat", "dog"];
 
 export function getCanvas() {
     return {
@@ -17,13 +16,14 @@ export function getCanvas() {
     }
 }
 
-function createAITemplate() {
+export async function createAITemplate() {
     // here the AI draws
     console.log("Create AI Generated Template");
-    var path = new Path2D();
-    path.moveTo(220, 60);
-    path.arc(170, 60, 50, 0, 2 * Math.PI);
-    ctx.stroke(path);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    for(var i = 0; i < drawElements.length; i++) {
+        draw(drawElements[i]);
+    }
 
     //save the image to the database
     addImage(canvas.toDataURL(), outputVersion);
@@ -43,7 +43,7 @@ function parseNdjson(result) {
 
 function getDrawing(category) {
     var data;
-    var url = 'https://zhavens.com/hai/quickdraw/';
+    var url = 'https://zhavens.com/raquel/quickdraw/';
     url += encodeURIComponent(category);
     return $.ajax
         ({
@@ -57,20 +57,20 @@ function quickdrawSvgRender(drawing, viewBox) {
 
     var svgSize = viewBox ? 'viewBox="0 0 256 256"' : 'width="256"  height="256"'
     var svg = []
-    svg.push('<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"' + svgSize + '>')
+    // svg.push('<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"' + svgSize + '>')
 
     drawing.forEach(function (loops) {
-        svg.push('<path d="')
+        // svg.push('<path d="')
         svg.push('M ' + loops[0][0] + ' ' + loops[1][0])
 
         for (var i = 1; i < loops[0].length; i++) {
             svg.push('L ' + loops[0][i] + ' ' + loops[1][i])
         }
 
-        svg.push('" stroke-width="1" stroke="black" fill="none"></path>')
+        // svg.push('" stroke-width="1" stroke="black" fill="none"></path>')
     })
 
-    svg.push('</svg>')
+    // svg.push('</svg>')
 
     return svg.join("");
 }
@@ -78,11 +78,18 @@ function quickdrawSvgRender(drawing, viewBox) {
 async function draw(category) {
     const data = await getDrawing(category);
     var drawing = data.drawing;
-
-    var svg = $.parseHTML(quickdrawSvgRender(drawing));
-
-    $("#canvas svg").remove();
-    $("#canvas").append(svg);
+    var svg = quickdrawSvgRender(drawing);
+    var path = new Path2D(svg);
+    var randomColour = '#'+Math.floor(Math.random()*16777215).toString(16);
+    var cx = 50 + Math.random() * (canvas.width - 200);
+    var cy = 50 + Math.random() * (canvas.height - 200);
+    var stroke = ctx.lineWidth;
+    ctx.lineWidth = 2;
+    ctx.translate(cx, cy);
+    ctx.strokeStyle = randomColour;
+    ctx.stroke(path);
+    ctx.translate(-cx, -cy);
+    ctx.lineWidth = stroke;
 }
 
 // https://codepen.io/tomfarina/pen/wZyPeZ
