@@ -1,5 +1,4 @@
-import categories from "./categories.js";
-import { addImage } from "./requestHandler.js";
+import { addImage, getImageIntersection } from "./requestHandler.js";
 
 //Create canvas
 var canvas = document.getElementById('myCanvas');
@@ -20,9 +19,9 @@ export async function createAITemplate() {
     // here the AI draws
     console.log("Create AI Generated Template");
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    
+    var currentImage = "";
     for(var i = 0; i < drawElements.length; i++) {
-        draw(drawElements[i]);
+        currentImage = draw(currentImage, drawElements[i]);
     }
 
     //save the image to the database
@@ -75,21 +74,26 @@ function quickdrawSvgRender(drawing, viewBox) {
     return svg.join("");
 }
 
-async function draw(category) {
+async function draw(currentImage, category) {
     const data = await getDrawing(category);
     var drawing = data.drawing;
     var svg = quickdrawSvgRender(drawing);
     var path = new Path2D(svg);
-    var randomColour = '#'+Math.floor(Math.random()*16777215).toString(16);
+    var randomColour = '#'+ Math.floor(Math.random() * 16777215).toString(16);
     var cx = 50 + Math.random() * (canvas.width - 200);
     var cy = 50 + Math.random() * (canvas.height - 200);
+    if (currentImage != "") {
+        var intersection = getImageIntersection(currentImage, svg, cx, cy);
+        intersection.then( (val) => console.log("asynchronous val:",val) );
+    }
+    currentImage = currentImage + " " + svg;
+    var path = new Path2D(svg);
     var stroke = ctx.lineWidth;
     ctx.lineWidth = 2;
-    ctx.translate(cx, cy);
     ctx.strokeStyle = randomColour;
     ctx.stroke(path);
-    ctx.translate(-cx, -cy);
     ctx.lineWidth = stroke;
+    return currentImage;
 }
 
 // https://codepen.io/tomfarina/pen/wZyPeZ

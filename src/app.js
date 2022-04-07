@@ -5,7 +5,13 @@ var express = require('express');
 var http = require('http');
 var path = require('path');
 var cookieParser = require('cookie-parser');
-// var logger = require('morgan');
+var logger = require('morgan');
+
+var loggingRouter = require('./routes/logging');
+var quickdrawRouter = require('./routes/quickdraw');
+var interpretationsRouter = require('./routes/interpretations');
+var imagesRouter = require('./routes/images');
+var imageIntersectRouter = require('./routes/imageIntersection');
 
 var port = normalizePort(process.env.PORT || '3000');
 var app = express();
@@ -44,6 +50,7 @@ app.use('/quickdraw', quickdrawRouter);
 app.use('/interpretations', interpretationsRouter);
 app.use('/images', imagesRouter);
 app.use('/wizard', wizardRouter);
+app.use('/imageIntersection', imageIntersectRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

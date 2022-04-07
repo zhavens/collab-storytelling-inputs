@@ -4,15 +4,14 @@ import { addImage } from "./requestHandler.js";
 var result;
 var canvas;
 var ctx;
-var mergedCanvas;
-var mergedCtx;
 var outputVersion;
-var images = [
-    new Image(),
-    new Image(),
-    new Image(),
-    new Image()
-]
+
+//Color palette
+var colors = "black";
+var colorId = "black";
+var selectedClass =  "selected";
+var selectedClassBlack =  "selected-black";
+document.getElementById(colorId).classList.add(selectedClassBlack);
 
 setUpPaletteListeners();
 setUpCanvas();
@@ -86,13 +85,6 @@ function setUpPaletteListeners() {
         childDiv.addEventListener('click', changeColours, false);
     }
 };
-
-//Color palette
-var colors;
-var colorId = "black";
-var selectedClass =  "selected";
-var selectedClassBlack =  "selected-black";
-document.getElementById(colorId).classList.add(selectedClassBlack);
 
 function changeColours () {
     console.log("Change Colours: " + this.id)

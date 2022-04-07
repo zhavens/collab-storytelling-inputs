@@ -52,3 +52,22 @@ export async function addImage (image, outputVersion) {
         });
     }
 }
+
+export async function getImageIntersection (currentImage, newPath, cx, cy) {
+    console.log("Get Image Intersection: ");
+    if (currentImage == null) {
+        console.log("Error: undefined currentImage");
+    } else if (newPath == null) {
+        console.log("Error: undefined newPath");
+    } else if (cx == null) {
+        console.log("Error: undefined cx");
+    } else if (cy == null) {
+        console.log("Error: undefined cy");
+    } else {
+        var parameters = currentImage + "/" + newPath  + "/" + cx  + "/" + cy;
+        return await fetch("https://zhavens.com/raquel/imageIntersection/" + parameters, {
+            method: "GET"
+        });
+    }
+    return;
+}
