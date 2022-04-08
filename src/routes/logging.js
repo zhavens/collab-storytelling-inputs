@@ -8,7 +8,6 @@ const client = new mongo.MongoClient(uri);
 
 /* GET users listing. */
 router.post('/:user', async function (req, res, next) {
-    console.log(req.body);
     if (!req.params.user) {
         console.log('Error: missing field "user".');
         res.status(400).send('Error: missing field "user".');
@@ -24,14 +23,15 @@ router.post('/:user', async function (req, res, next) {
             const doc = {
                 user: req.params.user,
                 msg: req.body.msg,
-                timestamp: mongo.Timestamp(),
+                timestamp: new Date(),
             };
             const result = await logging.insertOne(doc);
             console.log(`A document was inserted with the _id: ${result.insertedId}`);
             res.send('Success.');
-        } finally {
-            await client.close();
+        } catch {
             res.send('Error logging to DB.');
+        } finally {
+            client.close().catch();
         }
     }
 });
@@ -49,8 +49,7 @@ router.get('/:user', async function (req, res, next) {
         } catch {
             res.status(500).send('Error fetching logs from DB.');
         } finally {
-            await client.close();
-
+            client.close();
         }
     }
 });
