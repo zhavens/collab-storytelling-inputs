@@ -24,12 +24,16 @@ function registerMyScript(keys) {
                 server: keys
             }
         });
-        keystatus.classList.remove("fail");
-        keystatus.classList.add("success");
+        if (keystatus) {
+            keystatus.classList.remove("fail");
+            keystatus.classList.add("success");
+        }
     } else {
         console.log('Missing MyScript keys.');
-        keystatus.classList.remove("success");
-        keystatus.classList.add("fail");
+        if (keystatus) {
+            keystatus.classList.remove("success");
+            keystatus.classList.add("fail");
+        }
     }
 }
 
