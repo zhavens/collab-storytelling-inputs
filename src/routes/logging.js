@@ -29,9 +29,10 @@ router.post('/:user', async function (req, res, next) {
             const result = await logging.insertOne(doc);
             console.log(`A document was inserted with the _id: ${result.insertedId}`);
             res.send('Success.');
-        } finally {
-            await client.close();
+        } catch {
             res.send('Error logging to DB.');
+        } finally {
+            client.close().catch();
         }
     }
 });
@@ -49,8 +50,7 @@ router.get('/:user', async function (req, res, next) {
         } catch {
             res.status(500).send('Error fetching logs from DB.');
         } finally {
-            await client.close();
-
+            client.close();
         }
     }
 });
