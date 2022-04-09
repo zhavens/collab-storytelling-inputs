@@ -24,7 +24,7 @@ router.post('/:user', async function (req, res, next) {
             const doc = {
                 user: req.params.user,
                 msg: req.body.msg,
-                timestamp: mongo.Timestamp(),
+                timestamp: new Date(),
             };
             const result = await logging.insertOne(doc);
             console.log(`A document was inserted with the _id: ${result.insertedId}`);
