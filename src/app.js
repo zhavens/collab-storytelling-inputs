@@ -10,8 +10,9 @@ var cookieParser = require('cookie-parser');
 var port = normalizePort(process.env.PORT || '3000');
 var app = express();
 var server = http.createServer(app);
+var wsInstance = expressWs(app, server);
+var wss = wsInstance.getWss();
 
-expressWs(app, server);
 app.set('port', port);
 server.on('error', onError);
 server.on('listening', onListening);
@@ -21,11 +22,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'static')));
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
 
-// var router = express.Router();
+// view engine setup - used for templating
+// app.set('views', path.join(__dirname, 'views'));
+// app.set('view engine', 'jade');
+
 var echoRouter = require('./routes/echo')(express.Router());
 var loggingRouter = require('./routes/logging');
 var myscriptRouter = require('./routes/myscript');
@@ -54,10 +55,7 @@ app.use(function (err, req, res, next) {
   res.render('error');
 });
 
-/**
- * Normalize a port into a number, string, or false.
- */
-
+// Normalize a port into a number, string, or false.
 function normalizePort(val) {
   var port = parseInt(val, 10);
 
@@ -74,10 +72,7 @@ function normalizePort(val) {
   return false;
 }
 
-/**
- * Event listener for HTTP server "error" event.
- */
-
+// Event listener for HTTP server "error" event.
 function onError(error) {
   if (error.syscall !== 'listen') {
     throw error;
@@ -100,10 +95,7 @@ function onError(error) {
   }
 }
 
-/**
- * Event listener for HTTP server "listening" event.
- */
-
+// Event listener for HTTP server "listening" event.
 function onListening() {
   var addr = server.address();
   var bind = typeof addr === 'string'
@@ -112,5 +104,17 @@ function onListening() {
   debug('Listening on ' + bind);
 }
 
+// Setup heartbeating for WebSocket connections.
+const interval = setInterval(function ping() {
+  // console.log("Sending pings.")
+  wss.clients.forEach(function each(ws) {
+    // console.log(" - Pinging socket.",)
+    ws.pong();
+  });
+}, 5000);
+
+wss.on('close', function close() {
+  clearInterval(interval);
+});
+
 server.listen(port);
-// module.exports = app;
