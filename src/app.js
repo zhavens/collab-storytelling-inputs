@@ -22,11 +22,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'static')));
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
 
-// var router = express.Router();
+// view engine setup - used for templating
+// app.set('views', path.join(__dirname, 'views'));
+// app.set('view engine', 'jade');
+
 var echoRouter = require('./routes/echo')(express.Router());
 var loggingRouter = require('./routes/logging');
 var myscriptRouter = require('./routes/myscript');
