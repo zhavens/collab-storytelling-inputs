@@ -7,7 +7,6 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 // var logger = require('morgan');
 
-
 var port = normalizePort(process.env.PORT || '3000');
 var app = express();
 var server = http.createServer(app);
@@ -23,15 +22,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'static')));
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'jade');
 
-// view engine setup - used for templating
-// app.set('views', path.join(__dirname, 'views'));
-// app.set('view engine', 'jade');
-
-var categoriesRouter = require('./routes/categories');
+// var router = express.Router();
 var echoRouter = require('./routes/echo')(express.Router());
-var interpretationsRouter = require('./routes/interpretations');
-var imagesRouter = require('./routes/images');
 var loggingRouter = require('./routes/logging');
 var myscriptRouter = require('./routes/myscript');
 var quickdrawRouter = require('./routes/quickdraw');
