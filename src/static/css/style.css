@@ -184,6 +184,7 @@ div #drawing {
     font-family: 'Consolas';
     width: auto;
     overflow-y: scroll;
+    resize: vertical;
 }
 
 .console > p {
