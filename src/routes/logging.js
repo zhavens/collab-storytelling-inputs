@@ -8,7 +8,6 @@ const client = new mongo.MongoClient(uri);
 
 /* GET users listing. */
 router.post('/:user', async function (req, res, next) {
-    console.log(req.body);
     if (!req.params.user) {
         console.log('Error: missing field "user".');
         res.status(400).send('Error: missing field "user".');
