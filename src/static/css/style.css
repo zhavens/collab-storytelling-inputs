@@ -179,6 +179,18 @@ div #drawing {
 .console {
     background: black;
     color: white;
+    margin: 10px;
+    white-space: pre-line;
+    font-family: 'Consolas';
+    width: auto;
+    overflow-y: scroll;
+}
+
+.console > p {
+    font-size: 16px;
+    padding: 0px;
+    margin: -5px 0px;
+    display: block;
 }
 
 .modal {
@@ -216,3 +228,9 @@ div #drawing {
 .modal-open {
     overflow: auto;
 }
+
+.status-icon {
+  margin-left:10px;
+  font-size: 24px;
+}
+
