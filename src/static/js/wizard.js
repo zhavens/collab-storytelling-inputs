@@ -7,22 +7,28 @@ $('#userForm').on('submit', (event) => {
     socket.addEventListener('open', event => {
         $('#connIcon').removeClass("fail bi-x-circle-fill")
             .addClass("success bi-check-circle-fill");
-        var p = $(document.createElement("p")).html("Connected.\n").addClass("success");
+        var msg = new Date().toISOString() + ": Connected.\n"
+        var p = $(document.createElement("p")).html(msg).addClass("success");
         $('#output').append(p);
         p[0].scrollIntoView(false);
     });
+
     socket.addEventListener('message', event => {
-        var log = JSON.parse(event.data);
-        log.timestamp = new Date(log.timestamp);
-        var msg = log.timestamp.toISOString() + ': ' + log.msg + '\n';
-        var p = $(document.createElement("p")).html(msg);
-        $('#output').append(p);
-        p[0].scrollIntoView(false);
+        var data = JSON.parse(event.data);
+        if (data.type == "log") {
+            data.log.timestamp = new Date(data.log.timestamp);
+            var msg = data.log.timestamp.toISOString() + ': ' + data.log.msg + '\n';
+            var p = $(document.createElement("p")).html(msg);
+            $('#output').append(p);
+            p[0].scrollIntoView(false);
+        }
     });
+
     socket.addEventListener('close', event => {
         $('#connIcon').removeClass("success bi-check-circle-fill")
             .addClass("fail bi-x-circle-fill");
-        var p = $(document.createElement("p")).html("Disconnected.\n").addClass("fail");
+        var msg = new Date.toISOString() + ": Disonnected.\n"
+        var p = $(document.createElement("p")).html(msg).addClass("fail");
         $('#output').append(p);
         p[0].scrollIntoView(false);
     });

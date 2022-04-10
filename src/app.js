@@ -109,9 +109,9 @@ const interval = setInterval(function ping() {
   // console.log("Sending pings.")
   wss.clients.forEach(function each(ws) {
     // console.log(" - Pinging socket.",)
-    ws.pong();
+    ws.send(JSON.stringify({ type: "heartbeat" }));
   });
-}, 5000);
+}, 30000);
 
 wss.on('close', function close() {
   clearInterval(interval);
