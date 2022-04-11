@@ -27,12 +27,14 @@ app.use(express.static(path.join(__dirname, 'static')));
 // app.set('views', path.join(__dirname, 'views'));
 // app.set('view engine', 'jade');
 
+var categoriesRouter = require('./routes/categories');
 var echoRouter = require('./routes/echo')(express.Router());
 var loggingRouter = require('./routes/logging');
 var myscriptRouter = require('./routes/myscript');
 var quickdrawRouter = require('./routes/quickdraw');
 var wizardRouter = require('./routes/wizard')(express.Router());
 
+app.use('/categories', categoriesRouter);
 app.use('/echo', echoRouter);
 app.use('/logging', loggingRouter);
 app.use('/myscript', myscriptRouter);
