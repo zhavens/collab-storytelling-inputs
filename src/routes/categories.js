@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var debug = require('debug')('categories')
 
 var mongo = require('mongodb');
 
@@ -8,8 +9,11 @@ const client = new mongo.MongoClient(uri);
 
 /* GET category listing. */
 router.post('/:user', async function (req, res, next) {
+    debug("Request: %o", req.body);
     if (!req.params.user) {
         res.status(400).send('Error: missing field "user".');
+    } if (!req.body.categories) {
+        res.status(400).send('Error: missing field "categories".');
     } else {
         try {
             await client.connect()
@@ -22,7 +26,7 @@ router.post('/:user', async function (req, res, next) {
                 date: new Date(),
             };
             const result = await categories.insertOne(doc);
-            console.log(`A document was inserted with the _id: ${result.insertedId}`);
+            debug(`A document was inserted with the _id: ${result.insertedId}`);
             res.send('Success.');
         } finally {
             await client.close();
@@ -41,12 +45,9 @@ router.get('/:user', async function (req, res, next) {
             const categories = database.collection("categories");
 
             const query = { user: req.params.user.toLowerCase() };
-            const cats = categories.findOne(query, { sort: { date: -1 } });
+            const resp = categories.findOne(query, { sort: { date: -1 } });
 
-            res.json(await cats);
-
-            // const results = await quickdraw.findOne({ "category": req.params.category });
-            // res.send(results);
+            res.json(await resp);
         } catch {
             res.status(500).send('Error fetching categories from DB.');
         } finally {
