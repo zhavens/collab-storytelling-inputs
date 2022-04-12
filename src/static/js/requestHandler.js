@@ -53,20 +53,32 @@ export async function addImage (image, outputVersion) {
     }
 }
 
+export async function getCategories () {
+    return await fetch("https://zhavens.com/hai/categories/" + user, {
+        method: "GET"
+    }).then(function(response) {
+        return response.text();
+    }).then(function(data) {
+        console.log(data); // this will be a string
+        return data;
+    });
+}
+
 export async function getImageIntersection (currentImage, newPath, cx, cy) {
     console.log("Get Image Intersection: ");
     if (currentImage == null) {
         console.log("Error: undefined currentImage");
     } else if (newPath == null) {
         console.log("Error: undefined newPath");
-    } else if (cx == null) {
-        console.log("Error: undefined cx");
-    } else if (cy == null) {
-        console.log("Error: undefined cy");
     } else {
-        var parameters = currentImage + "/" + newPath  + "/" + cx  + "/" + cy;
+        var parameters = currentImage + "/" + newPath + "/" + cx + "/" + cy;
         return await fetch("https://zhavens.com/raquel/imageIntersection/" + parameters, {
             method: "GET"
+        }).then(function(response) {
+            return response.text();
+        }).then(function(data) {
+            console.log(data); // this will be a string
+            return data;
         });
     }
     return;

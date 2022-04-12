@@ -1,12 +1,14 @@
-import { addImage, getImageIntersection } from "./requestHandler.js";
+import { addImage, getCategories } from "./requestHandler.js";
+
 
 //Create canvas
 var canvas = document.getElementById('myCanvas');
 var ctx = canvas.getContext('2d');
 ctx.fillStyle = "white";
-ctx.fillRect(0, 0, 1450, 600);
+ctx.fillRect(0, 0, 1150, 600);
 var outputVersion = "AI";
-var drawElements = ["cat", "dog"];
+var drawElements= ["cat", "dog", "cow"];
+var currentDrawIndex = 0;
 
 export function getCanvas() {
     return {
@@ -16,12 +18,19 @@ export function getCanvas() {
 }
 
 export async function createAITemplate() {
-    // here the AI draws
     console.log("Create AI Generated Template");
+    // reset the canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    var currentImage = "";
+
+    // get the categories
+    currentDrawIndex = 0;
+    var response = await getCategories();
+    response = JSON.parse(response);
+    drawElements = response == null ? [] : response["categories"];
+    
+    // draw all the images
     for(var i = 0; i < drawElements.length; i++) {
-        currentImage = draw(currentImage, drawElements[i]);
+        draw(drawElements[i]);
     }
 
     //save the image to the database
@@ -74,26 +83,37 @@ function quickdrawSvgRender(drawing, viewBox) {
     return svg.join("");
 }
 
-async function draw(currentImage, category) {
+async function streamToString (stream) {
+    const chunks = [];
+    return new Promise((resolve, reject) => {
+      stream.on('data', (chunk) => chunks.push(Buffer.from(chunk)));
+      stream.on('error', (err) => reject(err));
+      stream.on('end', () => resolve(Buffer.concat(chunks).toString('utf8')));
+    })
+}
+
+async function draw(category) {
+    // get the drawing
     const data = await getDrawing(category);
     var drawing = data.drawing;
     var svg = quickdrawSvgRender(drawing);
     var path = new Path2D(svg);
+
+    // randomly assign the colour and position
     var randomColour = '#'+ Math.floor(Math.random() * 16777215).toString(16);
-    var cx = 50 + Math.random() * (canvas.width - 200);
-    var cy = 50 + Math.random() * (canvas.height - 200);
-    if (currentImage != "") {
-        var intersection = getImageIntersection(currentImage, svg, cx, cy);
-        intersection.then( (val) => console.log("asynchronous val:",val) );
-    }
-    currentImage = currentImage + " " + svg;
+    var cx = 50 + (canvas.width - 100) * currentDrawIndex / drawElements.length;//Math.random() * (canvas.width - 400);
+    var cy = Math.random() * (canvas.height - 250);
+    
+    // draw the drawing
     var path = new Path2D(svg);
     var stroke = ctx.lineWidth;
+    ctx.translate(cx, cy);
     ctx.lineWidth = 2;
     ctx.strokeStyle = randomColour;
     ctx.stroke(path);
     ctx.lineWidth = stroke;
-    return currentImage;
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    currentDrawIndex++;
 }
 
 // https://codepen.io/tomfarina/pen/wZyPeZ
