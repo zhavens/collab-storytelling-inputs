@@ -9,42 +9,43 @@ const mshmacCookie = "myscript-hmac";
 
 const editor = document.querySelector("#editor");
 
+var appkeyinput = document.querySelector("#appkey");
+var hmackeyinput = document.querySelector("#hmackey");
 var keystatus = document.querySelector("#keystatus");
 
-async function getKeys() {
-    var keysResp = await fetch("https://zhavens.com/hai/myscript/keys");
-    return await keysResp.json();
-}
+appkeyinput.value = localStorage.getItem(msappCookie);
+hmackeyinput.value = localStorage.getItem(mshmacCookie);
 
-function registerMyScript(keys) {
-    if (keys) {
-        console.log(keys);
+function registerMyScript() {
+    if (appkeyinput.value && hmackeyinput.value) {
         MyScript.register(editor, {
             recognitionParams: {
                 type: 'TEXT',
-                server: keys
+                server: {
+                    applicationKey: appkeyinput.value,
+                    hmacKey: hmackeyinput.value
+                }
             }
         });
-        if (keystatus) {
-            keystatus.classList.remove("fail");
-            keystatus.classList.add("success");
-        }
+        keystatus.classList.remove("fail");
+        keystatus.classList.add("success");
     } else {
         console.log('Missing MyScript keys.');
-        if (keystatus) {
-            keystatus.classList.remove("success");
-            keystatus.classList.add("fail");
-        }
+        keystatus.classList.remove("success");
+        keystatus.classList.add("fail");
     }
 }
 
-async function initMyScript() {
-    var keys = await getKeys();
-    registerMyScript(keys);
+function updateKeys() {
+    if (appkeyinput.value && hmackeyinput.value) {
+        localStorage.setItem(msappCookie, appkeyinput.value);
+        localStorage.setItem(mshmacCookie, hmackeyinput.value);
+        registerMyScript();
+    }
 }
 
-initMyScript();
-// document.querySelector("#keys").onclick = updateKeys;
+updateKeys();
+document.querySelector("#keys").onclick = updateKeys;
 
 /* ---------------
  *  HANDWRITING SUBMISSION

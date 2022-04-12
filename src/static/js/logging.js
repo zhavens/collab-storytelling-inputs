@@ -7,7 +7,7 @@ const collabLogging = (function () {
                 {
                     method: 'POST',
                     contentType: "type/text",
-                    body: JSON.stringify({ msg: msg }),
+                    body: JSON.stringify({ msg: msg });
                 });
         },
 
