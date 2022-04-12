@@ -1,8 +1,10 @@
 import categories from "./categories.js";
+import { log } from "./logging.js";
 
 var ideaText = document.getElementById('idea_text');
 
 function getIdeas() {
+    log("Idea Button Pressed");
     var items = [];
     var count = 0;
     while(count < 3) {

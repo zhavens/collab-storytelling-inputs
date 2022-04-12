@@ -1,16 +1,17 @@
+import { log } from "./logging.js";
 var user = localStorage.getItem("pseudonym");
 var inputVersion = localStorage.getItem("inputVersion");
 var round = localStorage.getItem("round");
 
 export async function addInterpretation (text) {
-    console.log("Add Interpretation: " + user);
+    log("Add Interpretation: " + text);
     if(user == null) {
-        console.log("Error: undefined user");
+        log("Error: undefined user");
     } else if (inputVersion == null) {
-        console.log("Error: undefined version");
+        log("Error: undefined version");
     } else if (text == null) {
         // give some warning to the user
-        console.log("Error: undefined text");
+        log("Error: undefined text");
     } else {
         await fetch("https://zhavens.com/raquel/interpretations/" + user, {
             method: "POST",
@@ -26,17 +27,17 @@ export async function addInterpretation (text) {
 }
 
 export async function addImage (image, outputVersion) {
-    console.log("Add Canvas Image: " + user);
+    log("Add Canvas Image: " + user);
     if(user == null) {
-        console.log("Error: undefined user");
+        log("Error: undefined user");
     } else if (inputVersion == null) {
-        console.log("Error: undefined input version");
+        log("Error: undefined input version");
     } else if (outputVersion == null) {
-        console.log("Error: undefined output version");
+        log("Error: undefined output version");
     } else if (image == null) {
-        console.log("Error: undefined image");
+        log("Error: undefined image");
     } else if (round == null) {
-        console.log("Error: undefined round");
+        log("Error: undefined round");
     } else {
         await fetch("https://zhavens.com/raquel/images/" + user, {
             method: "POST",
@@ -59,17 +60,17 @@ export async function getCategories () {
     }).then(function(response) {
         return response.text();
     }).then(function(data) {
-        console.log(data); // this will be a string
+        log(data); // this will be a string
         return data;
     });
 }
 
 export async function getImageIntersection (currentImage, newPath, cx, cy) {
-    console.log("Get Image Intersection: ");
+    log("Get Image Intersection: ");
     if (currentImage == null) {
-        console.log("Error: undefined currentImage");
+        log("Error: undefined currentImage");
     } else if (newPath == null) {
-        console.log("Error: undefined newPath");
+        log("Error: undefined newPath");
     } else {
         var parameters = currentImage + "/" + newPath + "/" + cx + "/" + cy;
         return await fetch("https://zhavens.com/raquel/imageIntersection/" + parameters, {
@@ -77,7 +78,7 @@ export async function getImageIntersection (currentImage, newPath, cx, cy) {
         }).then(function(response) {
             return response.text();
         }).then(function(data) {
-            console.log(data); // this will be a string
+            log(data); // this will be a string
             return data;
         });
     }

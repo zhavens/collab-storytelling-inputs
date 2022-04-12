@@ -1,5 +1,5 @@
 import { addImage, getCategories } from "./requestHandler.js";
-
+import { log } from "./logging.js";
 
 //Create canvas
 var canvas = document.getElementById('myCanvas');
@@ -18,7 +18,7 @@ export function getCanvas() {
 }
 
 export async function createAITemplate() {
-    console.log("Create AI Generated Template");
+    log("Create AI Generated Template");
     // reset the canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 

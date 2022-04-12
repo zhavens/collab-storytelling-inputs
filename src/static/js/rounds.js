@@ -1,6 +1,24 @@
+import { log } from "./logging.js";
 /* ---------------
  *  ROUNDS
  * ---------------*/
+
+var startBtn = document.getElementById("start_link");
+var submitBtn = document.getElementById("submit_btn");
+var nextBtn = document.getElementById("next_btn_link");
+
+if(startBtn != null) {
+    startBtn.onclick = startRound;
+}
+
+if(submitBtn != null) {
+    submitBtn.onclick = setPseudonym;
+}
+
+if(nextBtn != null) {
+    nextBtn.onclick = updateRound;
+}
+
 
 var maxRounds = 4;
 var endRoundBtn = document.querySelector('#end_round_btn');
@@ -13,16 +31,18 @@ var inputVersion = "text";
 localStorage.setItem("inputVersion", inputVersion);
 
 function setVersion() {
-    console.log("Set version to: " + inputVersion);
-    var nextLink = document.getElementById('next_link');
+    log("Set version to: " + inputVersion);
+    var nextLink = document.getElementById('start_link');
     nextLink.href = inputVersions[inputVersion];
 }
 
 function setPseudonym() {
-    pseudonymInput = document.getElementById("code_name").value;
+    var pseudonymInput = document.getElementById("code_name").value;
+    console.log(pseudonymInput);
     if(pseudonymInput != ""){
         localStorage.setItem("pseudonym", pseudonymInput);
-        console.log("Pseudonym: " + pseudonymInput);
+        log("Pseudonym: " + pseudonymInput);
+        console.log("here");
         showStartButton();
     }
 }
@@ -41,7 +61,7 @@ function showStartButton() {
     nextBtn.style.display = "block";
 }
 
-ready = function getStartText() {
+const ready = function getStartText() {
     var startText = document.getElementById('start_text');
     if (startText == null) {
         return;
@@ -60,7 +80,7 @@ ready = function getStartText() {
     } else {
         startText.textContent = "ROUND " + round;
     }
-    console.log('About to Start Round ' + round);
+    log('About to Start Round ' + round);
 
     if(localStorage.getItem("pseudonym") != "null") {
         showStartButton();
@@ -78,6 +98,7 @@ function updateRound() {
 }
 
 function startRound() {
+    console.log("Start");
     var round = parseInt(localStorage.getItem("round"));
-    console.log("Round " + round + " : " + new Date().getTime());
+    log("Round " + round + " : " + new Date().getTime());
 }

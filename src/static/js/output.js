@@ -3,6 +3,7 @@ var round = localStorage.getItem("round");
 var finalStory = document.getElementById("final_story");
 var image = document.getElementById("output_image");
 var shareBtn = document.getElementById("share_btn");
+shareBtn.onclick = shareStory;
 
 if(round == maxRounds) {
     // set all rounds of story images

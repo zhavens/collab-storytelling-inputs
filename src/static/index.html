@@ -16,20 +16,19 @@
     <link href="img/favicon.png" rel="icon">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kalam">
-
 </head>
 
 
 <body id="start_page">
     <h1 id="start_text"></h1>
-    <script src="js/rounds.js"></script>
+    <script type="module" src="js/rounds.js"></script>
 
     <script src="js/jquery-3.6.0.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
 
     <div id="next_btn">
         <div class="start_btn" ontouchstart="">
-            <a id="next_link" style="width: 50%;" href="" onclick="startRound()"><span>START</span></a>
+            <a id="start_link" style="width: 50%;" href=""><span>START</span></a>
         </div>
     </div>
     <div class="col-md-4 col-md-offset-4 text-center">
@@ -37,7 +36,7 @@
             <h2>Enter Your Code Name</h2>
             <input id="code_name" type="text" style="width: 50%;"><br><br>
             <div id="submit_btn" class="submit_btn" ontouchstart="">
-                <a style="width: 50%;" onclick="setPseudonym()"><span>Submit</span></a>
+                <a id="submit_link" style="width: 50%;"><span>Submit</span></a>
             </div>
         </form>
     </div>

@@ -3,6 +3,7 @@
  * ---------------*/
 import MyScript from './myscript.esm.js';
 import { addInterpretation } from "./requestHandler.js";
+import { log } from "./logging.js";
 
 const msappCookie = "myscript-app";
 const mshmacCookie = "myscript-hmac";
@@ -18,7 +19,7 @@ async function getKeys() {
 
 function registerMyScript(keys) {
     if (keys) {
-        console.log(keys);
+        log(keys);
         MyScript.register(editor, {
             recognitionParams: {
                 type: 'TEXT',
@@ -30,7 +31,7 @@ function registerMyScript(keys) {
             keystatus.classList.add("success");
         }
     } else {
-        console.log('Missing MyScript keys.');
+        log('Missing MyScript keys.');
         if (keystatus) {
             keystatus.classList.remove("success");
             keystatus.classList.add("fail");
@@ -50,7 +51,7 @@ initMyScript();
  *  HANDWRITING SUBMISSION
  * ---------------*/
 function submit() {
-    console.log("not implemented yet");
+    log("not implemented yet");
     //addInterpretation();
 }
 

@@ -2,6 +2,7 @@
  *  SPEECH RECOGNITION
  * ---------------*/
 import { addInterpretation } from "./requestHandler.js";
+import { log } from "./logging.js";
 var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition
 var SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList
 var SpeechRecognitionEvent = SpeechRecognitionEvent || webkitSpeechRecognitionEvent
@@ -31,14 +32,14 @@ function speechClick() {
 
 function startrecognition() {
     recognition.start();
-    console.log('Starting recognition.');
+    log('Starting recognition.');
     icon.textContent = "radio_button_checked";
     btnBackground.classList.add("rec_btn_selected");
 }
 
 function stoprecognition() {
     recognition.stop();
-    console.log('Stopping recognition.');
+    log('Stopping recognition.');
     icon.textContent = "fiber_manual_record";
     btnBackground.classList.remove("rec_btn_selected");
 }
@@ -54,7 +55,7 @@ recognition.onresult = function (event) {
     // We then return the transcript property of the SpeechRecognitionAlternative object
     speech_result = event.results[0][0];
 
-    console.log('Result: ' + speech_result.transcript +
+    log('Result: ' + speech_result.transcript +
         ' | Confidence: ' + event.results[0][0].confidence);
 }
 
@@ -63,11 +64,11 @@ recognition.onspeechend = function () {
 }
 
 recognition.onnomatch = function (event) {
-    console.log("No matching grammar.");
+    log("No matching grammar.");
 }
 
 recognition.onerror = function (event) {
-    console.log('Error occurred in recognition: ' + event.error);
+    log('Error occurred in recognition: ' + event.error);
 }
 
 btn.onclick = speechClick;

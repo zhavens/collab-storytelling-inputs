@@ -1,5 +1,6 @@
 import { getCanvas, createAITemplate } from "./drawing.js";
 import { addImage } from "./requestHandler.js";
+import { log } from "./logging.js";
 
 var result;
 var canvas;
@@ -26,7 +27,7 @@ function setUpCanvas() {
 }
 
 window.redrawCanvas = function redrawCanvas() {
-    console.log("Redraw Pressed");
+    log("Redraw Pressed");
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     setUpCanvas();
 }
@@ -87,7 +88,7 @@ function setUpPaletteListeners() {
 };
 
 function changeColours () {
-    console.log("Change Colours: " + this.id)
+    log("Change Colours: " + this.id)
     var prevClassName = colorId == "black" ? selectedClassBlack : selectedClass;
     var newClassName = this.id == "black" ? selectedClassBlack : selectedClass;
 
@@ -204,7 +205,7 @@ function changeColours () {
 };
 
 window.erase = function erase() {
-    console.log("Erase");
+    log("Erase");
     colors = "white";
     document.getElementById(colorId).style.border = "none";
     colorId = palette.id;
@@ -217,12 +218,12 @@ function lineWidthRange() {
 };
 
 window.clearCanvas = function clearCanvas() {
-    console.log("Clear");
+    log("Clear");
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 };
 
 window.saveImage = function saveImage() {
-    console.log("Save Image");
+    log("Save Image");
     var round = localStorage.getItem("round");
     var var_name = localStorage.getItem("pseudonym") + round;
     var dataUrl = canvas.toDataURL();
