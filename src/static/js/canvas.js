@@ -1,6 +1,7 @@
 import { getCanvas, createAITemplate } from "./drawing.js";
 import { addImage } from "./requestHandler.js";
 import { log } from "./logging.js";
+import { setUpProgressBar } from "./progressbar.js";
 
 var result;
 var canvas;
@@ -14,6 +15,7 @@ var selectedClass =  "selected";
 var selectedClassBlack =  "selected-black";
 document.getElementById(colorId).classList.add(selectedClassBlack);
 
+setUpProgressBar();
 setUpPaletteListeners();
 setUpCanvas();
 lines();
@@ -29,6 +31,13 @@ function setUpCanvas() {
 window.redrawCanvas = function redrawCanvas() {
     log("Redraw Pressed");
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    setUpCanvas();
+}
+
+window.recategorize = function recategorize() {
+    log("Recategorize Pressed");
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    setUpProgressBar();
     setUpCanvas();
 }
 

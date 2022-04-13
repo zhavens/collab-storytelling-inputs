@@ -98,6 +98,7 @@ div #drawing {
 #share_btn span,
 #rec_btn span,
 #redraw_btn span,
+#recategorize_btn span,
 #play_rec_btn span {
   display: block;
   padding: 10px 20px;
@@ -112,6 +113,7 @@ div #drawing {
 #submit_btn a:active,
 #rec_btn button:active,
 #redraw_btn button:active,
+#recategorize_btn button:active,
 #play_rec_btn button:active {
   top: 4px;
   padding-bottom: 0px;
@@ -120,6 +122,7 @@ div #drawing {
 
 #back_btn a,
 #redraw_btn a,
+#recategorize_btn a,
 #next_btn a,
 #submit_btn a,
 #idea_btn a,
@@ -151,6 +154,12 @@ div #drawing {
 .redraw_btn {
 	position:fixed;
 	top:40px;
+	left:80px;
+}
+
+.recategorize_btn {
+    position:fixed;
+	top:110px;
 	left:80px;
 }
 
@@ -211,6 +220,15 @@ div #drawing {
 .play_rec_btn span:hover {
     background: rgb(43, 164, 177);
 }
+
+.recategorize_btn span {
+    background: rgb(67, 111, 200);
+}
+
+.recategorize_btn span:hover {
+    background: rgb(42, 71, 129);
+}
+
 
 .info_windows {
     width: 800px; 

@@ -25,108 +25,123 @@
 
 <body>
     <script src="js/ideas.js" type="module"></script>
-    <div id="redraw_btn">
-        <div class="redraw_btn" ontouchstart="">
-            <a onclick="redrawCanvas()"><span>REDRAW</span></a>
-        </div>
-    </div>
+    <div id="loading-view">
+        <h1 id="title"></h1>
 
-    <div id="idea_btn">
-        <div class="idea_btn" ontouchstart="">
-            <a data-toggle="modal" data-target="#ideaModal"><span>IDEA</span></a>
-        </div>
-    </div>
-
-    <div id="next_btn">
-        <div class="next_btn" ontouchstart="">
-            <a href="output.html" onclick="saveImage()"><span class="material-icons icons">arrow_forward</span></a>
-        </div>
-    </div>
-    <h1>DRAW YOUR STORY</h1>
-
-    <div id="paintbg">
-        <div id="colorpanel" class="text-center">
-            <p>Colors</p>
-            <div id="colors-container">
-                <div class="palette red" id="red"></div>
-                <div class="palette red1" id="red1"></div>
-                <div class="palette red2" id="red2"></div>
-                <div class="palette orange" id="orange"></div>
-                <div class="palette orange1" id="orange1"></div>
-                <div class="palette orange2" id="orange2"></div>
-                <div class="palette yellow" id="yellow"></div>
-                <div class="palette yellow1" id="yellow1"></div>
-                <div class="palette yellow2" id="yellow2"></div>
-                <div class="palette green" id="green"></div>
-                <div class="palette green1" id="green1"></div>
-                <div class="palette green2" id="green2"></div>
-                <div class="palette blue" id="blue"></div>
-                <div class="palette blue1" id="blue1"></div>
-                <div class="palette blue2" id="blue2"></div>
-                <div class="palette indigo" id="indigo"></div>
-                <div class="palette indigo1" id="indigo1"></div>
-                <div class="palette indigo2" id="indigo2"></div>
-                <div class="palette pink" id="pink"></div>
-                <div class="palette pink1" id="pink1"></div>
-                <div class="palette pink2" id="pink2"></div>
-                <div class="palette black" id="black"></div>
-                <div class="palette black1" id="black1"></div>
-                <div class="palette black2" id="black2"></div>
-                <div class="palette brown" id="brown"></div>
-                <div class="palette skin1" id="skin1"></div>
-                <div class="palette skin2" id="skin2"></div>
-                <div class="palette skin3" id="skin3"></div>
-                <div class="palette skin4" id="skin4"></div>
-                <div class="palette skin5" id="skin5"></div>
-                <div class="palette skin6" id="skin6"></div>
-                <div class="palette skin7" id="skin7"></div>
-                <div class="palette skin8" id="skin8"></div>
-                <div class="palette skin9" id="skin9"></div>
-                <div class="palette skin10" id="skin10"></div>
-            </div>
-
-            <div id="eraser" class="text-center">
-                <p>Eraser</p>
-                <div id="eraser-container">
-                    <div class="palette eraser" id="white" onclick="erase()"></div>
-                </div>
-            </div>
-            <p>Width</p>
-            <form id="brush-container">
-                <input class="slider" type="range" id="myRange" name="amountRange" value="10" min="1" max="50"
-                    oninput="this.form.amountInput.value=this.value" onclick="lineWidthRange()">
-                <div id="slider-input">
-                    <input type="number" name="amountInput" min="1" max="50" value="10"
-                        oninput="this.form.amountRange.value=this.value"/>
-                </div>
-            </form>
-            <br />
-
-            <button class="button" onclick="clearCanvas()">CLEAR</button>
-        </div>
-
-        <div id="canvasarea">
-            <canvas id="myCanvas" width="1150" height="600" class="canvas"></canvas>
-        </div>
-    </div>
-
-    <!-- Modal -->
-    <div class="modal fade" id="ideaModal" tabindex="-1" role="dialog" aria-labelledby="ideaModalTitleCenter"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title modal-font" id="ideaModalLongTitle">Generated Ideas</h5>
-                </div>
-                <div id="idea_text" class="modal-body modal-font"></div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary modal-font-btn" data-dismiss="modal">CLOSE</button>
-                    <button id="new_idea_btn" type="button" class="btn btn-primary modal-font-btn">NEW IDEA</button>
-                </div>
+        <div class="progress" style="width:60%; margin:auto;">
+            <div id="progressbar" class="progress-bar progress-bar-success progress-bar-striped active " role="progressbar"
+                aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40%">
+                50%
             </div>
         </div>
     </div>
+    <div id="drawing-view">
+        <div id="redraw_btn">
+            <div class="redraw_btn" ontouchstart="">
+                <a onclick="redrawCanvas()"><span>REDRAW</span></a>
+            </div>
+        </div>
+        <div id="recategorize_btn">
+            <div class="recategorize_btn" ontouchstart="">
+                <a onclick="recategorize()"><span>RECATEGORIZE</span></a>
+            </div>
+        </div>
+        <div id="idea_btn">
+            <div class="idea_btn" ontouchstart="">
+                <a data-toggle="modal" data-target="#ideaModal"><span>IDEA</span></a>
+            </div>
+        </div>
 
+        <div id="next_btn">
+            <div class="next_btn" ontouchstart="">
+                <a href="output.html" onclick="saveImage()"><span class="material-icons icons">arrow_forward</span></a>
+            </div>
+        </div>
+        <h1>DRAW YOUR STORY</h1>
+        <h2 id="categories" class="text-center">Categories Drawn: cat, dog</h2>
+        <div id="paintbg">
+            <div id="colorpanel" class="text-center">
+                <p>Colors</p>
+                <div id="colors-container">
+                    <div class="palette red" id="red"></div>
+                    <div class="palette red1" id="red1"></div>
+                    <div class="palette red2" id="red2"></div>
+                    <div class="palette orange" id="orange"></div>
+                    <div class="palette orange1" id="orange1"></div>
+                    <div class="palette orange2" id="orange2"></div>
+                    <div class="palette yellow" id="yellow"></div>
+                    <div class="palette yellow1" id="yellow1"></div>
+                    <div class="palette yellow2" id="yellow2"></div>
+                    <div class="palette green" id="green"></div>
+                    <div class="palette green1" id="green1"></div>
+                    <div class="palette green2" id="green2"></div>
+                    <div class="palette blue" id="blue"></div>
+                    <div class="palette blue1" id="blue1"></div>
+                    <div class="palette blue2" id="blue2"></div>
+                    <div class="palette indigo" id="indigo"></div>
+                    <div class="palette indigo1" id="indigo1"></div>
+                    <div class="palette indigo2" id="indigo2"></div>
+                    <div class="palette pink" id="pink"></div>
+                    <div class="palette pink1" id="pink1"></div>
+                    <div class="palette pink2" id="pink2"></div>
+                    <div class="palette black" id="black"></div>
+                    <div class="palette black1" id="black1"></div>
+                    <div class="palette black2" id="black2"></div>
+                    <div class="palette brown" id="brown"></div>
+                    <div class="palette skin1" id="skin1"></div>
+                    <div class="palette skin2" id="skin2"></div>
+                    <div class="palette skin3" id="skin3"></div>
+                    <div class="palette skin4" id="skin4"></div>
+                    <div class="palette skin5" id="skin5"></div>
+                    <div class="palette skin6" id="skin6"></div>
+                    <div class="palette skin7" id="skin7"></div>
+                    <div class="palette skin8" id="skin8"></div>
+                    <div class="palette skin9" id="skin9"></div>
+                    <div class="palette skin10" id="skin10"></div>
+                </div>
+
+                <div id="eraser" class="text-center">
+                    <p>Eraser</p>
+                    <div id="eraser-container">
+                        <div class="palette eraser" id="white" onclick="erase()"></div>
+                    </div>
+                </div>
+                <p>Width</p>
+                <form id="brush-container">
+                    <input class="slider" type="range" id="myRange" name="amountRange" value="10" min="1" max="50"
+                        oninput="this.form.amountInput.value=this.value" onclick="lineWidthRange()">
+                    <div id="slider-input">
+                        <input type="number" name="amountInput" min="1" max="50" value="10"
+                            oninput="this.form.amountRange.value=this.value"/>
+                    </div>
+                </form>
+                <br />
+
+                <button class="button" onclick="clearCanvas()">CLEAR</button>
+            </div>
+
+            <div id="canvasarea">
+                <canvas id="myCanvas" width="1150" height="600" class="canvas"></canvas>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="ideaModal" tabindex="-1" role="dialog" aria-labelledby="ideaModalTitleCenter"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title modal-font" id="ideaModalLongTitle">Generated Ideas</h5>
+                    </div>
+                    <div id="idea_text" class="modal-body modal-font"></div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary modal-font-btn" data-dismiss="modal">CLOSE</button>
+                        <button id="new_idea_btn" type="button" class="btn btn-primary modal-font-btn">NEW IDEA</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
     <script type="module" src="js/canvas.js"></script>
 </body>
 

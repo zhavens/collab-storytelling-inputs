@@ -3,6 +3,7 @@ import { log } from "./logging.js";
 
 //Create canvas
 var canvas = document.getElementById('myCanvas');
+var catgories = document.getElementById('categories');
 var ctx = canvas.getContext('2d');
 ctx.fillStyle = "white";
 ctx.fillRect(0, 0, 1150, 600);
@@ -35,6 +36,8 @@ export async function createAITemplate() {
 
     //save the image to the database
     addImage(canvas.toDataURL(), outputVersion);
+
+    catgories.textContent = "Categories Identified: " + drawElements.toString().replaceAll(',', ', ');
 }
 
 function parseNdjson(result) {
