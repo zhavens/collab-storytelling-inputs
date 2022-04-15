@@ -1,4 +1,4 @@
-import { getCanvas, createAITemplate } from "./drawing.js";
+import { getCanvas, createAITemplate, drawCategories } from "./drawing.js";
 import { addImage } from "./requestHandler.js";
 import { log } from "./logging.js";
 import { setUpProgressBar } from "./progressbar.js";
@@ -28,10 +28,10 @@ function setUpCanvas() {
     outputVersion = "Human-AI";
 }
 
-window.redrawCanvas = function redrawCanvas() {
+window.redrawCanvas = async function redrawCanvas() {
     log("Redraw Pressed");
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    setUpCanvas();
+    await drawCategories();
 }
 
 window.recategorize = function recategorize() {

@@ -13,7 +13,8 @@ export function setUpProgressBar() {
     drawingView.style.display = "none";
     start = new Date();
     end = new Date();
-    end.setSeconds(end.getSeconds() + 5);
+    end.setSeconds(end.getSeconds() + 40);
+    localStorage.setItem("loading", "true");
     log("Starting Wait: " + start);
     log("Ending Wait: " + end);
     startProgressBar(start.getTime(), end.getTime(), 100)
@@ -35,6 +36,7 @@ function startProgressBar(startTime, endTime, update) {
             window.clearTimeout(timer);
             loadingView.style.display = "none";
             drawingView.style.display = "block";
+            localStorage.setItem("loading", "false");
         } else if (ellaspedTime >= maxTime/2) {
             title.textContent = "Drawing the Categories..."
         }

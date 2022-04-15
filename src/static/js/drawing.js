@@ -8,7 +8,7 @@ var ctx = canvas.getContext('2d');
 ctx.fillStyle = "white";
 ctx.fillRect(0, 0, 1150, 600);
 var outputVersion = "AI";
-var drawElements= ["cat", "dog", "cow"];
+var drawElements= [];
 var currentDrawIndex = 0;
 
 export function getCanvas() {
@@ -18,26 +18,49 @@ export function getCanvas() {
     }
 }
 
-export async function createAITemplate() {
-    log("Create AI Generated Template");
-    // reset the canvas
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    // get the categories
-    currentDrawIndex = 0;
+async function fetchCategories() {
     var response = await getCategories();
     response = JSON.parse(response);
-    drawElements = response == null ? [] : response["categories"];
+    return response == null ? [] : response["categories"];
+}
+
+export async function drawCategories() {
+    // reset the canvas
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
     
     // draw all the images
+    currentDrawIndex = 0;
     for(var i = 0; i < drawElements.length; i++) {
         draw(drawElements[i]);
+        await new Promise(r => setTimeout(r, 20));
+    }
+
+    catgories.textContent = "Categories Identified: " + drawElements.toString().replaceAll(',', ', ');
+}
+
+export async function createAITemplate() {
+    log("Create AI Generated Template");
+
+    while(localStorage.getItem("loading") == "true") {
+        var response = await fetchCategories();
+
+        // compare elements
+        var sameElements = (response.length == drawElements.length) && response.every(function(element, index) {
+            return element === drawElements[index]; 
+        });
+        
+        if(!sameElements) {
+            drawElements = response;
+            console.log(drawElements);
+            await drawCategories();
+        }
+        console.log("run");
+        // check if the categories changed again in 20 seconds
+        await new Promise(r => setTimeout(r, 20000));
     }
 
     //save the image to the database
     addImage(canvas.toDataURL(), outputVersion);
-
-    catgories.textContent = "Categories Identified: " + drawElements.toString().replaceAll(',', ', ');
 }
 
 function parseNdjson(result) {
