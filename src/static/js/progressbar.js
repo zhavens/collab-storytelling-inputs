@@ -13,7 +13,7 @@ export function setUpProgressBar() {
     drawingView.style.display = "none";
     start = new Date();
     end = new Date();
-    end.setSeconds(end.getSeconds() + 40);
+    end.setSeconds(end.getSeconds() + 5);
     localStorage.setItem("loading", "true");
     log("Starting Wait: " + start);
     log("Ending Wait: " + end);

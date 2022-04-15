@@ -13,7 +13,7 @@ export async function addInterpretation (text) {
         // give some warning to the user
         log("Error: undefined text");
     } else {
-        await fetch("https://zhavens.com/raquel/interpretations/" + user, {
+        await fetch("https://zhavens.com/hai/interpretations/" + user, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
@@ -39,7 +39,7 @@ export async function addImage (image, outputVersion) {
     } else if (round == null) {
         log("Error: undefined round");
     } else {
-        await fetch("https://zhavens.com/raquel/images/" + user, {
+        await fetch("https://zhavens.com/hai/images/" + user, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
@@ -73,7 +73,7 @@ export async function getImageIntersection (currentImage, newPath, cx, cy) {
         log("Error: undefined newPath");
     } else {
         var parameters = currentImage + "/" + newPath + "/" + cx + "/" + cy;
-        return await fetch("https://zhavens.com/raquel/imageIntersection/" + parameters, {
+        return await fetch("https://zhavens.com/hai/imageIntersection/" + parameters, {
             method: "GET"
         }).then(function(response) {
             return response.text();

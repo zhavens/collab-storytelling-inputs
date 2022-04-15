@@ -6,7 +6,7 @@ var canvas = document.getElementById('myCanvas');
 var catgories = document.getElementById('categories');
 var ctx = canvas.getContext('2d');
 ctx.fillStyle = "white";
-ctx.fillRect(0, 0, 1150, 600);
+ctx.fillRect(0, 0, 1300, 700);
 var outputVersion = "AI";
 var drawElements= [];
 var currentDrawIndex = 0;
