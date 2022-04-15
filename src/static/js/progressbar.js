@@ -1,12 +1,31 @@
 /* ---------------
  *  PROGRESS BAR
  * ---------------*/
+import { log } from "./logging.js";
+var loadingView = document.getElementById("loading-view");
+var drawingView = document.getElementById("drawing-view");
+var title = document.getElementById("title");
+var start;
+var end;
 
-function setUpProgressBar(startTime, endTime, update) {
+export function setUpProgressBar() {
+    loadingView.style.display = "block";
+    drawingView.style.display = "none";
+    start = new Date();
+    end = new Date();
+    end.setSeconds(end.getSeconds() + 40);
+    localStorage.setItem("loading", "true");
+    log("Starting Wait: " + start);
+    log("Ending Wait: " + end);
+    startProgressBar(start.getTime(), end.getTime(), 100)
+}
+
+function startProgressBar(startTime, endTime, update) {
 
     var timer;
     var progressBar = document.getElementById("progressbar");
     var maxTime = endTime - startTime;
+    title.textContent = "Identifying Categories...";
   
     var setValue = function() {
         var currentTime = new Date().getTime();
@@ -15,7 +34,11 @@ function setUpProgressBar(startTime, endTime, update) {
         if (ellaspedTime >= maxTime) {
             ellaspedTime = maxTime;
             window.clearTimeout(timer);
-            window.location.replace("drawing.html");
+            loadingView.style.display = "none";
+            drawingView.style.display = "block";
+            localStorage.setItem("loading", "false");
+        } else if (ellaspedTime >= maxTime/2) {
+            title.textContent = "Drawing the Categories..."
         }
         
         var percent = (ellaspedTime/maxTime * 100).toFixed(0) + "%";
@@ -27,11 +50,3 @@ function setUpProgressBar(startTime, endTime, update) {
     timer = window.setInterval(setValue, update);
     return
 }
-  
-var start = new Date();
-var end = new Date();
-end.setSeconds(end.getSeconds() + 5);
-console.log("Starting Wait: " + start);
-console.log("Ending Wait: " + end);
-
-setUpProgressBar(start.getTime(), end.getTime(), 100)

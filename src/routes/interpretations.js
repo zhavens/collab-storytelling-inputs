@@ -32,9 +32,11 @@ router.post('/:user', async function (req, res, next) {
             const result = await inter.insertOne(doc);
             console.log(`A document was inserted with the _id: ${result.insertedId}`);
             res.send('Success.');
+        } catch {
+            res.send('Error writing interpretation to DB.');
+            await client.close();
         } finally {
             await client.close();
-            res.send('Error writing interpretation to DB.');
         }
     }
 });

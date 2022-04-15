@@ -1,13 +1,45 @@
-import { getCanvas } from "./drawing.js";
+import { getCanvas, createAITemplate, drawCategories } from "./drawing.js";
 import { addImage } from "./requestHandler.js";
+import { log } from "./logging.js";
+import { setUpProgressBar } from "./progressbar.js";
 
-var result = getCanvas();
-var canvas = result["canvas"];
-var ctx = result["ctx"];
-var outputVersion = "Human-AI";
+var result;
+var canvas;
+var ctx;
+var outputVersion;
 
-setUpPaletterListeners();
+//Color palette
+var colors = "black";
+var colorId = "black";
+var selectedClass =  "selected";
+var selectedClassBlack =  "selected-black";
+document.getElementById(colorId).classList.add(selectedClassBlack);
+
+setUpProgressBar();
+setUpPaletteListeners();
+setUpCanvas();
 lines();
+
+function setUpCanvas() {
+    createAITemplate();
+    result = getCanvas();
+    canvas = result["canvas"];
+    ctx = result["ctx"];
+    outputVersion = "Human-AI";
+}
+
+window.redrawCanvas = async function redrawCanvas() {
+    log("Redraw Pressed");
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    await drawCategories();
+}
+
+window.recategorize = function recategorize() {
+    log("Recategorize Pressed");
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    setUpProgressBar();
+    setUpCanvas();
+}
 
 function lines() {
     var bounding = canvas.getBoundingClientRect();
@@ -54,7 +86,7 @@ function lines() {
 	canvas.addEventListener('mouseout', linesMouseout, false);
 };
 
-function setUpPaletterListeners() {
+function setUpPaletteListeners() {
     var childDivs = document.getElementById('colors-container').getElementsByTagName('div');
 
     for(var i = 0; i < childDivs.length; i++ )
@@ -64,15 +96,8 @@ function setUpPaletterListeners() {
     }
 };
 
-//Color palette
-var colors;
-var colorId = "black";
-var selectedClass =  "selected";
-var selectedClassBlack =  "selected-black";
-document.getElementById(colorId).classList.add(selectedClassBlack);
-
 function changeColours () {
-    console.log("Change Colours: " + this.id)
+    log("Change Colours: " + this.id)
     var prevClassName = colorId == "black" ? selectedClassBlack : selectedClass;
     var newClassName = this.id == "black" ? selectedClassBlack : selectedClass;
 
@@ -188,9 +213,8 @@ function changeColours () {
 	}
 };
 
-
 window.erase = function erase() {
-    console.log("Erase");
+    log("Erase");
     colors = "white";
     document.getElementById(colorId).style.border = "none";
     colorId = palette.id;
@@ -203,13 +227,14 @@ function lineWidthRange() {
 };
 
 window.clearCanvas = function clearCanvas() {
-    console.log("Clear");
+    log("Clear");
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 };
 
 window.saveImage = function saveImage() {
-    console.log("Save Image");
-    var var_name = localStorage.getItem("pseudonym") + localStorage.getItem("round");
+    log("Save Image");
+    var round = localStorage.getItem("round");
+    var var_name = localStorage.getItem("pseudonym") + round;
     var dataUrl = canvas.toDataURL();
     localStorage.setItem(var_name, dataUrl);
     addImage(canvas.toDataURL(), outputVersion);
