@@ -60,7 +60,7 @@
         <h1>DRAW YOUR STORY</h1>
         <h2 id="categories" class="text-center">Categories Drawn: cat, dog</h2>
         <div id="paintbg">
-            <div id="colorpanel" class="text-center">
+            <div id="colorpanel" class="text-center" oncontextmenu="return false">
                 <p>Colors</p>
                 <div id="colors-container">
                     <div class="palette red" id="red"></div>
@@ -119,7 +119,7 @@
                 <button class="button" onclick="clearCanvas()">CLEAR</button>
             </div>
 
-            <div id="canvasarea">
+            <div id="canvasarea" oncontextmenu="return false">
                 <canvas id="myCanvas" width="1300" height="700" class="canvas"></canvas>
             </div>
         </div>
