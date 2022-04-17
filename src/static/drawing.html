@@ -35,7 +35,7 @@
             </div>
         </div>
     </div>
-    <div id="drawing-view">
+    <div id="drawing-view" style="display: none">
         <div id="redraw_btn">
             <div class="redraw_btn" ontouchstart="">
                 <a onclick="redrawCanvas()"><span>REDRAW</span></a>
@@ -60,7 +60,7 @@
         <h1>DRAW YOUR STORY</h1>
         <h2 id="categories" class="text-center">Categories Drawn: cat, dog</h2>
         <div id="paintbg">
-            <div id="colorpanel" class="text-center">
+            <div id="colorpanel" class="text-center" oncontextmenu="return false">
                 <p>Colors</p>
                 <div id="colors-container">
                     <div class="palette red" id="red"></div>
@@ -99,9 +99,8 @@
                     <div class="palette skin9" id="skin9"></div>
                     <div class="palette skin10" id="skin10"></div>
                 </div>
-
                 <div id="eraser" class="text-center">
-                    <p>Eraser</p>
+                    <p style="float:none">Eraser</p>
                     <div id="eraser-container">
                         <div class="palette eraser" id="white" onclick="erase()"></div>
                     </div>
@@ -120,8 +119,8 @@
                 <button class="button" onclick="clearCanvas()">CLEAR</button>
             </div>
 
-            <div id="canvasarea">
-                <canvas id="myCanvas" width="1150" height="600" class="canvas"></canvas>
+            <div id="canvasarea" oncontextmenu="return false">
+                <canvas id="myCanvas" width="1300" height="700" class="canvas"></canvas>
             </div>
         </div>
 

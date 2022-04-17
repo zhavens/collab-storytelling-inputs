@@ -9,7 +9,7 @@ p {
 }
 
 #colors-container {
-    display: grid;
+    /* display: grid; */
     width: 100%;
     padding: 5px;
     height:auto;
@@ -31,10 +31,10 @@ p {
 }
 
 .palette {
-    width: 29px;
-    height: 29px;
+    width: 56px;
+    height: 47px;
     float: left;
-    margin: 3px;
+    margin: 4px;
 }
 
 .palette:hover {
@@ -104,18 +104,19 @@ p {
 .eraser {
     background: white;
     border: 1px solid gray;
-    width: 23px;
-    height: 23px;
+    width: 38px;
+    height: 38px;
     margin: auto;
 }
 
 #paintbg {
-    width: 80%;
+    width: 100%;
     margin: auto;
+    margin-left: 10px;
 }
 
 #colorpanel {
-    width: 10%;
+    width: 18.5%;
     float:left;
     margin-right: 18px;
     border: 1px solid black;
@@ -212,8 +213,8 @@ input[type=range]:focus::-webkit-slider-runnable-track {
 }
 
 .canvas {
-    width: 1150px; 
-    height: 600px;
+    width: 1300px; 
+    height: 700px;
     border: 1.5px solid #000000; 
 }
 

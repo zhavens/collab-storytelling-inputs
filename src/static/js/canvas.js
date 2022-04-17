@@ -58,6 +58,7 @@ function lines() {
 
 	//Find mouse coordinates relative to canvas
 	window.linesMousemove = function(e){
+        bounding = canvas.getBoundingClientRect();
 		mouse.x = e.pageX - bounding.left;
 		mouse.y = e.pageY - bounding.top;
 	};
@@ -221,7 +222,7 @@ window.erase = function erase() {
     document.getElementById(palette.id).style.border = "2px solid #1f1f1f";
 };
 
-function lineWidthRange() {
+window.lineWidthRange = function lineWidthRange() {
     var widthLine = document.getElementById("myRange").value;
     return widthLine;
 };
