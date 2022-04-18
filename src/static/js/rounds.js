@@ -27,7 +27,7 @@ var inputVersions = {
     speech: "speech-recognition.html",
     handwriting: "handwriting-recognition.html",
 }
-var inputVersion = "handwriting"; 
+var inputVersion = "speech"; 
 localStorage.setItem("inputVersion", inputVersion);
 
 function setVersion() {
