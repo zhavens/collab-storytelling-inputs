@@ -14,7 +14,11 @@
     "jade": "~1.11.0",
     "mongodb": "^4.4.1",
     "morgan": "~1.9.1",
+    "parse-svg-path": "^0.1.2",
+    "path-intersection": "^2.2.1",
     "quickdraw.js": "^1.0.6",
+    "serialize-svg-path": "^0.1.0",
+    "translate-svg-path": "^0.0.1",
     "ws": "^8.5.0",
     "wscat": "^5.1.0"
   },
