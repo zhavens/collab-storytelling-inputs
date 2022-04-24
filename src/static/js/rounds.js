@@ -3,34 +3,31 @@ import { log } from "./logging.js";
  *  ROUNDS
  * ---------------*/
 
-var startBtn = document.getElementById("start_link");
+var startBtn = document.getElementById("start_btn");
 var submitBtn = document.getElementById("submit_btn");
-var nextBtn = document.getElementById("next_btn_link");
+var nextBtn = document.getElementById("next_btn");
 
-if(startBtn != null) {
+if (startBtn != null) {
     startBtn.onclick = startRound;
 }
 
-if(submitBtn != null) {
+if (submitBtn != null) {
     submitBtn.onclick = setPseudonym;
 }
 
-if(nextBtn != null) {
+if (nextBtn != null) {
     nextBtn.onclick = updateRound;
 }
 
-
 var maxRounds = 4;
-var endRoundBtn = document.querySelector('#end_round_btn');
 var inputVersions = {
     text: "text-input.html",
     speech: "speech-recognition.html",
     handwriting: "handwriting-recognition.html",
 }
-var inputVersion = "speech"; 
-localStorage.setItem("inputVersion", inputVersion);
 
 function setVersion() {
+    var inputVersion = localStorage.getItem("versionInput");
     log("Set version to: " + inputVersion);
     var nextLink = document.getElementById('start_link');
     nextLink.href = inputVersions[inputVersion];
@@ -38,27 +35,33 @@ function setVersion() {
 
 function setPseudonym() {
     var pseudonymInput = document.getElementById("code_name").value;
-    console.log(pseudonymInput);
-    if(pseudonymInput != ""){
+    var versionInput = $("#version_select option:selected").val();
+    console.log(pseudonymInput, " : ", versionInput);
+    if (pseudonymInput != "" && versionInput != "") {
         localStorage.setItem("pseudonym", pseudonymInput);
-        log("Pseudonym: " + pseudonymInput);
-        console.log("here");
+        localStorage.setItem("versionInput", versionInput);
+        log("Pseudonym: " + pseudonymInput + " | Input: " + versionInput);
+        setVersion();
         showStartButton();
     }
 }
 
+$('#name_form').on('submit', () => {
+    setPseudonym();
+});
+
 function showNameForm() {
     var nameForm = document.getElementById('name_form');
-    var nextBtn = document.getElementById('next_btn');
+    var startBtn = document.getElementById('start_btn');
     nameForm.style.display = "block";
-    nextBtn.style.display = "none";
+    startBtn.style.display = "none";
 }
 
 function showStartButton() {
     var nameForm = document.getElementById('name_form');
-    var nextBtn = document.getElementById('next_btn');
+    var startBtn = document.getElementById('start_btn');
     nameForm.style.display = "none";
-    nextBtn.style.display = "block";
+    startBtn.style.display = "block";
 }
 
 const ready = function getStartText() {
@@ -66,7 +69,7 @@ const ready = function getStartText() {
     if (startText == null) {
         return;
     }
-    
+
     var round = localStorage.getItem("round");
     if (round == null || parseInt(round) > maxRounds) {
         localStorage.clear();
@@ -82,12 +85,12 @@ const ready = function getStartText() {
     }
     log('About to Start Round ' + round);
 
-    if(localStorage.getItem("pseudonym") != "null") {
+    if (localStorage.getItem("pseudonym") != null && localStorage.getItem("versionInput") != null) {
+        setVersion();
         showStartButton();
     } else {
         showNameForm();
     }
-    setVersion();
 }
 document.addEventListener("DOMContentLoaded", ready);
 

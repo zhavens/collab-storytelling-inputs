@@ -20,33 +20,41 @@ export function setUpProgressBar() {
     startProgressBar(start.getTime(), end.getTime(), 100)
 }
 
+function closeProgressBar() {
+    loadingView.style.display = "none";
+    drawingView.style.display = "block";
+    localStorage.setItem("loading", "false");
+}
+
 function startProgressBar(startTime, endTime, update) {
 
     var timer;
     var progressBar = document.getElementById("progressbar");
     var maxTime = endTime - startTime;
     title.textContent = "Identifying Categories...";
-  
-    var setValue = function() {
+
+    var setValue = function () {
         var currentTime = new Date().getTime();
         var ellaspedTime = currentTime - startTime;
-        
+
         if (ellaspedTime >= maxTime) {
             ellaspedTime = maxTime;
             window.clearTimeout(timer);
-            loadingView.style.display = "none";
-            drawingView.style.display = "block";
-            localStorage.setItem("loading", "false");
-        } else if (ellaspedTime >= maxTime/2) {
+            closeProgressBar();
+        } else if (ellaspedTime >= maxTime / 2) {
             title.textContent = "Drawing the Categories..."
         }
-        
-        var percent = (ellaspedTime/maxTime * 100).toFixed(0) + "%";
+
+        var percent = (ellaspedTime / maxTime * 100).toFixed(0) + "%";
         progressBar.textContent = percent;
         progressBar.style.width = percent;
     }
-  
+
     setValue();
     timer = window.setInterval(setValue, update);
     return
 }
+
+$(".idea_btn").on('click', () => {
+    closeProgressBar();
+});

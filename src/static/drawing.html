@@ -18,7 +18,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kalam">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
 </head>
@@ -29,14 +29,17 @@
         <h1 id="title"></h1>
 
         <div class="progress" style="width:60%; margin:auto;">
-            <div id="progressbar" class="progress-bar progress-bar-success progress-bar-striped active " role="progressbar"
-                aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40%">
+            <div id="progressbar" class="progress-bar progress-bar-success progress-bar-striped active "
+                role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40%">
                 50%
             </div>
         </div>
+        <div id="idea_btn" class="idea_btn bottom-right" ontouchstart="">
+            <a href="#"><span class="material-icons icons">arrow_forward</span></a>
+        </div>
     </div>
     <div id="drawing-view" style="display: none">
-        <div id="redraw_btn">
+        <div id="redraw_btn" class="top-left">
             <div class="redraw_btn" ontouchstart="">
                 <a onclick="redrawCanvas()"><span>REDRAW</span></a>
             </div>
@@ -47,13 +50,14 @@
             </div>
         </div>
         <div id="idea_btn">
-            <div class="idea_btn" ontouchstart="">
-                <a data-toggle="modal" data-target="#ideaModal"><span>IDEA</span></a>
+            <div class="idea_btn bottom-right" ontouchstart="">
+                <a data-toggle="modal" data-target="#ideaModal">
+                    <span class="material-icons icons">tungsten</span></a></a>
             </div>
         </div>
 
         <div id="next_btn">
-            <div class="next_btn" ontouchstart="">
+            <div class="next_btn top-right" ontouchstart="">
                 <a href="output.html" onclick="saveImage()"><span class="material-icons icons">arrow_forward</span></a>
             </div>
         </div>
@@ -111,7 +115,7 @@
                         oninput="this.form.amountInput.value=this.value" onclick="lineWidthRange()">
                     <div id="slider-input">
                         <input type="number" name="amountInput" min="1" max="50" value="10"
-                            oninput="this.form.amountRange.value=this.value"/>
+                            oninput="this.form.amountRange.value=this.value" />
                     </div>
                 </form>
                 <br />
@@ -134,13 +138,14 @@
                     </div>
                     <div id="idea_text" class="modal-body modal-font"></div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary modal-font-btn" data-dismiss="modal">CLOSE</button>
+                        <button type="button" class="btn btn-secondary modal-font-btn"
+                            data-dismiss="modal">CLOSE</button>
                         <button id="new_idea_btn" type="button" class="btn btn-primary modal-font-btn">NEW IDEA</button>
                     </div>
                 </div>
             </div>
         </div>
-    </div> 
+    </div>
     <script type="module" src="js/canvas.js"></script>
 </body>
 
