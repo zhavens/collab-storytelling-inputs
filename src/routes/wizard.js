@@ -13,9 +13,10 @@ async function createDbWatcher(ws, user) {
         const database = client.db("collab");
         const logging = database.collection("logging");
 
-        changeStream = logging.watch({ $match: { user: user } });
+        changeStream = logging.watch([{ $match: { "fullDocument.user": user } }]);
         // set up a listener when change events  finally  emitted
         changeStream.on("change", async next => {
+            debug(next);
             if (ws.readyState == 1 /*OPEN*/) {
                 ws.send(JSON.stringify({
                     type: "log",
@@ -41,7 +42,7 @@ async function createDbWatcher(ws, user) {
 
 module.exports = (router) => {
     router.ws('/:user', (ws, req) => {
-        debug('Socket opened.');
+        debug('Socket opened with user ' + req.params.user);
         createDbWatcher(ws, req.params.user);
 
         ws.on('message', (msg) => {
