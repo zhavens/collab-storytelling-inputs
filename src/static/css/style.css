@@ -92,50 +92,22 @@ div #drawing {
   padding: 100px 0px;
 }
 
-#back_btn span,
-#next_btn span,
-#submit_btn span,
-#idea_btn span,
-#settings_btn span,
-#start_btn span,
-#share_btn span,
-#rec_btn span,
-#redraw_btn span,
-#recategorize_btn span,
-#play_rec_btn span {
+.btn-styled span {
   display: block;
   padding: 10px 20px;
   border-radius: 5px;
   border: 2px solid #000;
 }
 
-#back_btn a:active,
-#next_btn a:active,
-#idea_btn a:active,
-#settings_btn a:active,
-#share_btn a:active,
-#start_btn a:active,
-#submit_btn a:active,
-#rec_btn button:active,
-#redraw_btn button:active,
-#recategorize_btn button:active,
-#play_rec_btn button:active {
+.btn-styled a:active,
+.btn-styled button:active {
   top: 4px;
   padding-bottom: 0px;
   box-shadow: 0 1px 0 #000;
 }
 
-#back_btn a,
-#redraw_btn a,
-#recategorize_btn a,
-#next_btn a,
-#settings_btn a,
-#start_btn a,
-#submit_btn a,
-#idea_btn a,
-#share_btn a,
-#rec_btn button,
-#play_rec_btn button {
+.btn-styled a,
+.btn-styled button {
   float: right;
   font: normal 25px/28px "Kalam", sans-serif;
   margin-right: 25%;
@@ -162,7 +134,7 @@ div #drawing {
   left: 80px;
 }
 
-.recategorize_btn {
+.top-left2 {
   position: fixed;
   top: 110px;
   left: 80px;
@@ -180,74 +152,63 @@ div #drawing {
   left: 80px;
 }
 
-.start_btn span,
-.next_btn span,
-.rec_btn span {
+.btn-green span {
   background: rgb(180, 255, 160);
 }
 
-.start_btn span:hover,
-.next_btn span:hover,
-.rec_btn span:hover {
+.btn-green span:hover {
   background: rgb(125, 205, 102);
 }
 
-.rec_btn span {
+.btn-white span {
   background: white;
 }
 
-.rec_btn span:hover,
-.rec_btn_selected {
+.btn-white span:hover {
   background: rgb(243, 201, 201) !important;
 }
 
-.back_btn span,
-.redraw_btn span {
+.btn-red span {
   background: rgb(247, 62, 62);
 }
 
-.redraw_btn span:hover,
-.back_btn span:hover {
+.btn-red span:hover {
   background: rgb(189, 48, 48);
 }
 
-
-.submit_btn span {
+.btn-grey span {
   background: rgb(219, 218, 218);
 }
 
-.submit_btn span:hover {
+.btn-grey span:hover {
   background: rgb(168, 166, 166);
 }
 
-.idea_btn span,
-.share_btn span,
-.play_rec_btn span {
+
+.btn-blue span {
   background: rgb(63, 218, 235);
 }
 
-.idea_btn span:hover,
-.share_btn span:hover,
-.play_rec_btn span:hover {
+
+.btn-blue span:hover {
   background: rgb(43, 164, 177);
 }
 
-.settings_btn span {
+.btn-orange span {
   background: rgb(244, 143, 55);
 }
 
-.settings_btn span:hover {
+.btn-orange span:hover {
   background: rgb(238, 121, 19);
 }
 
-.recategorize_btn span {
+.btn-dk-blue span {
   background: rgb(67, 111, 200);
 }
 
-.recategorize_btn span:hover {
+.btn-dk-blue span:hover {
   background: rgb(42, 71, 129);
 }
-
 
 .info_windows {
   width: 800px;
