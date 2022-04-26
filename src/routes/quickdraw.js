@@ -6,7 +6,6 @@ var mongo = require('mongodb');
 const uri = "mongodb://localhost:27017";
 const client = new mongo.MongoClient(uri);
 
-/* GET categorys listing. */
 router.post('/:category', async function (req, res, next) {
     if (!req.params.category) {
         res.status(400).send('Error: missing field "category".');
@@ -51,9 +50,6 @@ router.get('/:category', async function (req, res, next) {
             } else {
                 res.send(await cursor.next());
             }
-
-            // const results = await quickdraw.findOne({ "category": req.params.category });
-            // res.send(results);
         } catch {
             res.status(500).send('Error fetching drawing from DB.');
         } finally {

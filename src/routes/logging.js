@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var debug = require('debug')('wizard')
 
 var mongo = require('mongodb');
 
@@ -8,12 +9,12 @@ const client = new mongo.MongoClient(uri);
 
 /* GET users listing. */
 router.post('/:user', async function (req, res, next) {
-    console.log(req.body);
+    debug(req.body);
     if (!req.params.user) {
-        console.log('Error: missing field "user".');
+        debug('Error: missing field "user".');
         res.status(400).send('Error: missing field "user".');
     } else if (!req.body.msg) {
-        console.log('Error: missing field "msg".');
+        debug('Error: missing field "msg".');
         res.status(400).send('Error: missing field "msg".');
     } else {
         try {
@@ -27,7 +28,7 @@ router.post('/:user', async function (req, res, next) {
                 timestamp: new Date(),
             };
             const result = await logging.insertOne(doc);
-            console.log(`A document was inserted with the _id: ${result.insertedId}`);
+            debug(`A document was inserted with the _id: ${result.insertedId}`);
             res.send('Success.');
         } catch {
             res.send('Error logging to DB.');
