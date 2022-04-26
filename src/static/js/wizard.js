@@ -16,10 +16,11 @@ function addConsoleLog($console, msg, classes = null) {
 }
 
 function connectConsole($console, user) {
+    var conn_icon = $console.closest('.wizard-panel').find('i.conn-icon');
     var socket = new WebSocket('wss://zhavens.com/hai/wizard/' + encodeURIComponent(user));
 
     socket.addEventListener('open', event => {
-        $('#connIcon').removeClass("fail bi-x-circle-fill")
+        conn_icon.removeClass("fail bi-x-circle-fill")
             .addClass("success bi-check-circle-fill");
         var msg = new Date().toISOString() + ": Connected.\n"
         addConsoleLog($console, msg, "success");
@@ -34,14 +35,14 @@ function connectConsole($console, user) {
     });
 
     socket.addEventListener('error', event => {
-        $('#connIcon').removeClass("success bi-check-circle-fill")
+        conn_icon.removeClass("success bi-check-circle-fill")
             .addClass("fail bi-x-circle-fill");
         var msg = new Date.toISOString() + ": Error - " + event + "\n";
         addConsoleLog($console, msg, "fail");
     });
 
     socket.addEventListener('close', event => {
-        $('#connIcon').removeClass("success bi-check-circle-fill")
+        conn_icon.removeClass("success bi-check-circle-fill")
             .addClass("fail bi-x-circle-fill");
         var msg = new Date().toISOString() + ": Disonnected.\n"
         addConsoleLog($console, msg, "fail");
@@ -99,7 +100,7 @@ $('form.user-form').on('submit', (event) => {
 $('button.connect').on('click', event => {
     var panel = $(event.target).closest('.wizard-panel');
 
-    connectConsole(panel.find('console'), getUser(panel));
+    connectConsole(panel.find('.console'), getUser(panel));
 });
 
 
