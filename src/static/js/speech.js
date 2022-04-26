@@ -1,8 +1,8 @@
 /* ---------------
  *  SPEECH RECOGNITION
  * ---------------*/
-import { addInterpretation } from "./requestHandler.js";
 import { log } from "./logging.js";
+import { addInterpretation } from "./requestHandler.js";
 var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition
 var SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList
 var SpeechRecognitionEvent = SpeechRecognitionEvent || webkitSpeechRecognitionEvent
@@ -16,32 +16,32 @@ recognition.maxAlternatives = 1;
 
 var speech_result;
 var recording = false;
+var recording_time;
 
-var btn = document.querySelector('#rec');
-var btnBackground = document.getElementById('rec_icon');
+const HELD_TIMEOUT_MS = 1000;
+
+var btn = document.querySelector('#rec_btn');
+var btnBackground = document.getElementById('rec_btn');
 var icon = document.getElementById('rec_icon');
 
-function speechClick() {
-    recording = !recording;
-    if (recording){
-        startrecognition();
-    } else {
-        stoprecognition();
-    }
-}
+
 
 function startrecognition() {
+    recording_time = new Date();
     recognition.start();
     log('Starting recognition.');
     icon.textContent = "radio_button_checked";
-    btnBackground.classList.add("rec_btn_selected");
+    btn.classList.remove("btn-white");
+    btn.classList.add("btn-red");
 }
 
 function stoprecognition() {
+    recording_time = null;
     recognition.stop();
     log('Stopping recognition.');
     icon.textContent = "fiber_manual_record";
-    btnBackground.classList.remove("rec_btn_selected");
+    btn.classList.remove("btn-red");
+    btn.classList.add("btn-white");
 }
 
 recognition.onresult = function (event) {
@@ -71,7 +71,20 @@ recognition.onerror = function (event) {
     log('Error occurred in recognition: ' + event.error);
 }
 
-btn.onclick = speechClick;
+btn.onmousedown = function () {
+    recording = !recording;
+    if (recording) {
+        startrecognition();
+    } else {
+        stoprecognition();
+    }
+};
+
+btn.onmouseup = () => {
+    if (recording_time && (new Date() - recording_time) > HELD_TIMEOUT_MS) {
+        stoprecognition();
+    }
+}
 
 /* ---------------
  *  SPEECH SYNTHESIS
