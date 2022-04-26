@@ -1,5 +1,5 @@
-import { addImage, getCategories } from "./requestHandler.js";
 import { log } from "./logging.js";
+import { addImage, getCategories } from "./requestHandler.js";
 
 //Create canvas
 var canvas = document.getElementById('myCanvas');
@@ -8,7 +8,7 @@ var ctx = canvas.getContext('2d');
 ctx.fillStyle = "white";
 ctx.fillRect(0, 0, 1300, 700);
 var outputVersion = "AI";
-var drawElements= [];
+var drawElements = [];
 var currentDrawIndex = 0;
 
 export function getCanvas() {
@@ -27,10 +27,10 @@ async function fetchCategories() {
 export async function drawCategories() {
     // reset the canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    
+
     // draw all the images
     currentDrawIndex = 0;
-    for(var i = 0; i < drawElements.length; i++) {
+    for (var i = 0; i < drawElements.length; i++) {
         draw(drawElements[i]);
         await new Promise(r => setTimeout(r, 20));
     }
@@ -41,15 +41,15 @@ export async function drawCategories() {
 export async function createAITemplate() {
     log("Create AI Generated Template");
 
-    while(localStorage.getItem("loading") == "true") {
+    while (localStorage.getItem("loading") == "true") {
         var response = await fetchCategories();
 
         // compare elements
-        var sameElements = (response.length == drawElements.length) && response.every(function(element, index) {
-            return element === drawElements[index]; 
+        var sameElements = (response.length == drawElements.length) && response.every(function (element, index) {
+            return element === drawElements[index];
         });
-        
-        if(!sameElements) {
+
+        if (!sameElements) {
             drawElements = response;
             console.log(drawElements);
             await drawCategories();
@@ -109,12 +109,12 @@ function quickdrawSvgRender(drawing, viewBox) {
     return svg.join("");
 }
 
-async function streamToString (stream) {
+async function streamToString(stream) {
     const chunks = [];
     return new Promise((resolve, reject) => {
-      stream.on('data', (chunk) => chunks.push(Buffer.from(chunk)));
-      stream.on('error', (err) => reject(err));
-      stream.on('end', () => resolve(Buffer.concat(chunks).toString('utf8')));
+        stream.on('data', (chunk) => chunks.push(Buffer.from(chunk)));
+        stream.on('error', (err) => reject(err));
+        stream.on('end', () => resolve(Buffer.concat(chunks).toString('utf8')));
     })
 }
 
@@ -126,10 +126,10 @@ async function draw(category) {
     var path = new Path2D(svg);
 
     // randomly assign the colour and position
-    var randomColour = '#'+ Math.floor(Math.random() * 16777215).toString(16);
+    var randomColour = '#' + Math.floor(Math.random() * 16777215).toString(16);
     var cx = 50 + (canvas.width - 100) * currentDrawIndex / drawElements.length;//Math.random() * (canvas.width - 400);
     var cy = Math.random() * (canvas.height - 250);
-    
+
     // draw the drawing
     var path = new Path2D(svg);
     var stroke = ctx.lineWidth;
@@ -155,21 +155,6 @@ var substringMatcher = function (strs) {
         cb(matches);
     };
 };
-
-// $('#category').typeahead({
-//     highlight: false,
-//     hint: false,
-//     minlength: 1
-// },
-//     {
-//         display: 'value',
-//         source: substringMatcher(categories),
-//         templates: {
-//             suggestion: function (data) {
-//                 return "<div>" + data + "</div>"
-//             }
-//         }
-//     });
 
 
 $('#category').on("typeahead:selected", function (eventObject, suggestion, name) {
