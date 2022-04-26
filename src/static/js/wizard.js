@@ -1,4 +1,5 @@
 import categories from "./categories.js";
+import { getUrl } from "./util.js";
 
 function setUser(panel, user) {
     panel[0].dataset.user = user;
@@ -16,6 +17,11 @@ function addConsoleLog($console, msg, classes = null) {
 
 function connectConsole($console, user) {
     var conn_icon = $console.closest('.wizard-panel').find('i.conn-icon');
+
+    if ($console.data("socket")) {
+        $console.data("socket").close();
+    }
+
     var socket = new WebSocket('wss://zhavens.com/hai/wizard/' + encodeURIComponent(user));
 
     socket.addEventListener('open', event => {
@@ -46,11 +52,12 @@ function connectConsole($console, user) {
         var msg = new Date().toISOString() + ": Disonnected.\n"
         addConsoleLog($console, msg, "fail");
     });
+
+    $console.data("socket", socket);
 };
 
 async function postCategories(user, newCategories, $console) {
-    var url = "https://zhavens.com/hai/categories/"
-    url += encodeURIComponent(user);
+    var url = getUrl("categories", user);
 
     await $.ajax(url,
         {
@@ -74,7 +81,7 @@ function appendCategory($list, category) {
 };
 
 function populateCategories($list, user) {
-    const categoryUrl = "https://zhavens.com/hai/categories/" + encodeURIComponent(user);
+    const categoryUrl = getUrl("categories", user);
     $.getJSON(categoryUrl, data => {
         $list.find(".new-cat").remove();
         if (data && data.categories) {

@@ -1,9 +1,10 @@
 /* ---------------
  *  HANDWRITING RECOGNITION
  * ---------------*/
+import { log } from "./logging.js";
 import MyScript from './myscript.esm.js';
 import { addInterpretation } from "./requestHandler.js";
-import { log } from "./logging.js";
+import { getUrl } from "./util.js";
 
 const msappCookie = "myscript-app";
 const mshmacCookie = "myscript-hmac";
@@ -15,32 +16,32 @@ const redoElement = document.getElementById('redo');
 const clearElement = document.getElementById('clear');
 
 editor.addEventListener('changed', (event) => {
-undoElement.disabled = !event.detail.canUndo;
-redoElement.disabled = !event.detail.canRedo;
-clearElement.disabled = event.detail.isEmpty;
+    undoElement.disabled = !event.detail.canUndo;
+    redoElement.disabled = !event.detail.canRedo;
+    clearElement.disabled = event.detail.isEmpty;
 });
 
 editor.addEventListener('exported', (evt) => {
-if (evt.detail) {
-    addInterpretation(evt.detail["exports"]["text/plain"]);
-} else {
-    resultElement.innerHTML = '';
-}
+    if (evt.detail) {
+        addInterpretation(evt.detail["exports"]["text/plain"]);
+    } else {
+        resultElement.innerHTML = '';
+    }
 });
 undoElement.addEventListener('click', () => {
-editor.editor.undo();
+    editor.editor.undo();
 });
 redoElement.addEventListener('click', () => {
     editor.editor.redo();
 });
 clearElement.addEventListener('click', () => {
-editor.editor.clear();
+    editor.editor.clear();
 });
 
 var keystatus = document.querySelector("#keystatus");
 
 async function getKeys() {
-    var keysResp = await fetch("https://zhavens.com/hai/myscript/keys");
+    var keysResp = await fetch(getUrl("myscript/keys"));
     return await keysResp.json();
 }
 

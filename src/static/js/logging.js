@@ -1,21 +1,22 @@
+import { getUrl } from "./util.js";
+
 var user = localStorage.getItem("pseudonym");
 
 export async function log(msg) {
-    var url = "https://zhavens.com/raquel/logging/"
-    url += encodeURIComponent(user);
+    var url = getUrl("logging", user);
     await fetch(url, {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                msg:msg
-            })
-        });
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            msg: msg
+        })
+    });
 }
 
 export async function getLogs() {
-    var url = "https://zhavens.com/hai/logging/"
+    var url = getUrl("logging", user);
     url += encodeURIComponent(user);
     return await $.get(url);
 }

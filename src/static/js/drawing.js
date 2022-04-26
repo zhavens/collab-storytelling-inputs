@@ -1,5 +1,6 @@
 import { log } from "./logging.js";
 import { addImage, getCategories } from "./requestHandler.js";
+import { getUrl } from "./util.js";
 
 //Create canvas
 var canvas = document.getElementById('myCanvas');
@@ -39,7 +40,7 @@ export async function drawCategories() {
 }
 
 export async function createAITemplate() {
-    log("Create AI Generated Template");
+    log("Creating AI Generated Template");
 
     while (localStorage.getItem("loading") == "true") {
         var response = await fetchCategories();
@@ -52,9 +53,10 @@ export async function createAITemplate() {
         if (!sameElements) {
             drawElements = response;
             console.log(drawElements);
+            log("Fetched categories: " + drawElements);
             await drawCategories();
         }
-        console.log("run");
+
         // check if the categories changed again in 20 seconds
         await new Promise(r => setTimeout(r, 20000));
     }
@@ -77,8 +79,7 @@ function parseNdjson(result) {
 
 function getDrawing(category) {
     var data;
-    var url = 'https://zhavens.com/raquel/quickdraw/';
-    url += encodeURIComponent(category);
+    var url = getUrl('quickdraw', category);
     return $.ajax
         ({
             url: url,

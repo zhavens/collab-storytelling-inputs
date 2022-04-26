@@ -8,15 +8,16 @@ var title = document.getElementById("title");
 var start;
 var end;
 
+const WAIT_TIME_SECS = 35;
+
 export function setUpProgressBar() {
     loadingView.style.display = "block";
     drawingView.style.display = "none";
     start = new Date();
     end = new Date();
-    end.setSeconds(end.getSeconds() + 35);
+    end.setSeconds(end.getSeconds() + WAIT_TIME_SECS);
     localStorage.setItem("loading", "true");
-    log("Starting Wait: " + start);
-    log("Ending Wait: " + end);
+    log("Starting Wait, ends in " + WAIT_TIME_SECS + "s.");
     startProgressBar(start.getTime(), end.getTime(), 100)
 }
 
@@ -55,6 +56,7 @@ function startProgressBar(startTime, endTime, update) {
     return
 }
 
-$(".idea_btn").on('click', () => {
+$("#skip_btn").on('click', () => {
+    log("Skipping Wait.");
     closeProgressBar();
 });

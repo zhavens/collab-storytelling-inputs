@@ -1,11 +1,12 @@
 import { log } from "./logging.js";
-var user = localStorage.getItem("pseudonym");
-var inputVersion = localStorage.getItem("inputVersion");
-var round = localStorage.getItem("round");
+import { getUrl } from "./util.js";
 
-export async function addInterpretation (text) {
+export async function addInterpretation(text) {
+    var user = localStorage.getItem("pseudonym");
+    var inputVersion = localStorage.getItem("versionInput");
+
     log("Add Interpretation: " + text);
-    if(user == null) {
+    if (user == null) {
         log("Error: undefined user");
     } else if (inputVersion == null) {
         log("Error: undefined version");
@@ -13,22 +14,26 @@ export async function addInterpretation (text) {
         // give some warning to the user
         log("Error: undefined text");
     } else {
-        await fetch("https://zhavens.com/hai/interpretations/" + user, {
+        await fetch(getUrl("interpretations", user), {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                text: text, 
-                input: inputVersion 
+                text: text,
+                input: inputVersion
             })
         });
     }
 }
 
-export async function addImage (image, outputVersion) {
-    log("Add Canvas Image: " + user);
-    if(user == null) {
+export async function addImage(image, outputVersion) {
+    var user = localStorage.getItem("pseudonym");
+    var inputVersion = localStorage.getItem("versionInput");
+    var round = localStorage.getItem("round");
+
+    log("Adding Canvas Image");
+    if (user == null) {
         log("Error: undefined user");
     } else if (inputVersion == null) {
         log("Error: undefined input version");
@@ -39,7 +44,7 @@ export async function addImage (image, outputVersion) {
     } else if (round == null) {
         log("Error: undefined round");
     } else {
-        await fetch("https://zhavens.com/hai/images/" + user, {
+        await fetch(getUrl("images", user), {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
@@ -54,30 +59,30 @@ export async function addImage (image, outputVersion) {
     }
 }
 
-export async function getCategories () {
-    return await fetch("https://zhavens.com/hai/categories/" + user, {
+export async function getCategories() {
+    var user = localStorage.getItem("pseudonym");
+
+    return await fetch(getUrl("categories", user), {
         method: "GET"
-    }).then(function(response) {
+    }).then(function (response) {
         return response.text();
-    }).then(function(data) {
-        log(data); // this will be a string
+    }).then(function (data) {
         return data;
     });
 }
 
-export async function getImageIntersection (currentImage, newPath, cx, cy) {
+export async function getImageIntersection(currentImage, newPath, cx, cy) {
     log("Get Image Intersection: ");
     if (currentImage == null) {
         log("Error: undefined currentImage");
     } else if (newPath == null) {
         log("Error: undefined newPath");
     } else {
-        var parameters = currentImage + "/" + newPath + "/" + cx + "/" + cy;
-        return await fetch("https://zhavens.com/hai/imageIntersection/" + parameters, {
+        return await fetch(getUrl("imageIntersection", currentImage, newPath, cx, cy), {
             method: "GET"
-        }).then(function(response) {
+        }).then(function (response) {
             return response.text();
-        }).then(function(data) {
+        }).then(function (data) {
             log(data); // this will be a string
             return data;
         });

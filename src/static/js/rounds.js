@@ -34,7 +34,7 @@ function setVersion() {
 }
 
 function setPseudonym() {
-    var pseudonymInput = document.getElementById("code_name").value;
+    var pseudonymInput = document.getElementById("code_name").value.toLowerCase();
     var versionInput = $("#version_select option:selected").val();
     console.log(pseudonymInput, " : ", versionInput);
     if (pseudonymInput != "" && versionInput != "") {
@@ -83,9 +83,10 @@ const ready = function getStartText() {
     } else {
         startText.textContent = "ROUND " + round;
     }
-    log('About to Start Round ' + round);
+    log('Initialize Round ' + round);
 
-    if (localStorage.getItem("pseudonym") != null && localStorage.getItem("versionInput") != null) {
+    if (localStorage.getItem("pseudonym") != null
+        && localStorage.getItem("versionInput") != null) {
         setVersion();
         showStartButton();
     } else {
@@ -103,5 +104,5 @@ function updateRound() {
 function startRound() {
     console.log("Start");
     var round = parseInt(localStorage.getItem("round"));
-    log("Round " + round + " : " + new Date().getTime());
+    log("Starting Round " + round);
 }
