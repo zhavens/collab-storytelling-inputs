@@ -43,7 +43,7 @@ function connectConsole($console, user) {
     socket.addEventListener('close', event => {
         $('#connIcon').removeClass("success bi-check-circle-fill")
             .addClass("fail bi-x-circle-fill");
-        var msg = new Date.toISOString() + ": Disonnected.\n"
+        var msg = new Date().toISOString() + ": Disonnected.\n"
         addConsoleLog($console, msg, "fail");
     });
 };
