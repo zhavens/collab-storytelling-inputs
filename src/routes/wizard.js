@@ -16,7 +16,6 @@ async function createDbWatcher(ws, user) {
         changeStream = logging.watch([{ $match: { "fullDocument.user": user } }]);
         // set up a listener when change events  finally  emitted
         changeStream.on("change", async next => {
-            debug(next);
             if (ws.readyState == 1 /*OPEN*/) {
                 ws.send(JSON.stringify({
                     type: "log",
