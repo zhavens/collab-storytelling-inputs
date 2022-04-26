@@ -11,6 +11,13 @@ settingsModal.addEventListener('shown.bs.modal', function (event) {
     $("#versionSelect").val(localStorage.getItem("versionInput"));
 });
 
+$("#settingsReset").on('click', () => {
+    if (confirm("Are you sure?")) {
+        localStorage.clear();
+        location.reload();
+    }
+});
+
 $("#settingsForm").on('submit', () => {
     localStorage.setItem("pseudonym", $("#pesudoInput").val());
     localStorage.setItem("round", $("#roundInput").val());
