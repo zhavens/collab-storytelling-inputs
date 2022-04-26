@@ -12,7 +12,6 @@ function addConsoleLog($console, msg, classes = null) {
     var p = $(document.createElement("p")).html(msg).addClass(classes);
     $console.append(p);
     $console[0].scrollTop = $console[0].scrollHeight;
-    // p[0].scrollIntoView(false);
 }
 
 function connectConsole($console, user) {
@@ -68,7 +67,6 @@ async function postCategories(user, newCategories, $console) {
 function appendCategory($list, category) {
     $list.append($(document.createElement('a'))
         .addClass("list-group-item list-group-item-action new-cat")
-        .attr('href', '#')
         .text(category)
         .click(event => {
             event.target.remove()
