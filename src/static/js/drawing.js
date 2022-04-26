@@ -19,6 +19,12 @@ export function getCanvas() {
     }
 }
 
+function resizePanels() {
+    $('#colorpanel').height($('#myCanvas').height())
+}
+
+window.onresize = resizePanels;
+
 async function fetchCategories() {
     var response = await getCategories();
     response = JSON.parse(response);
@@ -156,20 +162,3 @@ var substringMatcher = function (strs) {
         cb(matches);
     };
 };
-
-
-$('#category').on("typeahead:selected", function (eventObject, suggestion, name) {
-    $('#category').typeahead('val', suggestion);
-    draw(suggestion);
-});
-
-$('#draw').click(function () {
-    draw($('#category').val());
-})
-
-$("#category").on('keyup', function (e) {
-    if (e.key === 'Enter' || e.keyCode === 13) {
-        $('#category').typeahead('close');
-        draw(this.value);
-    }
-});

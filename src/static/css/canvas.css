@@ -116,19 +116,14 @@ p {
 }
 
 #colorpanel {
-    width: 18.5%;
-    float:left;
-    margin-right: 18px;
     border: 1px solid black;
 }
 
-#linepanel {
-    margin-top: 75px;
-    width: 185px;
-    height: 317px;
-    float: right;
-    border: 1px solid black;
+#colors-container {
+    overflow-y: scroll;
+    height: calc(100% - 250px);
 }
+
 
 #canvasarea {
     float: left;
@@ -213,9 +208,10 @@ input[type=range]:focus::-webkit-slider-runnable-track {
 }
 
 .canvas {
-    width: 1300px; 
-    height: 700px;
+    width: 100%;
+    aspect-ratio: 13/7;
     border: 1.5px solid #000000; 
+    touch-action: none;
 }
 
 .selected {

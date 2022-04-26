@@ -39,7 +39,7 @@
                 <span class="material-icons icons">arrow_forward</span></a>
         </div>
     </div>
-    <div id="drawing-view" style="display: none">
+    <div id="drawing-view" class="container-fluid" style="display: none">
         <div id="redraw_btn" class="top-left btn-styled btn-red" ontouchstart="">
             <a onclick="redrawCanvas()">
                 <span>REDRAW</span></a>
@@ -57,69 +57,75 @@
             <a href="output.html" onclick="saveImage()">
                 <span class="material-icons icons">arrow_forward</span></a>
         </div>
-        <h1>DRAW YOUR STORY</h1>
-        <h2 id="categories" class="text-center">Categories Drawn:</h2>
+
+        <div class="row">
+            <h1 class="text-center">DRAW YOUR STORY</h1>
+            <h2 id="categories" class="text-center">Categories Drawn:</h2>
+        </div>
         <div id="paintbg">
-            <div id="colorpanel" class="text-center" oncontextmenu="return false">
-                <p>Colors</p>
-                <div id="colors-container">
-                    <div class="palette red" id="red"></div>
-                    <div class="palette red1" id="red1"></div>
-                    <div class="palette red2" id="red2"></div>
-                    <div class="palette orange" id="orange"></div>
-                    <div class="palette orange1" id="orange1"></div>
-                    <div class="palette orange2" id="orange2"></div>
-                    <div class="palette yellow" id="yellow"></div>
-                    <div class="palette yellow1" id="yellow1"></div>
-                    <div class="palette yellow2" id="yellow2"></div>
-                    <div class="palette green" id="green"></div>
-                    <div class="palette green1" id="green1"></div>
-                    <div class="palette green2" id="green2"></div>
-                    <div class="palette blue" id="blue"></div>
-                    <div class="palette blue1" id="blue1"></div>
-                    <div class="palette blue2" id="blue2"></div>
-                    <div class="palette indigo" id="indigo"></div>
-                    <div class="palette indigo1" id="indigo1"></div>
-                    <div class="palette indigo2" id="indigo2"></div>
-                    <div class="palette pink" id="pink"></div>
-                    <div class="palette pink1" id="pink1"></div>
-                    <div class="palette pink2" id="pink2"></div>
-                    <div class="palette black" id="black"></div>
-                    <div class="palette black1" id="black1"></div>
-                    <div class="palette black2" id="black2"></div>
-                    <div class="palette brown" id="brown"></div>
-                    <div class="palette skin1" id="skin1"></div>
-                    <div class="palette skin2" id="skin2"></div>
-                    <div class="palette skin3" id="skin3"></div>
-                    <div class="palette skin4" id="skin4"></div>
-                    <div class="palette skin5" id="skin5"></div>
-                    <div class="palette skin6" id="skin6"></div>
-                    <div class="palette skin7" id="skin7"></div>
-                    <div class="palette skin8" id="skin8"></div>
-                    <div class="palette skin9" id="skin9"></div>
-                    <div class="palette skin10" id="skin10"></div>
-                </div>
-                <div id="eraser" class="text-center">
-                    <p style="float:none">Eraser</p>
-                    <div id="eraser-container">
-                        <div class="palette eraser" id="white" onclick="erase()"></div>
+            <div class="col-sm-2">
+                <div id="colorpanel" class="text-center" oncontextmenu="return false">
+                    <p>Colors</p>
+                    <div id="colors-container" class="col-sm-12">
+                        <div class="palette red" id="red"></div>
+                        <div class="palette red1" id="red1"></div>
+                        <div class="palette red2" id="red2"></div>
+                        <div class="palette orange" id="orange"></div>
+                        <div class="palette orange1" id="orange1"></div>
+                        <div class="palette orange2" id="orange2"></div>
+                        <div class="palette yellow" id="yellow"></div>
+                        <div class="palette yellow1" id="yellow1"></div>
+                        <div class="palette yellow2" id="yellow2"></div>
+                        <div class="palette green" id="green"></div>
+                        <div class="palette green1" id="green1"></div>
+                        <div class="palette green2" id="green2"></div>
+                        <div class="palette blue" id="blue"></div>
+                        <div class="palette blue1" id="blue1"></div>
+                        <div class="palette blue2" id="blue2"></div>
+                        <div class="palette indigo" id="indigo"></div>
+                        <div class="palette indigo1" id="indigo1"></div>
+                        <div class="palette indigo2" id="indigo2"></div>
+                        <div class="palette pink" id="pink"></div>
+                        <div class="palette pink1" id="pink1"></div>
+                        <div class="palette pink2" id="pink2"></div>
+                        <div class="palette black" id="black"></div>
+                        <div class="palette black1" id="black1"></div>
+                        <div class="palette black2" id="black2"></div>
+                        <div class="palette brown" id="brown"></div>
+                        <div class="palette skin1" id="skin1"></div>
+                        <div class="palette skin2" id="skin2"></div>
+                        <div class="palette skin3" id="skin3"></div>
+                        <div class="palette skin4" id="skin4"></div>
+                        <div class="palette skin5" id="skin5"></div>
+                        <div class="palette skin6" id="skin6"></div>
+                        <div class="palette skin7" id="skin7"></div>
+                        <div class="palette skin8" id="skin8"></div>
+                        <div class="palette skin9" id="skin9"></div>
+                        <div class="palette skin10" id="skin10"></div>
+                    </div>
+                    <div id="eraser" class="col-sm-12 text-center">
+                        <p style="float:none">Eraser</p>
+                        <div id="eraser-container">
+                            <div class="palette eraser" id="white" onclick="erase()"></div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <p>Width</p>
+                        <form id="brush-container">
+                            <input class="slider" type="range" id="myRange" name="amountRange" value="10" min="1"
+                                max="50" oninput="this.form.amountInput.value=this.value" onclick="lineWidthRange()">
+                            <div id="slider-input">
+                                <input type="number" name="amountInput" min="1" max="50" value="10"
+                                    oninput="this.form.amountRange.value=this.value" />
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-sm-12 ">
+                        <button class="button" onclick="clearCanvas()">CLEAR</button>
                     </div>
                 </div>
-                <p>Width</p>
-                <form id="brush-container">
-                    <input class="slider" type="range" id="myRange" name="amountRange" value="10" min="1" max="50"
-                        oninput="this.form.amountInput.value=this.value" onclick="lineWidthRange()">
-                    <div id="slider-input">
-                        <input type="number" name="amountInput" min="1" max="50" value="10"
-                            oninput="this.form.amountRange.value=this.value" />
-                    </div>
-                </form>
-                <br />
-
-                <button class="button" onclick="clearCanvas()">CLEAR</button>
             </div>
-
-            <div id="canvasarea" oncontextmenu="return false">
+            <div id="canvasarea" class="col-sm-10" oncontextmenu="return false">
                 <canvas id="myCanvas" width="1300" height="700" class="canvas"></canvas>
             </div>
         </div>

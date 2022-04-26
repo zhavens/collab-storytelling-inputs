@@ -90,25 +90,42 @@ btn.onmouseup = () => {
  *  SPEECH SYNTHESIS
  * ---------------*/
 var synth = window.speechSynthesis;
+var voices
 var voiceselect = document.querySelector('#voice');
 var speakbtn = document.querySelector('#play_rec');
 
+function loadVoicesWhenAvailable(onComplete = () => { }) {
+    const v = synth.getVoices()
+
+    if (v.length !== 0) {
+        voices = v
+        onComplete()
+    } else {
+        return setTimeout(function () { loadVoicesWhenAvailable(onComplete) }, 100)
+    }
+}
+
 function populateVoiceList() {
+    if (!synth) {
+        alert("No synthesis support!");
+    }
+
     var voices = synth.getVoices();
 
-    for (const voice of synth.getVoices()) {
-        if (voice.lang.includes('en-')) {
-            var option = document.createElement('option');
-            option.textContent = voice.name + ' (' + voice.lang + ')';
 
-            if (voice.default) {
-                option.textContent += ' -- DEFAULT';
-            }
+    for (const voice of voices) {
+        // if (voice.lang.includes('en-')) {
+        var option = document.createElement('option');
+        option.textContent = voice.name + ' (' + voice.lang + ')';
 
-            option.setAttribute('data-lang', voice.lang);
-            option.setAttribute('data-name', voice.name);
-            voiceselect.appendChild(option);
+        if (voice.default) {
+            option.textContent += ' -- DEFAULT';
         }
+
+        option.setAttribute('data-lang', voice.lang);
+        option.setAttribute('data-name', voice.name);
+        voiceselect.appendChild(option);
+        // }
     }
 }
 
@@ -137,6 +154,12 @@ if (speechSynthesis.onvoiceschanged !== undefined) {
 function submit() {
     addInterpretation(speech_result.transcript);
 }
+
+
+// on document ready
+loadVoicesWhenAvailable(function () {
+    $("h1").text("loaded");
+});
 
 var next_btn = document.getElementById('next_btn');
 next_btn.onclick = submit;

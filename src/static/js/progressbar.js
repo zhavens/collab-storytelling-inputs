@@ -25,6 +25,7 @@ function closeProgressBar() {
     loadingView.style.display = "none";
     drawingView.style.display = "block";
     localStorage.setItem("loading", "false");
+    window.dispatchEvent(new Event('resize'));
 }
 
 function startProgressBar(startTime, endTime, update) {

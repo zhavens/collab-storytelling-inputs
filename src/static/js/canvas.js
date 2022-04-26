@@ -1,7 +1,7 @@
-import { getCanvas, createAITemplate, drawCategories } from "./drawing.js";
-import { addImage } from "./requestHandler.js";
+import { createAITemplate, drawCategories, getCanvas } from "./drawing.js";
 import { log } from "./logging.js";
 import { setUpProgressBar } from "./progressbar.js";
+import { addImage } from "./requestHandler.js";
 
 var result;
 var canvas;
@@ -11,8 +11,8 @@ var outputVersion;
 //Color palette
 var colors = "black";
 var colorId = "black";
-var selectedClass =  "selected";
-var selectedClassBlack =  "selected-black";
+var selectedClass = "selected";
+var selectedClassBlack = "selected-black";
 document.getElementById(colorId).classList.add(selectedClassBlack);
 
 setUpProgressBar();
@@ -21,34 +21,34 @@ setUpCanvas();
 lines();
 
 function setUpCanvas() {
-    createAITemplate();
-    result = getCanvas();
-    canvas = result["canvas"];
-    ctx = result["ctx"];
-    outputVersion = "Human-AI";
+	createAITemplate();
+	result = getCanvas();
+	canvas = result["canvas"];
+	ctx = result["ctx"];
+	outputVersion = "Human-AI";
 }
 
 window.redrawCanvas = async function redrawCanvas() {
-    log("Redraw Pressed");
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    await drawCategories();
+	log("Redraw Pressed");
+	ctx.clearRect(0, 0, canvas.width, canvas.height);
+	await drawCategories();
 }
 
 window.recategorize = function recategorize() {
-    log("Recategorize Pressed");
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    setUpProgressBar();
-    setUpCanvas();
+	log("Recategorize Pressed");
+	ctx.clearRect(0, 0, canvas.width, canvas.height);
+	setUpProgressBar();
+	setUpCanvas();
 }
 
 function lines() {
-    var bounding = canvas.getBoundingClientRect();
-	//Initialize mouse coordinates to 0,0
-	var mouse = { x: 0, y: 0};
+	var bounding = canvas.getBoundingClientRect();
+	//Initialize pointer coordinates to 0,0
+	var pointer = { x: 0, y: 0 };
 
 	//Paint includes line width, line cap, and color
-	window.paint = function() {
-		ctx.lineTo(mouse.x, mouse.y);
+	window.paint = function () {
+		ctx.lineTo(pointer.x, pointer.y);
 		ctx.lineWidth = lineWidthRange();
 		ctx.lineJoin = 'round';
 		ctx.lineCap = 'round';
@@ -56,57 +56,56 @@ function lines() {
 		ctx.stroke();
 	};
 
-	//Find mouse coordinates relative to canvas
-	window.linesMousemove = function(e){
-        bounding = canvas.getBoundingClientRect();
-		mouse.x = e.pageX - bounding.left;
-		mouse.y = e.pageY - bounding.top;
+	//Find pointer coordinates relative to canvas
+	window.linesMousemove = function (e) {
+		bounding = canvas.getBoundingClientRect();
+		pointer.x = e.pageX - bounding.left;
+		pointer.y = e.pageY - bounding.top;
 	};
 
 	//User clicks down on canvas to trigger paint
-	window.linesMousedown = function(){
+	window.linesMousedown = function () {
 		ctx.beginPath();
-		ctx.moveTo(mouse.x, mouse.y);
-		canvas.addEventListener('mousemove', paint, false);
+		ctx.moveTo(pointer.x, pointer.y);
+		canvas.addEventListener('pointermove', paint, false);
 	};
 
-	//When mouse lifts up, line stops painting
-	window.linesMouseup = function(){
-		canvas.removeEventListener('mousemove', paint, false);
+	//When pointer lifts up, line stops painting
+	window.linesMouseup = function () {
+		canvas.removeEventListener('pointermove', paint, false);
 	};
 
-	//When mouse leaves canvas, line stops painting
-	window.linesMouseout = function() {
-		canvas.removeEventListener('mousemove', paint, false);
+	//When pointer leaves canvas, line stops painting
+	window.linesMouseout = function () {
+		canvas.removeEventListener('pointermove', paint, false);
 	};
 
-	// Event listeners that will trigger the paint functions when mousedown, mousemove, mouseup, mouseout
-	canvas.addEventListener('mousedown', linesMousedown, false);
-	canvas.addEventListener('mousemove', linesMousemove, false);
-	canvas.addEventListener('mouseup', linesMouseup, false);
-	canvas.addEventListener('mouseout', linesMouseout, false);
+	// Event listeners that will trigger the paint functions when pointerdown, pointermove, pointerup, pointerout
+	canvas.addEventListener('pointerdown', linesMousedown, false);
+	canvas.addEventListener('pointermove', linesMousemove, false);
+	canvas.addEventListener('pointerup', linesMouseup, false);
+	canvas.addEventListener('pointerout', linesMouseout, false);
 };
 
 function setUpPaletteListeners() {
-    var childDivs = document.getElementById('colors-container').getElementsByTagName('div');
+	var childDivs = document.getElementById('colors-container').getElementsByTagName('div');
 
-    for(var i = 0; i < childDivs.length; i++ )
-    {
-        var childDiv = childDivs[i];
-        childDiv.addEventListener('click', changeColours, false);
-    }
+	for (var i = 0; i < childDivs.length; i++) {
+		var childDiv = childDivs[i];
+		childDiv.addEventListener('click', changeColours, false);
+	}
 };
 
-function changeColours () {
-    log("Change Colours: " + this.id)
-    var prevClassName = colorId == "black" ? selectedClassBlack : selectedClass;
-    var newClassName = this.id == "black" ? selectedClassBlack : selectedClass;
+function changeColours() {
+	log("Change Colours: " + this.id)
+	var prevClassName = colorId == "black" ? selectedClassBlack : selectedClass;
+	var newClassName = this.id == "black" ? selectedClassBlack : selectedClass;
 
-    document.getElementById(colorId).classList.remove(prevClassName);
-    colorId = this.id;
-    document.getElementById(colorId).classList.add(newClassName);
+	document.getElementById(colorId).classList.remove(prevClassName);
+	colorId = this.id;
+	document.getElementById(colorId).classList.add(newClassName);
 
-	switch(this.id) {
+	switch (this.id) {
 		case "red":
 			colors = "red";
 			break;
@@ -168,7 +167,7 @@ function changeColours () {
 			colors = "#F7F754";
 			break;
 		case "yellow2":
-			colors ="#F7F4B1";
+			colors = "#F7F4B1";
 			break;
 		case "pink":
 			colors = "#B9509E";
@@ -179,64 +178,66 @@ function changeColours () {
 		case "pink2":
 			colors = "#E3ABCE";
 			break;
-        case "brown":
-            colors = "#6F4E37";
-            break;
-        case "skin1":
-            colors = "#F2EFEE";
-            break;
-        case "skin2":
-            colors = "#EFE6DD";
-            break;
-        case "skin3":
-            colors = "#EBD3C5";
-            break;
-        case "skin4":
-            colors = "#D7B6A5";
-            break;
-        case "skin5":
-            colors = "#9F7967";
-            break;
-        case "skin6":
-            colors = "#70361C";
-            break;
-        case "skin7":
-            colors = "#492816";
-            break;
-        case "skin8":
-            colors = "#FFCD94";
-            break;
-        case "skin9":
-            colors = "#EAC086";
-            break;
-        case "skin10":
-            colors = "#FBDEBC";
+		case "brown":
+			colors = "#6F4E37";
+			break;
+		case "skin1":
+			colors = "#F2EFEE";
+			break;
+		case "skin2":
+			colors = "#EFE6DD";
+			break;
+		case "skin3":
+			colors = "#EBD3C5";
+			break;
+		case "skin4":
+			colors = "#D7B6A5";
+			break;
+		case "skin5":
+			colors = "#9F7967";
+			break;
+		case "skin6":
+			colors = "#70361C";
+			break;
+		case "skin7":
+			colors = "#492816";
+			break;
+		case "skin8":
+			colors = "#FFCD94";
+			break;
+		case "skin9":
+			colors = "#EAC086";
+			break;
+		case "skin10":
+			colors = "#FBDEBC";
 	}
 };
 
 window.erase = function erase() {
-    log("Erase");
-    colors = "white";
-    document.getElementById(colorId).style.border = "none";
-    colorId = palette.id;
-    document.getElementById(palette.id).style.border = "2px solid #1f1f1f";
+	log("Eraser Selected");
+	colors = "white";
+	document.getElementById(colorId).style.border = "none";
+	colorId = palette.id;
+	document.getElementById(palette.id).style.border = "2px solid #1f1f1f";
 };
 
 window.lineWidthRange = function lineWidthRange() {
-    var widthLine = document.getElementById("myRange").value;
-    return widthLine;
+	var widthLine = document.getElementById("myRange").value;
+	return widthLine;
 };
 
 window.clearCanvas = function clearCanvas() {
-    log("Clear");
-	ctx.clearRect(0, 0, canvas.width, canvas.height);
+	if (confirm("Are you sure you want to clear the canvas?")) {
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
+		log("Cleared Canvas");
+	}
 };
 
 window.saveImage = function saveImage() {
-    log("Save Image");
-    var round = localStorage.getItem("round");
-    var var_name = localStorage.getItem("pseudonym") + round;
-    var dataUrl = canvas.toDataURL();
-    localStorage.setItem(var_name, dataUrl);
-    addImage(canvas.toDataURL(), outputVersion);
+	log("Saving Image");
+	var round = localStorage.getItem("round");
+	var var_name = localStorage.getItem("pseudonym") + round;
+	var dataUrl = canvas.toDataURL();
+	localStorage.setItem(var_name, dataUrl);
+	addImage(canvas.toDataURL(), outputVersion);
 };
