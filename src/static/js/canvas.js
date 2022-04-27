@@ -57,34 +57,34 @@ function lines() {
 	};
 
 	//Find pointer coordinates relative to canvas
-	window.linesMousemove = function (e) {
+	window.linesPointermove = function (e) {
 		bounding = canvas.getBoundingClientRect();
 		pointer.x = e.pageX - bounding.left;
 		pointer.y = e.pageY - bounding.top;
 	};
 
 	//User clicks down on canvas to trigger paint
-	window.linesMousedown = function () {
-		ctx.beginPath();
+	window.linesPointerdown = function (e) {
 		ctx.moveTo(pointer.x, pointer.y);
+		ctx.beginPath();
 		canvas.addEventListener('pointermove', paint, false);
 	};
 
 	//When pointer lifts up, line stops painting
-	window.linesMouseup = function () {
+	window.linesPointerup = function (e) {
 		canvas.removeEventListener('pointermove', paint, false);
 	};
 
 	//When pointer leaves canvas, line stops painting
-	window.linesMouseout = function () {
+	window.linesPointerout = function (e) {
 		canvas.removeEventListener('pointermove', paint, false);
 	};
 
 	// Event listeners that will trigger the paint functions when pointerdown, pointermove, pointerup, pointerout
-	canvas.addEventListener('pointerdown', linesMousedown, false);
-	canvas.addEventListener('pointermove', linesMousemove, false);
-	canvas.addEventListener('pointerup', linesMouseup, false);
-	canvas.addEventListener('pointerout', linesMouseout, false);
+	canvas.addEventListener('pointerdown', linesPointerdown, false);
+	canvas.addEventListener('pointermove', linesPointermove, false);
+	canvas.addEventListener('pointerup', linesPointerup, false);
+	canvas.addEventListener('pointerout', linesPointerout, false);
 };
 
 function setUpPaletteListeners() {

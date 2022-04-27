@@ -15,6 +15,8 @@ const undoElement = document.getElementById('undo');
 const redoElement = document.getElementById('redo');
 const clearElement = document.getElementById('clear');
 
+var exported = false;
+
 editor.addEventListener('changed', (event) => {
     undoElement.disabled = !event.detail.canUndo;
     redoElement.disabled = !event.detail.canRedo;
@@ -24,6 +26,7 @@ editor.addEventListener('changed', (event) => {
 editor.addEventListener('exported', (evt) => {
     if (evt.detail) {
         addInterpretation(evt.detail["exports"]["text/plain"]);
+        exported = true;
     } else {
         resultElement.innerHTML = '';
     }
@@ -76,14 +79,16 @@ async function initMyScript() {
 }
 
 initMyScript();
-// document.querySelector("#keys").onclick = updateKeys;
 
 /* ---------------
  *  HANDWRITING SUBMISSION
  * ---------------*/
-function submit() {
-    log("not implemented yet");
+async function submit() {
+    exported = false;
     editor.editor.export_();
+    while (!exported) {
+        await new Promise(r => setTimeout(r, 100));
+    }
 }
 
 var next_btn = document.getElementById('next_btn');

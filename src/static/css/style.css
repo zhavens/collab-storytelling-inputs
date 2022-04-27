@@ -92,6 +92,10 @@ div #drawing {
   padding: 100px 0px;
 }
 
+.btn-styled {
+  z-index: 1;
+}
+
 .btn-styled span {
   display: block;
   padding: 10px 20px;

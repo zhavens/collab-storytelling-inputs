@@ -1,14 +1,12 @@
 /* ---------------
  *  SPEECH RECOGNITION
  * ---------------*/
-import { log } from "./logging.js";
 import { addInterpretation } from "./requestHandler.js";
 var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition
-var SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList
-var SpeechRecognitionEvent = SpeechRecognitionEvent || webkitSpeechRecognitionEvent
+// var SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList
+// var SpeechRecognitionEvent = SpeechRecognitionEvent || webkitSpeechRecognitionEvent
 
 var recognition = new SpeechRecognition();
-// recognition.grammars = speechRecognitionList;
 recognition.continuous = false;
 recognition.lang = 'en-US';
 recognition.interimResults = false;
@@ -23,8 +21,6 @@ const HELD_TIMEOUT_MS = 1000;
 var btn = document.querySelector('#rec_btn');
 var btnBackground = document.getElementById('rec_btn');
 var icon = document.getElementById('rec_icon');
-
-
 
 function startrecognition() {
     recording_time = new Date();
@@ -94,17 +90,6 @@ var voices
 var voiceselect = document.querySelector('#voice');
 var speakbtn = document.querySelector('#play_rec');
 
-function loadVoicesWhenAvailable(onComplete = () => { }) {
-    const v = synth.getVoices()
-
-    if (v.length !== 0) {
-        voices = v
-        onComplete()
-    } else {
-        return setTimeout(function () { loadVoicesWhenAvailable(onComplete) }, 100)
-    }
-}
-
 function populateVoiceList() {
     if (!synth) {
         alert("No synthesis support!");
@@ -114,18 +99,18 @@ function populateVoiceList() {
 
 
     for (const voice of voices) {
-        // if (voice.lang.includes('en-')) {
-        var option = document.createElement('option');
-        option.textContent = voice.name + ' (' + voice.lang + ')';
+        if (voice.lang.includes('en-')) {
+            var option = document.createElement('option');
+            option.textContent = voice.name + ' (' + voice.lang + ')';
 
-        if (voice.default) {
-            option.textContent += ' -- DEFAULT';
+            if (voice.default) {
+                option.textContent += ' -- DEFAULT';
+            }
+
+            option.setAttribute('data-lang', voice.lang);
+            option.setAttribute('data-name', voice.name);
+            voiceselect.appendChild(option);
         }
-
-        option.setAttribute('data-lang', voice.lang);
-        option.setAttribute('data-name', voice.name);
-        voiceselect.appendChild(option);
-        // }
     }
 }
 
@@ -137,15 +122,13 @@ function speak() {
             utterThis.voice = voice;
         }
     }
-    // utterThis.pitch = pitch.value;
-    // utterThis.rate = rate.value;
     synth.speak(utterThis);
 }
 
 populateVoiceList();
 speakbtn.onclick = speak;
-if (speechSynthesis.onvoiceschanged !== undefined) {
-    speechSynthesis.onvoiceschanged = populateVoiceList;
+if (window.speechSynthesis.onvoiceschanged !== undefined) {
+    window.speechSynthesis.onvoiceschanged = populateVoiceList;
 }
 
 /* ---------------
@@ -155,11 +138,6 @@ function submit() {
     addInterpretation(speech_result.transcript);
 }
 
-
-// on document ready
-loadVoicesWhenAvailable(function () {
-    $("h1").text("loaded");
-});
-
 var next_btn = document.getElementById('next_btn');
 next_btn.onclick = submit;
+
