@@ -63,8 +63,8 @@ export async function createAITemplate() {
             await drawCategories();
         }
 
-        // check if the categories changed again in 20 seconds
-        await new Promise(r => setTimeout(r, 20000));
+        // check if the categories changed again in 5 seconds
+        await new Promise(r => setTimeout(r, 5000));
     }
 
     //save the image to the database
