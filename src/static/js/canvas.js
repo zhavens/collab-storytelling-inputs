@@ -59,8 +59,10 @@ function lines() {
 	//Find pointer coordinates relative to canvas
 	window.linesPointermove = function (e) {
 		bounding = canvas.getBoundingClientRect();
-		pointer.x = e.pageX - bounding.left;
-		pointer.y = e.pageY - bounding.top;
+		var ratioX = canvas.getAttribute("width") / bounding.width;
+		var ratioY = canvas.getAttribute("height") / bounding.height;
+		pointer.x = (e.clientX - bounding.x) * ratioX;
+		pointer.y = (e.clientY - bounding.y) * ratioY;
 	};
 
 	//User clicks down on canvas to trigger paint
